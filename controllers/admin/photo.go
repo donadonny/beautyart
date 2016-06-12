@@ -1,8 +1,8 @@
 package admin
 
 import (
-	"blog/models"
 	"fmt"
+	"github.com/hunterhug/beautyart/models"
 	"os"
 	"strings"
 	"time"

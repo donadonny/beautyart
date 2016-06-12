@@ -1,7 +1,7 @@
 package admin
 
 import (
-	"blog/models"
+	"github.com/hunterhug/beautyart/models"
 	"strings"
 	"time"
 )

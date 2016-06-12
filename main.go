@@ -1,10 +1,10 @@
 package main
 
 import (
-	_ "blog/models"
-	_ "blog/routers"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
+	_ "github.com/hunterhug/beautyart/models"
+	_ "github.com/hunterhug/beautyart/routers"
 )
 
 func main() {

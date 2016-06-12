@@ -1,7 +1,7 @@
 package blog
 
 import (
-	"blog/models"
+	"github.com/hunterhug/beautyart/models"
 	"strconv"
 	"strings"
 )

@@ -1,9 +1,9 @@
 package admin
 
 import (
-	"blog/models"
 	"fmt"
 	"github.com/astaxie/beego/orm"
+	"github.com/hunterhug/beautyart/models"
 	"github.com/nfnt/resize"
 	"image/jpeg"
 	"io"

@@ -1,8 +1,8 @@
 package admin
 
 import (
-	"blog/controllers"
-	"blog/models"
+	"github.com/hunterhug/beautyart/controllers"
+	"github.com/hunterhug/beautyart/models"
 	"strconv"
 	"strings"
 )

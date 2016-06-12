@@ -1,8 +1,8 @@
 package admin
 
 import (
-	"blog/models"
 	"github.com/astaxie/beego"
+	"github.com/hunterhug/beautyart/models"
 	"strconv"
 	"strings"
 	"time"
