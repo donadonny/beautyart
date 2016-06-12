@@ -1,0 +1,432 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>美术新闻-一尚画室</title>
+<meta name="keywords" content="一尚画室" />
+<meta name="description" content="一尚画室" />
+<meta name="author" content="网站建设：佰维网络 - http://www.100vic.com" /><link href="css/style.css" rel="stylesheet" type="text/css" /><link href="css/list.css" rel="stylesheet" type="text/css" />
+    <script src="js/jquery1.42.min.js" type="text/javascript" charset="utf-8"></script>
+    <style type="text/css">
+        .newstopimg {
+            margin-top:55px;
+        }
+        .newstopimg li {
+            float:left;
+            margin-right: 5px;
+        }
+        .newstopimg li img
+        {
+            width: 198px;
+            height: 172px;
+        }
+    </style>
+<title>
+
+</title></head>
+	<body>
+    <div style="z-index: 99;background: #fff;position: fixed;width: 100%;top: 0;">
+        
+<style type="text/css">
+    p#back-to-top {
+        position: fixed;
+        bottom: 100px;
+        left: 85%;
+    }
+
+        p#back-to-top a {
+            text-align: center;
+            text-decoration: none;
+            color: #d1d1d1;
+            display: block;
+            width: 80px;
+            /*使用CSS3中的transition属性给跳转链接中的文字添加渐变效果*/
+            -moz-transition: color 1s;
+            -webkit-transition: color 1s;
+            -o-transition: color 1s;
+        }
+
+            p#back-to-top a:hover {
+                color: #979797;
+            }
+
+            p#back-to-top a span {
+                background: #d1d1d1 url(img/Up.png) no-repeat center center;
+                border-radius: 6px;
+                display: block;
+                height: 80px;
+                width: 80px;
+                margin-bottom: 5px;
+                /*使用CSS3中的transition属性给<span>标签背景颜色添加渐变效果*/
+                -moz-transition: background 1s;
+                -webkit-transition: background 1s;
+                -o-transition: background 1s;
+            }
+
+    #back-to-top a:hover span {
+        background: #979797 url(img/Up.png) no-repeat center center;
+    }
+</style>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //首先将#back-to-top隐藏
+        $("#back-to-top").hide();
+        //当滚动条的位置处于距顶部100像素以下时，跳转链接出现，否则消失
+        $(function () {
+            $(window).scroll(function () {
+                if ($(window).scrollTop() > 300) {
+                    $("#back-to-top").fadeIn(1500).show();
+                }
+                else {
+                    $("#back-to-top").fadeOut(1500).hide();
+                }
+            });
+            //当点击跳转链接后，回到页面顶部位置
+            $("#back-to-top").click(function () {
+                $('body,html').animate({ scrollTop: 0 }, 1000);
+                return false;
+            });
+        });
+    });
+</script>
+<div class="top" style="background-color:white; display:none;">
+    <div class="top_center">
+        
+        <div class="top_right">
+            <ul>
+                
+                      
+                <li class="top_right_ico2"><a href="javascript:;"><span></span>广州电话：<span style="color:red;">020-34263457 18028687531</span> </a></li>            
+                <li class="top_right_ico3"><a href="map.aspx?code=0802">网站地图</a></li>
+                
+            </ul>
+        </div>
+    </div>
+    <p id="back-to-top" style="display:none;"><a href="#top"><span></span>返回顶部</a></p>
+</div>
+
+        
+<div class="top1">
+    <div class="logo">
+        <a href="/" title="广州画室">
+            <img src="img/logo_03.png" alt="广州画室" /></a>
+    </div>
+    <div class="nav">
+        <ul>
+            
+            <li id="li_01"><a href="About.aspx?code=0102">关于一尚</a></li>
+            
+            <li id="li_02"><a href="Fairy.aspx?code=0201&pcode=110102">美术高考</a></li>
+            
+            <li id="li_11"><a href="Fairy.aspx?code=0901&pcode=110111">综合美术</a></li>
+            
+            <li id="li_03"><a href="Fairy.aspx?code=0301&pcode=110103">一尚童画</a></li>
+            
+            <li id="li_04"><a href="Fairy.aspx?code=0401&pcode=110104">一尚漫画</a></li>
+            
+            <li id="li_05"><a href="Fairy.aspx?code=0501&pcode=110105">一尚国际</a></li>
+            
+            <li id="li_06"><a href="News.aspx?code=0601">美术新闻</a></li>
+            
+            <li id="li_07"><a href="Course.aspx?code=0701">美术教程</a></li>
+            
+            <li id="li_08"><a href="map.aspx?code=0802">联系我们</a></li>
+            
+        </ul>
+    <div>
+        <script type="text/javascript">
+            $(function () {
+                var code = "0604";
+                if (code.length > 2) {
+                    switch (code.substring(0, 2)) {
+                        case "01":
+                            code = "01";
+                            break;
+                        case "02":
+                            code = "02";
+                            break;
+                        case "09":
+                            code = "11";
+                            break;
+                        case "03":
+                            code = "03";
+                            break;
+                        case "04":
+                            code = "04";
+                            break;
+                        case "05":
+                            code = "05";
+                            break;
+                        case "06":
+                            code = "06";
+                            break;
+                        case "07":
+                            code = "07";
+                            break;
+                        case "08":
+                            code = "08";
+                            break;
+                    }
+                }
+                $("#li_" + code + " a").attr("style", "border-bottom:2px solid #fe5a75;");
+            });
+        </script>
+        <a href="map.aspx?code=0802" style="position: absolute;right: 185px; top: 20px; font-size:20px;"><strong><span>报名热线：</span><span style="color:red;">020-34263457 18028687531</span></strong></a>
+    </div>
+    </div>
+</div>
+
+    </div>
+
+    <div class="banner_list" style="margin-top:200px;">
+			<div class="banner_list_center">
+				<div class="banner_list_1">
+					<span>Art Infor</span>
+					<h2>美术新闻</h2>
+				</div>
+				<div class="banner_list_2">
+					<h2>激情、奋进、专业</h2>
+					<span>Passionate,Progressive
+Professional</span>
+				</div>
+			</div>
+		</div>
+		<div class="about-all">
+            <div class="about-btkk ">
+                <div class="about-bt news-btkk"><span>当前位置：</span> <a href="index.aspx">返回首页</a> <a href="News.aspx?code=0604">美术新闻</a> <a href="javascript:;" class="about-current"></a></div>
+            </div>
+            <div class="about-dh">
+                <ul  class="about-dh-ul">
+                    
+                    <li class=""><a href="News.aspx?code=0601" >画室动态</a></li>
+                    
+                    <li class=""><a href="News.aspx?code=0602" >行业政策</a></li>
+                    
+                    <li class=""><a href="News.aspx?code=0603" >视频新闻</a></li>
+                    
+                    <li class="about-dh-current"><a href="News.aspx?code=0604" >感恩一尚</a></li>
+                    
+                    <li class=""><a href="News.aspx?code=0605" >院校简章</a></li>
+                    
+                </ul>
+            </div>
+            <div class="attention-cont">
+                <p class="attention-cont-p11"><span>THANKS&GRATITUDE</span><b 
+                    style="left: 350px;" class="Recruitment-cont-b1 news-b1">感恩一尚</b></p>
+                <ul class="newstopimg">
+                    
+                    <li style="float:left;"><a href="newsinfo.aspx?id=232"><img  src="upload/1606/2016613598.jpg"/> <h1 style="text-align:center;">一尚助我圆梦</h1></a></li>
+                    
+                </ul>
+                <ul class="news-ul" style="clear: both;">
+                    
+                	<li>
+                        <a href="newsinfo.aspx?id=234">
+                        
+                    	
+                        	<p style="float: left; margin-top: 11px; margin-left:11px;">
+                            	<i style="font-style:normal;color:red;">[感恩一尚]</i>&nbsp;&nbsp;
+                            </p>
+                            <span class="new-span1" style="float:right; margin-top: 10px; margin-right:10px">2016-06-02</span>
+                        </a>        
+                    </li>
+                    
+                	<li>
+                        <a href="newsinfo.aspx?id=235">
+                        
+                    	
+                        	<p style="float: left; margin-top: 11px; margin-left:11px;">
+                            	<i style="font-style:normal;color:red;">[感恩一尚]</i>&nbsp;&nbsp;
+                            </p>
+                            <span class="new-span1" style="float:right; margin-top: 10px; margin-right:10px">2016-06-02</span>
+                        </a>        
+                    </li>
+                    
+                	<li>
+                        <a href="newsinfo.aspx?id=236">
+                        
+                    	
+                        	<p style="float: left; margin-top: 11px; margin-left:11px;">
+                            	<i style="font-style:normal;color:red;">[感恩一尚]</i>&nbsp;&nbsp;
+                            </p>
+                            <span class="new-span1" style="float:right; margin-top: 10px; margin-right:10px">2016-06-02</span>
+                        </a>        
+                    </li>
+                    
+                	<li>
+                        <a href="newsinfo.aspx?id=199">
+                        
+                    	
+                        	<p style="float: left; margin-top: 11px; margin-left:11px;">
+                            	<i style="font-style:normal;color:red;">[感恩一尚]</i>&nbsp;&nbsp;在一尚的20几天，我觉得我的进步很大，学到很多东西。无论是素描、色彩还是速写，我都感觉到与原来相比，差别很大。
+                            </p>
+                            <span class="new-span1" style="float:right; margin-top: 10px; margin-right:10px">2016-05-31</span>
+                        </a>        
+                    </li>
+                    
+                	<li>
+                        <a href="newsinfo.aspx?id=200">
+                        
+                    	
+                        	<p style="float: left; margin-top: 11px; margin-left:11px;">
+                            	<i style="font-style:normal;color:red;">[感恩一尚]</i>&nbsp;&nbsp;我是画室为数不多的走读生之一，初冬的凉气未散入画室的大庭，伴着生脆的“吧咔”的一声打卡，与碳粉颜料共舞的一天又开始了。
+                            </p>
+                            <span class="new-span1" style="float:right; margin-top: 10px; margin-right:10px">2016-05-31</span>
+                        </a>        
+                    </li>
+                    
+                	<li>
+                        <a href="newsinfo.aspx?id=228">
+                        
+                    	
+                        	<p style="float: left; margin-top: 11px; margin-left:11px;">
+                            	<i style="font-style:normal;color:red;">[感恩一尚]</i>&nbsp;&nbsp;
+                            </p>
+                            <span class="new-span1" style="float:right; margin-top: 10px; margin-right:10px">2016-05-31</span>
+                        </a>        
+                    </li>
+                    
+                	<li>
+                        <a href="newsinfo.aspx?id=232">
+                        
+                    	
+                        	<p style="float: left; margin-top: 11px; margin-left:11px;">
+                            	<i style="font-style:normal;color:red;">[感恩一尚]</i>&nbsp;&nbsp;手捧中央美院、中国美院、中国传媒三大中国顶级的艺术院校寄给我女儿李文欣的专业合格证书，以及中国美术院校《美院视界》的征稿...
+                            </p>
+                            <span class="new-span1" style="float:right; margin-top: 10px; margin-right:10px">2016-05-31</span>
+                        </a>        
+                    </li>
+                    
+                	<li>
+                        <a href="newsinfo.aspx?id=88">
+                        
+                    	
+                        	<p style="float: left; margin-top: 11px; margin-left:11px;">
+                            	<i style="font-style:normal;color:red;">[感恩一尚]</i>&nbsp;&nbsp;几载寒暑，您的学生洪国栋想对您说：亲爱的老师，您辛苦了！感谢您的关怀，感谢您的帮助，感谢您为我所做的一切。请接受学生们美...
+                            </p>
+                            <span class="new-span1" style="float:right; margin-top: 10px; margin-right:10px">2015-10-18</span>
+                        </a>        
+                    </li>
+                    
+                	<li>
+                        <a href="newsinfo.aspx?id=87">
+                        
+                    	
+                        	<p style="float: left; margin-top: 11px; margin-left:11px;">
+                            	<i style="font-style:normal;color:red;">[感恩一尚]</i>&nbsp;&nbsp;我是2015届协议班学生邱筱恬妈妈，陈静君。
+我们的家乡在潮州，为使女儿能够在广州找到合适的画室，我用了几个月的时间，到网上...
+                            </p>
+                            <span class="new-span1" style="float:right; margin-top: 10px; margin-right:10px">2015-09-10</span>
+                        </a>        
+                    </li>
+                    
+                	<li>
+                        <a href="newsinfo.aspx?id=85">
+                        
+                    	
+                        	<p style="float: left; margin-top: 11px; margin-left:11px;">
+                            	<i style="font-style:normal;color:red;">[感恩一尚]</i>&nbsp;&nbsp;当得知我同时收到了国美、广美、天美和华中科技大学的专业合格证时，我简直不敢相信自己的耳朵。
+
+                            </p>
+                            <span class="new-span1" style="float:right; margin-top: 10px; margin-right:10px">2015-07-23</span>
+                        </a>        
+                    </li>
+                    
+                	<li>
+                        <a href="newsinfo.aspx?id=86">
+                        
+                    	
+                        	<p style="float: left; margin-top: 11px; margin-left:11px;">
+                            	<i style="font-style:normal;color:red;">[感恩一尚]</i>&nbsp;&nbsp;感谢我在一尚学画的那些日子，每分每一秒对我包容的心态，感谢你们对我师如父母的疼爱，让自信与绘画证实我的存在，我感谢我的每...
+                            </p>
+                            <span class="new-span1" style="float:right; margin-top: 10px; margin-right:10px">2015-07-23</span>
+                        </a>        
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="clear">
+        	
+        </div>
+    
+<!-- foot -->
+<div class="footer">
+    <div class="footer_center" style="width:1100px;">
+        <div class="footer_left">
+            <div class="footer_left_title">
+                <h3>联系方式</h3>
+                <span>Contact Us</span>
+            </div>
+            <p>
+                广州校区：一尚画室地址：广州市海珠区东晓路538号
+                <br />
+                广州电话：020-34263457  18028687531
+                <br />
+                传真号码：020-34054273
+            </p>
+        </div>
+        <div class="footer_left1">
+            <div class="footer_left1_title">
+                <h3>联系方式</h3>
+                <span>Contact Us</span>
+            </div>
+            <div class="footer_left1_main">
+                <div class="footer_left1_main_left">
+                    <img src="img/footer_12.gif" />
+                </div>
+                <div class="footer_left1_main_right">
+                    <h4>微博动态</h4>
+                    <h3>一尚画室官方微博</h3>
+                    <a hre  f="#">
+                        <img src="img/footer_15.gif" /></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer_right" style="width:300px;">
+            
+            <div style="float:left; margin-right: 10px;">
+            <img src="upload/1604/20164252521.jpg" />
+            <h3>一尚画室官方微信</h3>
+            <p>扫一扫，时尚无处不在</p>
+            </div>
+            
+            <div style="float:left; margin-right: 10px;">
+            <img src="upload/1603/20163157953.png" />
+            <h3>一尚画室新浪微博</h3>
+            <p>扫一扫，时尚无处不在</p>
+            </div>
+            
+          
+        </div>
+    </div>
+</div>
+
+
+		    
+<div class="foot_nav">
+    <ul style="width:1080px;">
+        <li><a href="index.aspx">首  页 </a></li>
+        <li><a href="About.aspx?code=0101">关于一尚 </a></li>
+        <li><a href="Fairy.aspx?code=0201">美术高考 </a></li>
+        <li><a href="Ysth.aspx?code=0301">一尚童画 </a></li>
+        <li><a href="Ysmt.aspx?code=0401">一尚漫谈</a></li>
+        <li><a href="Ysgj.aspx?code=0501">一尚国际</a></li>
+        <li><a href="News.aspx?code=0601">美术新闻</a></li>
+        <li><a href="Course.aspx?code=0701">美术教程</a></li>
+        <li><a href="map.aspx?code=0802">联系我们</a></li>
+        <li><a href="admin2015/login.aspx"  target="_blank"><span></span>登录后台</a></li>
+    </ul>
+</div>
+<div class="foot_b">
+    <div class="footer_b_center">
+        <p>友情链接 ： <a href="#">PRADA |</a>申请友情链接</p>
+        <p>www.zk-am.com 版权所有：一尚画室     技术支持：<a href="http://www.100vic.com/">佰维网络</a></p>
+    </div>
+
+</div>
+
+	</body>
+</html>

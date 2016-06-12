@@ -1,0 +1,742 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>
+	联系我们
+</title><link href="css/style.css" rel="stylesheet" type="text/css" /><link href="css/list.css" rel="stylesheet" type="text/css" />
+    <script src="js/jquery1.42.min.js" type="text/javascript" charset="utf-8"></script>
+</head>
+	<body>
+    <div style="z-index: 99;background: #fff;position: fixed;width: 100%;top: 0;">
+        
+<style type="text/css">
+    p#back-to-top {
+        position: fixed;
+        bottom: 100px;
+        left: 85%;
+    }
+
+        p#back-to-top a {
+            text-align: center;
+            text-decoration: none;
+            color: #d1d1d1;
+            display: block;
+            width: 80px;
+            /*使用CSS3中的transition属性给跳转链接中的文字添加渐变效果*/
+            -moz-transition: color 1s;
+            -webkit-transition: color 1s;
+            -o-transition: color 1s;
+        }
+
+            p#back-to-top a:hover {
+                color: #979797;
+            }
+
+            p#back-to-top a span {
+                background: #d1d1d1 url(img/Up.png) no-repeat center center;
+                border-radius: 6px;
+                display: block;
+                height: 80px;
+                width: 80px;
+                margin-bottom: 5px;
+                /*使用CSS3中的transition属性给<span>标签背景颜色添加渐变效果*/
+                -moz-transition: background 1s;
+                -webkit-transition: background 1s;
+                -o-transition: background 1s;
+            }
+
+    #back-to-top a:hover span {
+        background: #979797 url(img/Up.png) no-repeat center center;
+    }
+</style>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //首先将#back-to-top隐藏
+        $("#back-to-top").hide();
+        //当滚动条的位置处于距顶部100像素以下时，跳转链接出现，否则消失
+        $(function () {
+            $(window).scroll(function () {
+                if ($(window).scrollTop() > 300) {
+                    $("#back-to-top").fadeIn(1500).show();
+                }
+                else {
+                    $("#back-to-top").fadeOut(1500).hide();
+                }
+            });
+            //当点击跳转链接后，回到页面顶部位置
+            $("#back-to-top").click(function () {
+                $('body,html').animate({ scrollTop: 0 }, 1000);
+                return false;
+            });
+        });
+    });
+</script>
+<div class="top" style="background-color:white; display:none;">
+    <div class="top_center">
+        
+        <div class="top_right">
+            <ul>
+                
+                      
+                <li class="top_right_ico2"><a href="javascript:;"><span></span>广州电话：<span style="color:red;">020-34263457 18028687531</span> </a></li>            
+                <li class="top_right_ico3"><a href="map.aspx?code=0802">网站地图</a></li>
+                
+            </ul>
+        </div>
+    </div>
+    <p id="back-to-top" style="display:none;"><a href="#top"><span></span>返回顶部</a></p>
+</div>
+
+        
+<div class="top1">
+    <div class="logo">
+        <a href="/" title="广州画室">
+            <img src="img/logo_03.png" alt="广州画室" /></a>
+    </div>
+    <div class="nav">
+        <ul>
+            
+            <li id="li_01"><a href="About.aspx?code=0102">关于一尚</a></li>
+            
+            <li id="li_02"><a href="Fairy.aspx?code=0201&pcode=110102">美术高考</a></li>
+            
+            <li id="li_11"><a href="Fairy.aspx?code=0901&pcode=110111">综合美术</a></li>
+            
+            <li id="li_03"><a href="Fairy.aspx?code=0301&pcode=110103">一尚童画</a></li>
+            
+            <li id="li_04"><a href="Fairy.aspx?code=0401&pcode=110104">一尚漫画</a></li>
+            
+            <li id="li_05"><a href="Fairy.aspx?code=0501&pcode=110105">一尚国际</a></li>
+            
+            <li id="li_06"><a href="News.aspx?code=0601">美术新闻</a></li>
+            
+            <li id="li_07"><a href="Course.aspx?code=0701">美术教程</a></li>
+            
+            <li id="li_08"><a href="map.aspx?code=0802">联系我们</a></li>
+            
+        </ul>
+    <div>
+        <script type="text/javascript">
+            $(function () {
+                var code = "0802";
+                if (code.length > 2) {
+                    switch (code.substring(0, 2)) {
+                        case "01":
+                            code = "01";
+                            break;
+                        case "02":
+                            code = "02";
+                            break;
+                        case "09":
+                            code = "11";
+                            break;
+                        case "03":
+                            code = "03";
+                            break;
+                        case "04":
+                            code = "04";
+                            break;
+                        case "05":
+                            code = "05";
+                            break;
+                        case "06":
+                            code = "06";
+                            break;
+                        case "07":
+                            code = "07";
+                            break;
+                        case "08":
+                            code = "08";
+                            break;
+                    }
+                }
+                $("#li_" + code + " a").attr("style", "border-bottom:2px solid #fe5a75;");
+            });
+        </script>
+        <a href="map.aspx?code=0802" style="position: absolute;right: 185px; top: 20px; font-size:20px;"><strong><span>报名热线：</span><span style="color:red;">020-34263457 18028687531</span></strong></a>
+    </div>
+    </div>
+</div>
+
+    </div>
+
+    <div class="banner_list" style="margin-top:200px;">
+			<div class="banner_list_center">
+				<div class="banner_list_1">
+					<span>Contact Us</span>
+					<h2>联系我们</h2>
+				</div>
+				<div class="banner_list_2">
+					<h2>激情、奋进、专业</h2>
+					<span>Passionate,Progressive
+Professional</span>
+				</div>
+			</div>
+		</div>
+		<div class="about-all">
+            <div class="about-btkk">
+                <div class="about-bt"><span>当前位置：</span> <a href="index.aspx">返回首页</a> <a href="#" class="about-current">联系我们</a></div>
+            </div>
+            <div class="about-dh">
+                <ul  class="about-dh-ul">
+                    
+                    <li class="about-dh-current">
+                        <a 
+                             href="map.aspx?code=0802"  >
+                            乘车自驾</a></li>
+                    
+                    <li class="">
+                        <a 
+                             href="map.aspx?code=0806"  >
+                            入学流程</a></li>
+                    
+                    <li class="">
+                        <a 
+                             href="map.aspx?code=0807"  >
+                            招生问答</a></li>
+                    
+                    <li class="">
+                        <a 
+                             href="message.aspx?code=0803"  >
+                            咨询我们</a></li>
+                    
+                    <li class="">
+                        <a 
+                             href="Recruitment.aspx?code=0801"  >
+                            画室招聘</a></li>
+                    
+                </ul>
+            </div>
+            <div class="attention-cont">
+                <p class="attention-cont-p10"><span>CONTACT</span><b class="Recruitment-cont-b1 map-b1">联系我们</b></p>
+                <p>
+	<span style="line-height:1.5;font-size:18px;"><span style="font-family:'Microsoft YaHei';color:#000000;"><strong>&nbsp; &nbsp; &nbsp; <span style="font-family:KaiTi_GB2312;">&nbsp;</span><span style="font-family:KaiTi_GB2312;">&nbsp;</span></strong></span></span>
+</p>
+<p>
+	<span style="line-height:1.5;font-size:18px;"><span style="font-family:'Microsoft YaHei';color:#000000;"><strong><span style="font-family:KaiTi_GB2312;">&nbsp; &nbsp; 广州一尚画室</span></strong></span><span style="color:#000000;font-family:KaiTi_GB2312;">位于广州市海珠区核心地段，与华南地区美术最高学府广州美术学院总校一墙之隔；画室周边交通、社区配套成熟，旁边配有体育中心、大型商场超市和文化娱乐等配套设施，各种酒楼食肆、邮局、银行、医院、文化文具用品店一应俱全；毗邻广州美术学院、中山大学教育气氛浓郁，坐拥珠江美景、海印公园、晓港公园等景观资源，环境优美；周边配有停车场，离地铁口仅2分钟路程，离广州站、广州东站、广州南站均约30分钟行程，到达广州新白云国际机场仅需40分钟。</span></span> 
+</p>
+<p>
+	<span style="font-size:18px;"><span style="color:#000000;">&nbsp; &nbsp; &nbsp;&nbsp;</span></span> 
+</p>
+<p>
+	<iframe src="http://huashi.100viccs.com/admin2015/hn_editor/plugins/baidumap/index.html?center=113.289719%2C23.101197&zoom=19&width=1020&height=598&markers=113.289719%2C23.101197&markerStyles=l%2CA" frameborder="0" style="line-height:1.5;width:1024px;height:600px;">
+	</iframe>
+</p>
+<p>
+	<br />
+</p>
+<p>
+	<span style="font-size:18px;font-family:'Microsoft YaHei';color:#000000;"><strong>私家车自驾方案</strong></span> 
+</p>
+<p>
+	<br />
+</p>
+<p>
+	<span style="font-size:18px;"></span><span style="font-size:18px;color:#000000;line-height:1.5;font-family:KaiTi_GB2312;">1、驾车在广州美术学院或中山大学或东晓南路均往海印桥方向不上高架进入东晓路后靠左前行300米在前进路口调头往新港西路方向300米右侧见岭南春晓后前方20米右侧有停车场。</span><br />
+<span style="font-size:18px;color:#000000;line-height:1.5;font-family:KaiTi_GB2312;">2、导航设置：</span><br />
+<span style="font-size:18px;color:#000000;line-height:1.5;font-family:KaiTi_GB2312;">方案1、一尚画室</span><br />
+<span style="font-size:18px;color:#000000;line-height:1.5;font-family:KaiTi_GB2312;">方案2、晓港公园东南门，到达后向前驶100米即能看到我校招牌。</span><br />
+<span style="font-size:18px;color:#000000;line-height:1.5;font-family:KaiTi_GB2312;">方案3、富力千禧花园，到达后调头回对面即到。</span> 
+</p>
+<p>
+	<span style="font-size:18px;">&nbsp; &nbsp; &nbsp; </span> 
+</p>
+<p>
+	<span style="font-size:18px;line-height:27px;"> </span> 
+</p>
+<hr />
+<p>
+	<br />
+</p>
+<p>
+	<br />
+</p>
+<p>
+	<span style="font-size:18px;line-height:1.5;"><span style="font-family:'Microsoft YaHei';color:#000000;line-height:1.5;"><strong>飞机场至画室路线</strong></span></span> 
+</p>
+<p>
+	<br />
+</p>
+<p>
+	<span style="font-size:18px;line-height:27px;"> </span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-family:'Microsoft YaHei';font-size:16px;color:#000000;line-height:2;"><strong><span style="font-size:16px;color:#000000;line-height:2;">广州白云国际机场</span></strong></span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:2;">1.从广州白云国际机场(新机场)走约510米到机场快线B乘车区坐机场快线5号线(坐2站)到机场快线东方宾馆站下,往前走到地铁越秀公园站D1出入口转乘地铁二号线(坐6站)到地铁晓港站A出入口下.走约310米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:2;">2.乘坐出租车：共行驶34.9公里,费用99.00元. 注意:信息仅供参考,不可作为支付依据.本费用中不含过路费和过桥费,塞车等因素可能使费用显著增加</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:2;">3.从广州白云国际机场(新机场)走约510米到机场快线B乘车区坐机场快线5号线(坐3站)到机场快线海珠广场站下,走到位于另一条路(一德路)的海珠广场(一德东)站转乘253路(坐5站)到广医二院站1下.走约540米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:2;">4.从广州白云国际机场(新机场)走约510米到机场快线B乘车区坐空港快线3号线(坐1站)到机场快线珀丽酒店站下,走到位于另一条路(昌岗中路)的信和广场(昌岗中路)站转乘70路(坐2站)到晓港新村站(东晓南路)下.走约440米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:14px;"><span style="line-height:2;">&nbsp; &nbsp; &nbsp;</span> </span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:14px;"> </span> 
+</p>
+<hr />
+<p>
+	<br />
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span><span style="font-family:'Microsoft YaHei';color:#000000;font-size:18px;"><strong><br />
+</strong></span></span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span><span style="font-family:'Microsoft YaHei';color:#000000;font-size:18px;"><strong>火车站至画室路线</strong></span><span style="font-family:Microsoft YaHei;"><strong></strong></span><br />
+</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<strong style="font-family:'Microsoft YaHei';font-size:16px;line-height:1.8;"><span style="font-size:14px;">一、广州火车站</span></strong> 
+</p>
+<p>
+	<br />
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:14px;color:#000000;">1.从广州火车站走约10米到地铁广州火车站A出入口乘坐地铁二号线（坐7站）到地铁昌岗站转乘地铁八号线（坐1站）到地铁晓港站下走约310米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:14px;color:#000000;">2.乘坐出租车：共行驶8.5公里,费用26.00元. 注意:信息仅供参考,不可作为支付依据.本费用中不含过路费和过桥费,塞车等因素可能使费用显著增加</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:14px;color:#000000;">3.从广州火车站走约40米到广州火车站总站坐211路(坐16站)到怡乐村站下.走约570米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:14px;color:#000000;">4.从广州火车站走约380米到草暖公园站坐5路(坐10站)到晓港新村站(东晓南路)下.走约440米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:13px;"><br />
+</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-family:'Microsoft YaHei';font-size:16px;color:#000000;"><strong><span style="font-size:14px;color:#000000;">二、广州火车东站</span></strong></span><span style="font-size:14px;"></span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:14px;color:#000000;">1.从广州火车东站走约80米到广州火车东站总站坐263路(坐11站)到怡乐村站下.走约480米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:14px;color:#000000;">2.乘坐出租车：共行驶10.2公里,费用31.00元. 注意:信息仅供参考,不可作为支付依据.本费用中不含过路费和过桥费,塞车等因素可能使费用显著增加</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:14px;color:#000000;">3.从广州火车东站走约20米到地铁广州东站G1出入口乘坐地铁一号线（坐2站）、地铁三号线(火车东站-体育西)（坐2站）到地铁体育西路站转乘地铁三号线(天河客运站-番禺广场)（坐3站）到地铁客村站转乘地铁八号线（坐3站）到地铁晓港站下。走约310米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:14px;color:#000000;">4.从广州火车东站走约80米到广州火车东站总站坐551路(坐5站)到梅花村站转乘813路(坐6站)、548路(坐6站)到广医二院站1下.走约380米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:13px;"><br />
+</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-family:'Microsoft YaHei';font-size:16px;color:#000000;"><strong><span style="font-size:14px;color:#000000;">三、广州火车南站</span></strong></span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:14px;color:#000000;">1.从广州火车南站走约20米到地铁广州南站F出入口乘坐地铁二号线（坐8站）到地铁昌岗站转乘地铁八号线（坐1站）到地铁晓港站A出入口下.走约310米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:14px;color:#000000;">2.从广州火车南站走约520米到广州火车南站总站坐309路A(坐9站)、288路A(坐10站)到海珠客运站转乘70路(坐6站)到广医二院站1下.走约380米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:14px;color:#000000;">3.乘坐出租车：共行驶12.7公里,费用38.00元. 注意:信息仅供参考,不可作为支付依据.本费用中不含过路费和过桥费,塞车等因素可能使费用显著增加</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:14px;color:#000000;">4.从广州火车南站走约520米到广州火车南站总站坐302路A(坐8站)、301路A(坐9站)到洛溪桥脚站2转乘88路(坐9站)到怡乐村站下.走约480米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:13px;"><br />
+</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-family:'Microsoft YaHei';font-size:16px;color:#000000;"><strong><span style="font-size:14px;color:#000000;">四、广州火车北站</span></strong></span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:14px;color:#000000;">1.从广州火车北站走约250米到二汽花都汽车客运站总站(秀全大道)坐二汽花都汽车客运站-市客运站线(坐1站)到市客运站总站下,走到位于另一条路(站南路)的地铁广州火车站H出入口转乘地铁二号线(坐7站)到地铁晓港站A出入口下.走约310米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:14px;color:#000000;">2.乘坐出租车：共行驶39.4公里,费用120.00元. 注意:信息仅供参考,不可作为支付依据.本费用中不含过路费和过桥费,塞车等因素可能使费用显著增加</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:14px;color:#000000;">3.从广州火车北站走约250米到二汽花都汽车客运站总站(秀全大道)坐二汽花都汽车客运站-市客运站线(坐1站)到市客运站总站转乘5路(坐12站)到晓港新村站(东晓南路)下.走约440米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:14px;color:#000000;">4.从广州火车北站走约250米到二汽花都汽车客运站总站(秀全大道)坐二汽花都客运站-滘口客运站专线(无站牌,扬手才停,下车先通知)(坐1站)到滘口汽车站总站转乘206路(坐12站)到广医二院站2下.走约500米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:14px;color:#000000;">&nbsp;&nbsp;</span> 
+</p>
+<p>
+	<br />
+</p>
+<hr />
+<span style="font-size:18px;font-family:'Microsoft YaHei';"><strong></strong></span> 
+<p>
+	<span style="font-size:18px;font-family:'Microsoft YaHei';color:#000000;"><strong><br />
+</strong></span> 
+</p>
+<p>
+	<span style="font-size:16px;font-family:'Microsoft YaHei';color:#000000;line-height:1.5;"><strong>长途汽车站至画室路线</strong></span> 
+</p>
+<p>
+	<br />
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-family:'Microsoft YaHei';font-size:16px;color:#000000;line-height:1.5;"><strong><span style="font-size:16px;color:#000000;line-height:1.5;">一、广东省汽车客运站</span></strong></span><span style="font-size:16px;color:#000000;line-height:1.5;">&nbsp;</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">1.从广州火车站走约10米到地铁广州火车站F出入口乘坐地铁二号线（坐7站）到地铁昌岗站转乘地铁八号线（坐1站）到地铁晓港站下A出口走约310米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">2.乘坐出租车：共行驶9.0公里,费用27.00元. 注意:信息仅供参考,不可作为支付依据.本费用中不含过路费和过桥费,塞车等因素可能使费用显著增加</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">3.从省汽车站走约250米到市客运站总站坐5路(坐12站)到晓港新村站(东晓南路)下.走约440米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">4.从省汽车站走约400米到流花车站总站坐823路(坐16站)到怡乐村站下.走约570米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:13px;"><br />
+</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-family:'Microsoft YaHei';font-size:16px;color:#000000;line-height:1.5;"><strong><span style="font-size:16px;color:#000000;line-height:1.5;">二、流花车站</span></strong></span><span style="font-size:14px;"></span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">1.从流花车站走约30米到地铁广州火车站D4出入口坐地铁二号线(坐7站)到地铁晓港站A出入口下.走约310米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">2.乘坐出租车：共行驶8.6公里,费用26.00元. 注意:信息仅供参考,不可作为支付依据.本费用中不含过路费和过桥费,塞车等因素可能使费用显著增加</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">3.从流花车站走到流花车站总站坐823路(坐16站)到怡乐村站下.走约570米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">4.从流花车站走约270米到站南路站坐5路(坐11站)到晓港新村站(东晓南路)下.走约440米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:13px;"><br />
+</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-family:'Microsoft YaHei';font-size:16px;color:#000000;line-height:1.5;"><strong><span style="font-size:16px;color:#000000;line-height:1.5;">三、天河客运站</span></strong></span><span style="font-size:14px;"></span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">1.从天河客运站2坐535路(坐12站)到中山医站3转乘548路(坐4站)到广医二院站1下.走约380米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">2.乘坐出租车：共行驶14.4公里,费用42.00元. 注意:信息仅供参考,不可作为支付依据.本费用中不含过路费和过桥费,塞车等因素可能使费用显著增加</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">3.从天河客运站走约180米到地铁天河客运站B出入口坐地铁三号线(天河客运站-番禺广场)(坐8站)到地铁客村站转乘地铁二号线(坐3站)到地铁晓港站A出入口下.走约310米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">4.从天河客运站3坐884路(坐11站)到广州火车东站总站转乘263路(坐12站)到晓港新村站(东晓南路)下.走约440米到一尚画室 &nbsp; &nbsp; &nbsp;</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:13px;"><br />
+</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-family:'Microsoft YaHei';font-size:16px;color:#000000;line-height:1.5;"><strong><span style="font-size:16px;color:#000000;line-height:1.5;">四、芳村汽车客运站</span></strong></span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">1.从芳村汽车客运站走约100米到芳村客运站1(途经站)坐70路(坐9站)到广医二院站2下.走约500米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">2.乘坐出租车：共行驶6.7公里,费用21.00元. 注意:信息仅供参考,不可作为支付依据.本费用中不含过路费和过桥费,塞车等因素可能使费用显著增加</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">3.从芳村汽车客运站走约240米到地铁坑口站B出入口坐地铁一号线(坐7站)到地铁公园前站转乘地铁二号线(坐4站)到地铁晓港站A出入口下.走约310米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">4.从芳村汽车客运站走约100米到芳村客运站1(途经站)坐565路广佛线(雍景豪园-大学城广工)(坐9站)、69路(坐11站)到广医二院站1下.走约540米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:13px;"><br />
+</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-family:'Microsoft YaHei';font-size:16px;color:#000000;line-height:1.5;"><strong><span style="font-size:16px;color:#000000;line-height:1.5;">五、越秀南汽车客运站</span></strong></span><span style="font-size:14px;"></span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">1.从越秀南汽车客运站走约80米到越秀南路站1坐184路(坐4站)、80路(坐4站)、264路(坐7站)到怡乐村站下.走约570米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">2.乘坐出租车：共行驶3.2公里,费用11.00元. 注意:信息仅供参考,不可作为支付依据.本费用中不含过路费和过桥费,塞车等因素可能使费用显著增加</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">3.从越秀南汽车客运站走约80米到越秀南路站坐61路(坐3站)、194路(坐4站)到海珠广场(侨光东)站下,走到位于另一条路(起义路)的地铁海珠广场站A出入口转乘地铁二号线(坐3站)到地铁晓港站A出入口下.走约310米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">4.从越秀南汽车客运站走约420米到东堤站(沿江中路)坐208路(坐3站)到怡乐村站下.走约570米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:13px;"><br />
+</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-family:'Microsoft YaHei';font-size:16px;color:#000000;line-height:1.5;"><strong><span style="font-size:16px;color:#000000;line-height:1.5;">六、罗冲围客运站</span></strong></span><span style="font-size:14px;"></span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">1.从罗冲围汽车客运站走约70米到罗冲围客运站2坐253路(坐15站)到广医二院站1下.走约540米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">2.乘坐出租车：共行驶12.0公里,费用36.00元. 注意:信息仅供参考,不可作为支付依据.本费用中不含过路费和过桥费,塞车等因素可能使费用显著增加</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">3.从罗冲围汽车客运站走约200米到罗冲围客运站1坐276路(广州新穗)(坐14站)到怡乐村站下.走约570米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:13px;"><br />
+</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-family:'Microsoft YaHei';font-size:16px;color:#000000;line-height:1.5;"><strong><span style="font-size:16px;color:#000000;line-height:1.5;">七、窖口汽车客运站</span></strong></span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">1.从滘口汽车客运站走约140米到滘口汽车站总站坐206路(坐12站)到广医二院站2下.走约500米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">2.乘坐出租车：共行驶9.8公里,费用30.00元. 注意:信息仅供参考,不可作为支付依据.本费用中不含过路费和过桥费,塞车等因素可能使费用显著增加</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">3.从滘口汽车客运站走约130米到地铁滘口站B1出入口坐地铁五号线(坐5站)到地铁广州火车站转乘地铁二号线(坐7站)到地铁晓港站A出入口下.走约310米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:13px;"><br />
+</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-family:'Microsoft YaHei';font-size:16px;color:#000000;line-height:1.5;"><strong><span style="font-size:16px;color:#000000;line-height:1.5;">八、广园汽车客运站</span></strong></span><span style="font-size:14px;"></span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">1.从广园汽车客运站走约40米到广园客运站公交总站坐273路(坐17站)到广医二院站2下.走约500米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">2.乘坐出租车：共行驶8.2公里,费用25.00元. 注意:信息仅供参考,不可作为支付依据.本费用中不含过路费和过桥费,塞车等因素可能使费用显著增加</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">3.从广园汽车客运站走约40米到广园客运站公交总站坐273路(坐5站)到越秀公园站2下,往前走到地铁越秀公园站B2出入口转乘地铁二号线(坐6站)到地铁晓港站A出入口下.走约310米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">4.从广园汽车客运站走约510米到柯子岭站坐546路(坐17站)到广医二院站2下.走约630米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:14px;color:#000000;"><span style="line-height:1.5;font-size:16px;">5.从</span><span style="line-height:1.5;font-size:16px;">广园汽车客运站走约60米到广园客运站(公交站)坐241路(坐4站)、46路(坐4站)、旅游公交3线(坐4站)、179路(坐4站)、175路(坐4站)到瑶台站2下,往后走到地铁三元里站D出入口转乘地铁二号线(坐8站)到地铁晓港</span><span style="line-height:1.5;font-size:16px;">站A出入口下.走约310米到一尚画室</span></span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:13px;"><br />
+</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-family:'Microsoft YaHei';font-size:16px;color:#000000;line-height:1.5;"><strong><span style="font-size:16px;color:#000000;line-height:1.5;">九、海珠汽车客运站</span></strong></span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">1.从海珠汽车客运站走约100米到海珠客运站坐70路(坐6站)到广医二院站1下.走约380米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">2.乘坐出租车：共行驶5.1公里,费用17.00元. 注意:信息仅供参考,不可作为支付依据.本费用中不含过路费和过桥费,塞车等因素可能使费用显著增加</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">3.从海珠汽车客运站走约60米到海珠客运站总站坐5路(坐7站)、287路(坐7站)到晓港新村站(东晓南路)下.走约480米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">4.从海珠汽车客运站走约100米到海珠客运站坐129路(坐6站)到晓港新村站(东晓南路)下.走约480米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:13px;"><br />
+</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-family:'Microsoft YaHei';font-size:16px;color:#000000;line-height:1.5;"><strong><span style="font-size:16px;color:#000000;line-height:1.5;">十、广佛汽车站</span></strong></span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">1.从广佛汽车站走约100米到中山八路总站坐125路(坐13站)、125路A(坐13站)到广医二院站2下.走约500米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">2.乘坐出租车：共行驶8.5公里,费用26.00元. 注意:信息仅供参考,不可作为支付依据.本费用中不含过路费和过桥费,塞车等因素可能使费用显著增加</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">3.从广佛汽车站走约50米到地铁中山八站B出入口坐地铁五号线(坐3站)到地铁广州火车站转乘地铁二号线(坐7站)到地铁晓港站A出入口下.走约310米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">4.从广佛汽车站走约100米到中山八路总站坐270路(坐14站)、82路(坐14站)、250路(坐15站)到广医二院站1下.走约540米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">5.从广佛汽车站走约10米到中山八路站1坐233路(坐6站)到中山五路站1下,走到位于另一条路(教育路)的地铁公园前站D出入口转乘地铁二号线(坐4站)到地铁晓港站A出入口下.走约310米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:13px;"><br />
+</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-family:'Microsoft YaHei';font-size:16px;color:#000000;line-height:1.5;"><strong><span style="font-size:16px;color:#000000;line-height:1.5;">十一、东圃客运站</span></strong></span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">1.从东圃客运站走约50米到东圃客运站总站坐B7路快线(坐12站)、B7路(139路)(坐18站)到磨碟沙站下,往后走到地铁磨碟沙站B出入口转乘地铁二号线(坐5站)到地铁晓港站A出入口下.走约310米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">2.乘坐出租车：共行驶16.1公里,费用47.00元. 注意:信息仅供参考,不可作为支付依据.本费用中不含过路费和过桥费,塞车等因素可能使费用显著增加</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">3.从东圃客运站走约480米到汇彩路站坐550路(坐2站)、B24路(513路)(坐2站)到石溪村口站(黄埔大道东)下,往后走到地铁三溪站C出入口转乘地铁五号线(坐2站)到地铁车陂南站转乘地铁四号线(坐1站)到地铁万胜围站转乘地铁二号线(坐8站)到地铁晓港站A出入口下.走约310米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">4.从东圃客运站走约50米到东圃客运站总站坐B7路快线(坐15站)、B7路(139路)(坐21站)到珠影站1转乘69路(坐6站)、226路(坐6站)、206路(坐6站)到广医二院站1下.走约380米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:13px;"><br />
+</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-family:'Microsoft YaHei';font-size:16px;color:#000000;line-height:1.5;"><strong><span style="font-size:16px;color:#000000;line-height:1.5;">十二、夏茅汽车客运站</span></strong></span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">1.从夏茅汽车站走约110米到夏茅客运站坐58A快线(坐14站)、58路A(坐17站)、21路(坐16站)到越秀公园站2下,往前走到地铁越秀公园站B2出入口转乘地铁二号线(坐6站)到地铁晓港站A出入口下.走约310米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">2.乘坐出租车：共行驶17.2公里,费用50.00元. 注意:信息仅供参考,不可作为支付依据.本费用中不含过路费和过桥费,塞车等因素可能使费用显著增加</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">3.从夏茅汽车站走约110米到夏茅客运站坐523路(坐9站)、523支线(坐9站)到瑶台站2下,往后走到地铁三元里站D出入口转乘地铁二号线(坐8站)到地铁晓港站A出入口下.走约310米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">4.从夏茅汽车站走约110米到夏茅客运站坐523路(坐11站)、523支线(坐11站)到市客运站总站转乘5路(坐12站)到晓港新村站(东晓南路)下.走约440米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:13px;"><br />
+</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-family:'Microsoft YaHei';font-size:16px;color:#000000;line-height:1.5;"><strong><span style="font-size:16px;color:#000000;line-height:1.5;">十三、永泰汽车客运站</span></strong></span><span style="font-size:14px;"></span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">1.从永泰汽车客运站走约70米到永泰客运站总站坐旅游公交3线(坐19站)到瑶台站2下,往后走到地铁三元里站D出入口转乘地铁二号线(坐8站)到地铁晓港站A出入口下.走约310米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">2.乘坐出租车：共行驶18.3公里,费用53.00元. 注意:信息仅供参考,不可作为支付依据.本费用中不含过路费和过桥费,塞车等因素可能使费用显著增加</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">3.从永泰汽车客运站走约70米到永泰客运站总站坐旅游公交3线(坐7站)到外语学院站转乘从化汽车站-市客运站慢线(无站牌,扬手才停,下车先通知)到市客运站总站(站内)下,走到位于另一条路(站南路)的地铁广州火车站H出入口转乘地铁二号线(坐7站)到地铁晓港站A出入口下.走约310米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">4.从永泰汽车客运站走约70米到永泰客运站总站坐旅游公交3线(坐16站)到广园新村站2转乘273路(坐17站)到晓港新村站(东晓南路)下.走约440米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:13px;"><br />
+</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-family:'Microsoft YaHei';font-size:16px;color:#000000;line-height:1.5;"><strong><span style="font-size:16px;color:#000000;line-height:1.5;">十四、黄埔汽车客运站</span></strong></span><span style="font-size:14px;"></span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">1.从黄埔汽车客运站走约20米到黄埔客运站总站(公汽总站)坐517路(坐13站)到珠江纸厂站转乘548路(坐16站)到广医二院站1下.走约380米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">2.乘坐出租车：共行驶19.2公里,费用55.00元. 注意:信息仅供参考,不可作为支付依据.本费用中不含过路费和过桥费,塞车等因素可能使费用显著增加</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">3.从黄埔汽车客运站走约20米到黄埔客运站总站(公汽总站)坐517路(坐1站)到文冲村委会站下,往前走到地铁文冲站B出入口转乘地铁五号线(坐18站)到地铁广州火车站转乘地铁二号线(坐7站)到地铁晓港站A出入口下.走约310米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">4.从黄埔汽车客运站走约810米(乘坐出租车(8.00元/0.8公里))到地铁文冲站B出入口坐地铁五号线(坐6站)到地铁车陂南站转乘地铁四号线(坐1站)到地铁万胜围站转乘地铁二号线(坐8站)到地铁晓港站A出入口下.走约310米到一尚画室</span> 
+</p>
+<p style="margin-top:0px;margin-bottom:0px;padding:0px;outline:0px;border:0px;line-height:1.8;font-family:宋体;white-space:normal;">
+	<span style="font-size:16px;color:#000000;line-height:1.5;">5.从黄埔汽车客运站走约20米到黄埔客运站总站(公汽总站)坐517路(坐21站)到人民日报华南分社站转乘813路(坐9站)到广医二院站1下.走约380米到一尚画室 &nbsp;</span> 
+</p>
+<p>
+	<br />
+</p>
+            </div>
+        </div>
+        <div class="clear">
+        	
+        </div>
+            
+<!-- foot -->
+<div class="footer">
+    <div class="footer_center" style="width:1100px;">
+        <div class="footer_left">
+            <div class="footer_left_title">
+                <h3>联系方式</h3>
+                <span>Contact Us</span>
+            </div>
+            <p>
+                广州校区：一尚画室地址：广州市海珠区东晓路538号
+                <br />
+                广州电话：020-34263457  18028687531
+                <br />
+                传真号码：020-34054273
+            </p>
+        </div>
+        <div class="footer_left1">
+            <div class="footer_left1_title">
+                <h3>联系方式</h3>
+                <span>Contact Us</span>
+            </div>
+            <div class="footer_left1_main">
+                <div class="footer_left1_main_left">
+                    <img src="img/footer_12.gif" />
+                </div>
+                <div class="footer_left1_main_right">
+                    <h4>微博动态</h4>
+                    <h3>一尚画室官方微博</h3>
+                    <a hre  f="#">
+                        <img src="img/footer_15.gif" /></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer_right" style="width:300px;">
+            
+            <div style="float:left; margin-right: 10px;">
+            <img src="upload/1604/20164252521.jpg" />
+            <h3>一尚画室官方微信</h3>
+            <p>扫一扫，时尚无处不在</p>
+            </div>
+            
+            <div style="float:left; margin-right: 10px;">
+            <img src="upload/1603/20163157953.png" />
+            <h3>一尚画室新浪微博</h3>
+            <p>扫一扫，时尚无处不在</p>
+            </div>
+            
+          
+        </div>
+    </div>
+</div>
+
+
+		    
+<div class="foot_nav">
+    <ul style="width:1080px;">
+        <li><a href="index.aspx">首  页 </a></li>
+        <li><a href="About.aspx?code=0101">关于一尚 </a></li>
+        <li><a href="Fairy.aspx?code=0201">美术高考 </a></li>
+        <li><a href="Ysth.aspx?code=0301">一尚童画 </a></li>
+        <li><a href="Ysmt.aspx?code=0401">一尚漫谈</a></li>
+        <li><a href="Ysgj.aspx?code=0501">一尚国际</a></li>
+        <li><a href="News.aspx?code=0601">美术新闻</a></li>
+        <li><a href="Course.aspx?code=0701">美术教程</a></li>
+        <li><a href="map.aspx?code=0802">联系我们</a></li>
+        <li><a href="admin2015/login.aspx"  target="_blank"><span></span>登录后台</a></li>
+    </ul>
+</div>
+<div class="foot_b">
+    <div class="footer_b_center">
+        <p>友情链接 ： <a href="#">PRADA |</a>申请友情链接</p>
+        <p>www.zk-am.com 版权所有：一尚画室     技术支持：<a href="http://www.100vic.com/">佰维网络</a></p>
+    </div>
+
+</div>
+
+	</body>
+</html>
