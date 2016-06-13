@@ -12,13 +12,13 @@
 	域名：
 
 # 参考
-1.基于角色的访问控制（Role-Based Access Control）作为传统访问控制
-2.beego框架
-3.Amazi Ui和EasyUi、Bootstrap混合
+1. 基于角色的访问控制（Role-Based Access Control）作为传统访问控制
+2. beego框架
+3. Amazi Ui和EasyUi、Bootstrap混合
 
 # 运行步骤
-1.运行init.sh进行包初始化
-2.接着
+1. 运行init.sh进行包初始化
+2. 接着
 
 	cd beauty
 	go build main.go
