@@ -7,7 +7,7 @@ import (
 //配置项表
 type Option struct {
 	Id    int64
-	Name  string
+	Name  string `orm:"unique"`
 	Value string
 }
 
