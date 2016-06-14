@@ -35,7 +35,7 @@ func AccessRegister() {
 						if userid > 0 {
 							var user m.User
 							user.Id = userid
-							if user.Read() == nil && password == Md5([]byte(getClientIp(ctx)+"|"+user.Password)) {
+							if user.Read() == nil && password == Md5([]byte(GetClientIp(ctx)+"|"+user.Password)) {
 								uinfo = user
 
 							}
@@ -55,6 +55,8 @@ func AccessRegister() {
 					listbysession := ctx.Input.Session("accesslist")
 					if listbysession != nil {
 						accesslist = listbysession.(map[string]bool)
+					} else {
+						accesslist, _ = GetAccessList(uinfo.(m.User).Id)
 					}
 				} else if user_auth_type == 2 {
 

@@ -9,6 +9,7 @@ import (
 	"time"
 )
 
+// 文章表
 type Post struct {
 	Id       int64
 	Userid   int64  `orm:"index"`
@@ -56,6 +57,7 @@ func (m *Post) Update(fields ...string) error {
 	return nil
 }
 
+// 删除文章，标签减1，再删除标签-文章记录
 func (m *Post) Delete() error {
 	if m.Tags != "" {
 		o := orm.NewOrm()

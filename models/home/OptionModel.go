@@ -5,7 +5,7 @@ import (
 	. "github.com/hunterhug/beautyart/lib"
 )
 
-//配置项表
+//配置项表，数据字典
 type Option struct {
 	Id    int64
 	Name  string `orm:"unique"`

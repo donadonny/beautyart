@@ -27,10 +27,16 @@
 	./main -s
 	./main
 
-# 可自由修改源代码，但必须保留友好链接
+可自由修改源代码，但必须保留友好链接
 
 	<a href="">广州缀美画室</a>
 
-# https://www.github.com/hunterhug 
-# QQ：569929309
+# 联系方式
+https://www.github.com/hunterhug 
+QQ：569929309
 	
+# 项目约定
+
+1. RBAC权限相关的models和controllers统一放在admin文件夹，其他都在home文件夹
+2. URL router统一M/C/A方式，该方式需要验证权限，如rbac/public/index，其他如public/index不验证
+3. 模板灵活处理

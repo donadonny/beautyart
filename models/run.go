@@ -16,6 +16,13 @@ func init() {
 	mime.AddExtensionType(".css", "text/css")
 }
 
+// 数据库开跑
+func Run() {
+	beego.Trace("数据库开跑")
+	initArgs()
+	Connect()
+}
+
 // 数据库初始化
 func initArgs() {
 	args := os.Args
@@ -25,11 +32,4 @@ func initArgs() {
 			os.Exit(0)
 		}
 	}
-}
-
-// 数据库开跑
-func Run() {
-	beego.Trace("数据库开跑")
-	initArgs()
-	Connect()
 }

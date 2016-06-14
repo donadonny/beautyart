@@ -13,6 +13,7 @@ import (
 
 type User struct {
 	Id            int64
+	Logincount    int
 	Username      string    `orm:"unique;size(32)" form:"Username"  valid:"Required;MaxSize(20);MinSize(6)"`
 	Password      string    `orm:"size(32)" form:"Password" valid:"Required;MaxSize(20);MinSize(6)"`
 	Repassword    string    `orm:"-" form:"Repassword" valid:"Required"`
@@ -22,7 +23,8 @@ type User struct {
 	Status        int       `orm:"default(2)" form:"Status" valid:"Range(1,2)"`
 	Lastlogintime time.Time `orm:"null;type(datetime)" form:"-"`
 	Createtime    time.Time `orm:"type(datetime);auto_now_add" `
-	Role          []*Role   `orm:"rel(m2m)"`
+	Lastip        string
+	Role          []*Role `orm:"rel(m2m)"`
 }
 
 func (u *User) TableName() string {
@@ -35,6 +37,7 @@ func (u *User) Valid(v *validation.Validation) {
 	}
 }
 
+// 验证表单
 func checkUser(u *User) (err error) {
 	valid := validation.Validation{}
 	b, _ := valid.Valid(&u)
@@ -51,6 +54,7 @@ func init() {
 	orm.RegisterModel(new(User))
 }
 
+// 列出用户
 func Getuserlist(page int64, page_size int64, sort string) (users []orm.Params, count int64) {
 	o := orm.NewOrm()
 	user := new(User)
@@ -78,7 +82,7 @@ func AddUser(u *User) (int64, error) {
 	user.Email = u.Email
 	user.Remark = u.Remark
 	user.Status = u.Status
-
+	user.Lastip = u.Lastip
 	id, err := o.Insert(user)
 	return id, err
 }
@@ -104,6 +108,9 @@ func UpdateUser(u *User) (int64, error) {
 	if len(u.Password) > 0 {
 		user["Password"] = Strtomd5(u.Password)
 	}
+	if len(u.Lastip) > 0 {
+		user["Lastip"] = u.Lastip
+	}
 	if u.Status != 0 {
 		user["Status"] = u.Status
 	}
@@ -116,7 +123,7 @@ func UpdateUser(u *User) (int64, error) {
 }
 
 func UpdateLoginTime(u *User) User {
-	u.Lastlogintime = time.Now()
+	u.Lastlogintime = GetTime()
 	o := orm.NewOrm()
 	o.Update(u)
 	return *u

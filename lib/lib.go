@@ -3,18 +3,17 @@ package lib
 import (
 	"crypto/md5"
 	"encoding/hex"
+	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/context"
-	"github.com/hunterhug/models/home"
+	"net/url"
 	"strconv"
 	"time"
 )
 
-func getTime() time.Time {
-	options := home.GetOptions()
+func GetTime() time.Time {
 	timezone := float64(0)
-	if v, ok := options["timezone"]; ok {
-		timezone, _ = strconv.ParseFloat(v, 64)
-	}
+	v = beego.AppConfig.String("timezone")
+	timezone, _ = strconv.ParseFloat(v, 64)
 	add := timezone * float64(time.Hour)
 	return time.Now().UTC().Add(time.Duration(add))
 }
@@ -51,8 +50,12 @@ func StringsToJson(str string) string {
 	return jsons
 }
 
+func Rawurlencode(str string) string {
+	return strings.Replace(url.QueryEscape(str), "+", "%20", -1)
+}
+
 //获取用户IP地址
-func getClientIp(this *context.Context) string {
+func GetClientIp(this *context.Context) string {
 	s := strings.Split(this.Request.RemoteAddr, ":")
 	return s[0]
 }

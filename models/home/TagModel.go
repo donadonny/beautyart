@@ -44,7 +44,7 @@ func (m *Tag) Update(fields ...string) error {
 	return nil
 }
 
-//删除
+//删除标签，先将文章标签清空，再删除文章-标签记录，最后删除标签
 func (m *Tag) Delete() error {
 	var list []*TagPost
 	table := new(Post).TableName()

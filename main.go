@@ -5,6 +5,7 @@ import (
 	// 加载路由，不可省略
 	"github.com/astaxie/beego"
 	"github.com/beego/i18n"
+	"github.com/hunterhug/beautyart/models"
 	_ "github.com/hunterhug/beautyart/routers"
 	"strings"
 )
@@ -27,6 +28,9 @@ func init() {
 	// 添加映射
 	beego.Trace("添加i18n函数映射")
 	beego.AddFuncMap("i18n", i18n.Tr)
+	// 模型初始化
+	beego.Trace("模型初始化")
+	models.Run()
 }
 
 func main() {

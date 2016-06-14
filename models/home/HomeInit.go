@@ -1,5 +1,6 @@
 package home
 
+// 该包模型初始化数据
 func InitData() {
 	insertOption()
 }

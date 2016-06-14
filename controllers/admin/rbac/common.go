@@ -18,13 +18,14 @@ func (this *CommonController) Rsp(status bool, str string) {
 
 // 获取模板位置
 func (this *CommonController) GetTemplatetype() string {
-	templatetype := beego.AppConfig.String("template_type")
+	templatetype := beego.AppConfig.String("admin_template")
 	if templatetype == "" {
-		templatetype = "easyui"
+		templatetype = "default"
 	}
 	return templatetype
 }
 
+// 获取权限各节点URL   权限控制器 用户节点  /rbac /nide/index
 func (this *CommonController) GetTree() []Tree {
 	nodes, _ := m.GetNodeTree(0, 1)
 	tree := make([]Tree, len(nodes))

@@ -10,6 +10,20 @@ type baseController struct {
 	i18n.Locale
 }
 
+type Tree struct {
+	Id         int64      `json:"id"`   //
+	Text       string     `json:"text"` //
+	IconCls    string     `json:"iconCls"`
+	Checked    string     `json:"checked"`
+	State      string     `json:"state"`
+	Children   []Tree     `json:"children"`
+	Attributes Attributes `json:"attributes"`
+}
+type Attributes struct {
+	Url   string `json:"url"` //
+	Price int64  `json:"price"`
+}
+
 func (this *baseController) Prepare() {
 	this.Lang = ""
 

@@ -11,6 +11,7 @@ import (
 	"strings"
 )
 
+// 获取网站数据字典
 func GetOptions() map[string]string {
 	if !Cache.IsExist("options") {
 		var result []*Option
@@ -26,6 +27,7 @@ func GetOptions() map[string]string {
 	return v.(map[string]string)
 }
 
+//
 func GetLatestBlog() []*Post {
 	if !Cache.IsExist("latestblog") {
 		var result []*Post

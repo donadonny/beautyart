@@ -2,37 +2,50 @@ package routers
 
 import (
 	"github.com/astaxie/beego"
-	"github.com/hunterhug/beautyart/controllers/admin/rbac"
+	"github.com/hunterhug/beautyart/controllers/admin"
 )
 
-// 后台路由
 func adminrouter() {
-	beego.Router("/public", &rbac.MainController{}, "*:Index")
-	beego.Router("/public/Index", &rbac.MainController{}, "*:Index")
-	beego.Router("/public/Login", &rbac.MainController{}, "*:Login")
-	beego.Router("/public/Logout", &rbac.MainController{}, "*:Logout")
-	beego.Router("/public/Changepwd", &rbac.MainController{}, "*:Changepwd")
 
-	beego.Router("/rbac/user/AddUser", &rbac.UserController{}, "*:AddUser")
-	beego.Router("/rbac/user/UpdateUser", &rbac.UserController{}, "*:UpdateUser")
-	beego.Router("/rbac/user/DelUser", &rbac.UserController{}, "*:DelUser")
-	beego.Router("/rbac/user/Index", &rbac.UserController{}, "*:Index")
+	//系统管理
+	beego.Router("/admin/system/setting", &admin.SystemController{}, "*:Setting")
 
-	beego.Router("/rbac/node/AddAndEdit", &rbac.NodeController{}, "*:AddAndEdit")
-	beego.Router("/rbac/node/DelNode", &rbac.NodeController{}, "*:DelNode")
-	beego.Router("/rbac/node/Index", &rbac.NodeController{}, "*:Index")
+	//内容管理
+	beego.Router("/admin/article/list", &admin.ArticleController{}, "*:List")
+	beego.Router("/admin/article/add", &admin.ArticleController{}, "*:Add")
+	beego.Router("/admin/article/edit", &admin.ArticleController{}, "*:Edit")
+	beego.Router("/admin/article/save", &admin.ArticleController{}, "post:Save")
+	beego.Router("/admin/article/delete", &admin.ArticleController{}, "*:Delete")
+	beego.Router("/admin/article/batch", &admin.ArticleController{}, "*:Batch")
+	beego.Router("/admin/article/upload", &admin.ArticleController{}, "*:Upload")
+	beego.Router("/admin/tag", &admin.TagController{}, "*:Index")
 
-	beego.Router("/rbac/group/AddGroup", &rbac.GroupController{}, "*:AddGroup")
-	beego.Router("/rbac/group/UpdateGroup", &rbac.GroupController{}, "*:UpdateGroup")
-	beego.Router("/rbac/group/DelGroup", &rbac.GroupController{}, "*:DelGroup")
-	beego.Router("/rbac/group/Index", &rbac.GroupController{}, "*:Index")
+	//说说管理
+	beego.Router("/admin/mood/add", &admin.MoodController{}, "*:Add")
+	beego.Router("/admin/mood/list", &admin.MoodController{}, "*:List")
+	beego.Router("/admin/mood/delete", &admin.MoodController{}, "*:Delete")
 
-	beego.Router("/rbac/role/AddAndEdit", &rbac.RoleController{}, "*:AddAndEdit")
-	beego.Router("/rbac/role/DelRole", &rbac.RoleController{}, "*:DelRole")
-	beego.Router("/rbac/role/AccessToNode", &rbac.RoleController{}, "*:AccessToNode")
-	beego.Router("/rbac/role/AddAccess", &rbac.RoleController{}, "*:AddAccess")
-	beego.Router("/rbac/role/RoleToUserList", &rbac.RoleController{}, "*:RoleToUserList")
-	beego.Router("/rbac/role/AddRoleToUser", &rbac.RoleController{}, "*:AddRoleToUser")
-	beego.Router("/rbac/role/GetList", &rbac.RoleController{}, "*:Getlist")
-	beego.Router("/rbac/role/Index", &rbac.RoleController{}, "*:Index")
+	//相册管理
+	beego.Router("/admin/album/add", &admin.AlbumController{}, "*:Add")
+	beego.Router("/admin/album/list", &admin.AlbumController{}, "*:List")
+	beego.Router("/admin/album/edit", &admin.AlbumController{}, "*:Edit")
+	beego.Router("/admin/album/delete", &admin.AlbumController{}, "*:Delete")
+
+	//照片管理
+	beego.Router("/admin/photo/list", &admin.PhotoController{}, "*:List")
+	beego.Router("/admin/photo/cover", &admin.PhotoController{}, "*:Cover")
+	beego.Router("/admin/photo/delete", &admin.PhotoController{}, "*:Delete")
+	beego.Router("/admin/photo/uploadphoto", &admin.PhotoController{}, "*:UploadPhoto")
+
+	//用户管理
+	beego.Router("/admin/user/list", &admin.UserController{}, "*:List")
+	beego.Router("/admin/user/add", &admin.UserController{}, "*:Add")
+	beego.Router("/admin/user/edit", &admin.UserController{}, "*:Edit")
+	beego.Router("/admin/user/delete", &admin.UserController{}, "*:Delete")
+
+	//友链管理
+	beego.Router("/admin/link/list", &admin.LinkController{}, "*:List")
+	beego.Router("/admin/link/add", &admin.LinkController{}, "*:Add")
+	beego.Router("/admin/link/edit", &admin.LinkController{}, "*:Edit")
+	beego.Router("/admin/link/delete", &admin.LinkController{}, "*:Delete")
 }
