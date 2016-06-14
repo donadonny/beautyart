@@ -5,7 +5,6 @@ import (
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	"github.com/astaxie/beego/validation"
-	. "github.com/hunterhug/beautyart/lib"
 	"log"
 )
 
@@ -22,7 +21,7 @@ type Node struct {
 }
 
 func (n *Node) TableName() string {
-	return TableName(beego.AppConfig.String("rbac_node_table"))
+	return beego.AppConfig.String("rbac_node_table")
 }
 
 func checkNode(u *Node) (err error) {

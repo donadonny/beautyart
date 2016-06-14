@@ -1,14 +1,10 @@
 package home
 
 import (
-	"crypto/md5"
 	"fmt"
-	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	_ "github.com/go-sql-driver/mysql"
 	. "github.com/hunterhug/beautyart/lib"
-	"net/url"
-	"strings"
 )
 
 // 获取网站数据字典

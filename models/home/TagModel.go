@@ -2,6 +2,7 @@ package home
 
 import (
 	"fmt"
+	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	. "github.com/hunterhug/beautyart/lib"
 	"strconv"
@@ -16,11 +17,7 @@ type Tag struct {
 }
 
 func init() {
-	orm.RegisterModel(new(Tag))
-}
-
-func (m *Tag) TableName() string {
-	return TableName("tag")
+	orm.RegisterModelWithPrefix(beego.AppConfig.String("db_prefix"), new(Tag))
 }
 
 func (m *Tag) Insert() error {
@@ -47,7 +44,7 @@ func (m *Tag) Update(fields ...string) error {
 //删除标签，先将文章标签清空，再删除文章-标签记录，最后删除标签
 func (m *Tag) Delete() error {
 	var list []*TagPost
-	table := new(Post).TableName()
+	table := new(Post).TableN()
 	new(TagPost).Query().Filter("tagid", m.Id).All(&list)
 	if len(list) > 0 {
 		ids := make([]string, 0, len(list))
@@ -90,6 +87,6 @@ func (m *Tag) MergeTo(to *Tag) {
 			ids = append(ids, strconv.FormatInt(v.Postid, 10))
 		}
 		tp.Query().Filter("tagid", m.Id).Update(orm.Params{"tagid": to.Id})
-		orm.NewOrm().Raw("UPDATE "+new(Post).TableName()+" SET tags = REPLACE(tags, ?, ?) WHERE id IN ("+strings.Join(ids, ",")+")", ","+m.Name+",", ","+to.Name+",").Exec()
+		orm.NewOrm().Raw("UPDATE "+new(Post).TableN()+" SET tags = REPLACE(tags, ?, ?) WHERE id IN ("+strings.Join(ids, ",")+")", ","+m.Name+",", ","+to.Name+",").Exec()
 	}
 }

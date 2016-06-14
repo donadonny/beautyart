@@ -2,7 +2,6 @@
 package controllers
 
 import (
-	"errors"
 	"fmt"
 	"strconv"
 	"strings"
@@ -35,7 +34,7 @@ func AccessRegister() {
 						if userid > 0 {
 							var user m.User
 							user.Id = userid
-							if user.Read() == nil && password == Md5([]byte(GetClientIp(ctx)+"|"+user.Password)) {
+							if user.Read() == nil && password == Md5(GetClientIp(ctx)+"|"+user.Password) {
 								uinfo = user
 
 							}

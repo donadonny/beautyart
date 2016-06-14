@@ -1,10 +1,17 @@
 package rbac
 
 import (
+	"errors"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/context"
+	. "github.com/hunterhug/beautyart/controllers"
 	. "github.com/hunterhug/beautyart/lib"
-	m "github.com/hunterhug/beautyart/models/admin"
+	"github.com/hunterhug/beautyart/models/admin"
+	"github.com/hunterhug/beautyart/models/home"
+	"os"
+	"runtime"
+	"strconv"
+	"strings"
 )
 
 type MainController struct {
@@ -16,12 +23,18 @@ func (this *MainController) Index() {
 	userinfo := this.GetSession("userinfo")
 	//如果没有seesion
 	if userinfo == nil {
+		success, userinfo := CheckCookie(this.Ctx)
 		//查看是否有cookie
-		if CheckCookie(this.Ctx) {
+		if success {
 			//有
-			this.SetSession("userinfo", user)
+			//更新登陆时间
+			userinfo = admin.UpdateLoginTime(&userinfo)
+			userinfo.Logincount += 1
+			userinfo.Lastip = GetClientIp(this.Ctx)
+			userinfo.Update()
+			this.SetSession("userinfo", userinfo)
 			//设置权限列表session
-			accesslist, _ := GetAccessList(user.Id)
+			accesslist, _ := GetAccessList(userinfo.Id)
 			this.SetSession("accesslist", accesslist)
 
 		} else {
@@ -39,14 +52,21 @@ func (this *MainController) Index() {
 		return
 	} else {
 		userinfo = this.GetSession("userinfo")
-		groups := m.GroupList()
-		this.Data["userinfo"] = userinfo
+		groups := admin.GroupList()
+		this.Data["user"] = userinfo.(admin.User)
 		this.Data["groups"] = groups
 		this.Data["tree"] = &tree
-		this.Data["title"] = "平台管理后台"
+		this.Data["hostname"], _ = os.Hostname()
+		this.Data["gover"] = runtime.Version()
+		this.Data["os"] = runtime.GOOS
+		this.Data["cpunum"] = runtime.NumCPU()
+		this.Data["arch"] = runtime.GOARCH
+		this.Data["postnum"], _ = new(home.Post).Query().Count()
+		this.Data["tagnum"], _ = new(home.Tag).Query().Count()
+		this.Data["usernum"], _ = new(admin.User).Query().Count()
 		this.Data["version"] = beego.AppConfig.String("version")
-		this.Layout = this.GetTemplatetype() + "/public/layout.tpl"
-		this.TplName = this.GetTemplatetype() + "/public/index.tpl"
+		this.Layout = this.GetTemplate() + "/public/layout.html"
+		this.TplName = this.GetTemplate() + "/public/index.html"
 	}
 }
 
@@ -55,13 +75,22 @@ func (this *MainController) Login() {
 	// 查看是否已经登陆过
 	userinfo := this.GetSession("userinfo")
 	if userinfo == nil {
-		if CheckCookie(this.Ctx) {
-			this.SetSession("userinfo", user)
+		success, userinfo := CheckCookie(this.Ctx)
+		//查看是否有cookie
+		if success {
+			//更新登陆时间
+			userinfo = admin.UpdateLoginTime(&userinfo)
+			userinfo.Logincount += 1
+			userinfo.Lastip = GetClientIp(this.Ctx)
+			userinfo.Update()
+			this.SetSession("userinfo", userinfo)
 			//设置权限列表session
-			accesslist, _ := GetAccessList(user.Id)
+			accesslist, _ := GetAccessList(userinfo.Id)
 			this.SetSession("accesslist", accesslist)
 			this.Ctx.Redirect(302, "/public/index")
 		}
+	} else {
+		this.Ctx.Redirect(302, "/public/index")
 	}
 
 	//登陆中
@@ -75,11 +104,11 @@ func (this *MainController) Login() {
 			if err == nil {
 
 				//更新登陆时间
-				user = m.UpdateLoginTime(&user)
+				user = admin.UpdateLoginTime(&user)
 				user.Logincount += 1
 				user.Lastip = GetClientIp(this.Ctx)
 				user.Update()
-				authkey := Md5([]byte(getClientIp(this.Ctx) + "|" + user.Password))
+				authkey := Md5(GetClientIp(this.Ctx) + "|" + user.Password)
 				if remember == "yes" {
 					this.Ctx.SetCookie("auth", strconv.FormatInt(user.Id, 10)+"|"+authkey, 7*86400)
 				} else {
@@ -102,7 +131,7 @@ func (this *MainController) Login() {
 		}
 	}
 
-	this.TplName = this.GetTemplatetype() + "/public/login.tpl"
+	this.TplName = this.GetTemplate() + "/public/login.html"
 }
 
 //退出登陆
@@ -125,12 +154,12 @@ func (this *MainController) Changepwd() {
 	if newpassword != repeatpassword {
 		this.Rsp(false, "两次输入密码不一致")
 	}
-	user, err := CheckLogin(userinfo.(m.User).Username, oldpassword)
+	user, err := CheckLogin(userinfo.(admin.User).Username, oldpassword)
 	if err == nil {
-		var u m.User
+		var u admin.User
 		u.Id = user.Id
 		u.Password = newpassword
-		id, err := m.UpdateUser(&u)
+		id, err := admin.UpdateUser(&u)
 		if err == nil && id > 0 {
 			this.Rsp(true, "密码修改成功")
 			return
@@ -143,9 +172,9 @@ func (this *MainController) Changepwd() {
 
 }
 
-func CheckLogin(username string, password string) (user m.User, err error) {
+func CheckLogin(username string, password string) (user admin.User, err error) {
 	//根据名字查找用户
-	user = m.GetUserByUsername(username)
+	user = admin.GetUserByUsername(username)
 	if user.Id == 0 {
 		return user, errors.New("用户不存在或者密码错误")
 	}
@@ -161,23 +190,23 @@ func CheckLogin(username string, password string) (user m.User, err error) {
 	return user, nil
 }
 
-func CheckCookie(ctx *context.Context) bool {
+func CheckCookie(ctx *context.Context) (bool, admin.User) {
+	var user admin.User
 	//查看是否有cookie
 	arr := strings.Split(ctx.GetCookie("auth"), "|")
 	if len(arr) == 2 {
 		idstr, password := arr[0], arr[1]
 		userid, _ := strconv.ParseInt(idstr, 10, 0)
 		if userid > 0 {
-			var user m.User
 			user.Id = userid
 			// cookie没问题,且已经激活
 			adminuser := beego.AppConfig.String("rbac_admin_user")
-			if user.Read() == nil && password == Md5([]byte(getClientIp(ctx)+"|"+user.Password)) && (user.Username == adminuser || user.Status == 1) {
-				return true
+			if user.Read() == nil && password == Md5(GetClientIp(ctx)+"|"+user.Password) && (user.Username == adminuser || user.Status == 1) {
+				return true, user
 			} else {
-				return false
+				return false, user
 			}
 		}
 	}
-	return false
+	return false, user
 }

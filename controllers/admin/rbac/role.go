@@ -5,8 +5,8 @@ import (
 	"strconv"
 	"strings"
 
-	m "beauty/models/admin"
 	"github.com/astaxie/beego/orm"
+	m "github.com/hunterhug/beautyart/models/admin"
 )
 
 type RoleController struct {
@@ -34,7 +34,7 @@ func (this *RoleController) Index() {
 		this.ServeJSON()
 		return
 	} else {
-		this.TplName = this.GetTemplatetype() + "/rbac/role.tpl"
+		this.TplName = this.GetTemplate() + "/rbac/role.tpl"
 	}
 
 }
@@ -114,7 +114,7 @@ func (this *RoleController) AccessToNode() {
 		b, _ := json.Marshal(grouplist)
 		this.Data["grouplist"] = string(b)
 		this.Data["roleid"] = roleid
-		this.TplName = this.GetTemplatetype() + "/rbac/accesstonode.tpl"
+		this.TplName = this.GetTemplate() + "/rbac/accesstonode.tpl"
 	}
 
 }
@@ -159,7 +159,7 @@ func (this *RoleController) RoleToUserList() {
 		return
 	} else {
 		this.Data["roleid"] = roleid
-		this.TplName = this.GetTemplatetype() + "/rbac/roletouserlist.tpl"
+		this.TplName = this.GetTemplate() + "/rbac/roletouserlist.tpl"
 	}
 }
 

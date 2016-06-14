@@ -1,8 +1,8 @@
 package home
 
 import (
+	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
-	. "github.com/hunterhug/beautyart/lib"
 	"time"
 )
 
@@ -15,11 +15,7 @@ type Mood struct {
 }
 
 func init() {
-	orm.RegisterModel(new(Mood))
-}
-
-func (m *Mood) TableName() string {
-	return TableName("mood")
+	orm.RegisterModelWithPrefix(beego.AppConfig.String("db_prefix"), new(Mood))
 }
 
 func (m *Mood) Insert() error {

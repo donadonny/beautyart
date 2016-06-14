@@ -5,7 +5,6 @@ import (
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	"github.com/astaxie/beego/validation"
-	. "github.com/hunterhug/beautyart/lib"
 	"log"
 )
 
@@ -19,7 +18,7 @@ type Group struct {
 }
 
 func (g *Group) TableName() string {
-	return TableName(beego.AppConfig.String("rbac_group_table"))
+	return beego.AppConfig.String("rbac_group_table")
 }
 
 func init() {

@@ -3,6 +3,7 @@ package home
 import (
 	"bytes"
 	"fmt"
+	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	. "github.com/hunterhug/beautyart/lib"
 	"strings"
@@ -29,11 +30,11 @@ type Post struct {
 }
 
 func init() {
-	orm.RegisterModel(new(Post))
+	orm.RegisterModelWithPrefix(beego.AppConfig.String("db_prefix"), new(Post))
 }
 
-func (m *Post) TableName() string {
-	return TableName("post")
+func (m *Post) TableN() string {
+	return beego.AppConfig.String("db_prefix") + "_" + strings.ToLower("Post")
 }
 
 func (m *Post) Insert() error {

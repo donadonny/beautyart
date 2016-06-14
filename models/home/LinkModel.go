@@ -1,6 +1,7 @@
 package home
 
 import (
+	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	. "github.com/hunterhug/beautyart/lib"
 )
@@ -14,11 +15,7 @@ type Link struct {
 }
 
 func init() {
-	orm.RegisterModel(new(Link))
-}
-
-func (m *Link) TableName() string {
-	return TableName("link")
+	orm.RegisterModelWithPrefix(beego.AppConfig.String("db_prefix"), new(Link))
 }
 
 func (m *Link) Insert() error {

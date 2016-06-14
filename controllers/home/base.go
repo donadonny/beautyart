@@ -1,8 +1,9 @@
-package blog
+package home
 
 import (
 	"github.com/astaxie/beego"
-	"github.com/hunterhug/beautyart/models"
+	"github.com/beego/i18n"
+	. "github.com/hunterhug/beautyart/models/home"
 	"strconv"
 	"strings"
 )
@@ -25,16 +26,12 @@ type baseController struct {
 }
 
 func (this *baseController) Prepare() {
-	this.options = models.GetOptions()
+	this.options = GetOptions()
 	this.right = "right.html"
 	this.Data["options"] = this.options
-	this.Data["latestblog"] = models.GetLatestBlog()
-	this.Data["hotblog"] = models.GetHotBlog()
-	this.Data["links"] = models.GetLinks()
-	this.Data["hidejs"] = `<!--[if lt IE 9]>
-  <script src="/views/double/js/modernizr.js"></script>
-  <![endif]-->`
-
+	this.Data["latestblog"] = GetLatestBlog()
+	this.Data["hotblog"] = GetHotBlog()
+	this.Data["links"] = GetLinks()
 	var (
 		pagesize int
 		err      error
@@ -58,21 +55,25 @@ func (this *baseController) display(tpl string) {
 		theme = v
 	}
 
-	this.Layout = theme + "/layout.html"
-	this.Data["root"] = "/" + beego.AppConfig.String("ViewsPath") + "/" + theme + "/"
-	this.TplName = theme + "/" + tpl + ".html"
+	homepath := beego.AppConfig.String("home_template")
+	temp := strings.Split(homepath, "/")
+	layout := temp[0] + "/" + theme
+	this.Layout = layout + "/layout.html"
 
 	this.LayoutSections = make(map[string]string)
 	this.LayoutSections["head"] = theme + "/head.html"
 
 	if tpl == "index" {
-		this.LayoutSections["banner"] = theme + "/banner.html"
-		this.LayoutSections["middle"] = theme + "/middle.html"
+		this.LayoutSections["banner"] = layout + "/banner.html"
+		this.LayoutSections["middle"] = layout + "/middle.html"
 	}
 	if this.right != "" {
-		this.LayoutSections["right"] = theme + "/" + this.right
+		this.LayoutSections["right"] = layout + "/" + this.right
 	}
-	this.LayoutSections["foot"] = theme + "/foot.html"
+	this.LayoutSections["foot"] = layout + "/foot.html"
+
+	this.TplName = layout + "/" + tpl + ".html"
+
 }
 
 func (this *baseController) getOption(name string) string {

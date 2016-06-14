@@ -26,7 +26,7 @@ func (this *GroupController) Index() {
 		this.ServeJSON()
 		return
 	} else {
-		this.TplName = this.GetTemplatetype() + "/rbac/group.tpl"
+		this.TplName = this.GetTemplate() + "/rbac/group.tpl"
 	}
 
 }

@@ -5,7 +5,6 @@ import (
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	"github.com/astaxie/beego/validation"
-	. "github.com/hunterhug/beautyart/lib"
 	"log"
 )
 
@@ -21,7 +20,7 @@ type Role struct {
 }
 
 func (r *Role) TableName() string {
-	return TableName(beego.AppConfig.String("rbac_role_table"))
+	return beego.AppConfig.String("rbac_role_table")
 }
 
 func init() {

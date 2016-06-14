@@ -28,7 +28,7 @@ type User struct {
 }
 
 func (u *User) TableName() string {
-	return TableName(beego.AppConfig.String("rbac_user_table"))
+	return beego.AppConfig.String("rbac_user_table")
 }
 
 func (u *User) Valid(v *validation.Validation) {

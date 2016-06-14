@@ -5,8 +5,10 @@ import (
 	// 加载路由，不可省略
 	"github.com/astaxie/beego"
 	"github.com/beego/i18n"
+	. "github.com/hunterhug/beautyart/lib"
 	"github.com/hunterhug/beautyart/models"
-	_ "github.com/hunterhug/beautyart/routers"
+	"github.com/hunterhug/beautyart/routers"
+	"mime"
 	"strings"
 )
 
@@ -28,11 +30,20 @@ func init() {
 	// 添加映射
 	beego.Trace("添加i18n函数映射")
 	beego.AddFuncMap("i18n", i18n.Tr)
+
+	beego.Trace("添加json格式化函数映射")
+	beego.AddFuncMap("stringsToJson", StringsToJson)
+	mime.AddExtensionType(".css", "text/css")
+
 	// 模型初始化
 	beego.Trace("模型初始化")
 	models.Run()
+
+	beego.Trace("路由开始")
+	routers.Run()
 }
 
 func main() {
+	beego.Trace("监听开始")
 	beego.Run()
 }

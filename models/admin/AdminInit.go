@@ -25,8 +25,10 @@ func InsertUser() {
 	u.Password = Pwdhash("admin")
 	u.Email = "569929309@qq.com"
 	u.Remark = "最高权限的王"
-	u.Status = 1
+	u.Status = 2
 	o = orm.NewOrm()
+	o.Insert(u)
+	u.Username = "a"
 	o.Insert(u)
 	fmt.Println("insert user end")
 }

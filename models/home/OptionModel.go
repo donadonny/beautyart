@@ -1,6 +1,7 @@
 package home
 
 import (
+	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	. "github.com/hunterhug/beautyart/lib"
 )
@@ -13,11 +14,7 @@ type Option struct {
 }
 
 func init() {
-	orm.RegisterModel(new(Option))
-}
-
-func (m *Option) TableName() string {
-	return TableName("option")
+	orm.RegisterModelWithPrefix(beego.AppConfig.String("db_prefix"), new(Option))
 }
 
 func (m *Option) Insert() error {

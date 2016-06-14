@@ -87,7 +87,6 @@ func Connect() {
 		orm.DebugLog = orm.NewLog(w)
 	}
 
-	beego.Trace("数据库连接结束")
 }
 
 //创建数据库

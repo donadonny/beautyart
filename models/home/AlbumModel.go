@@ -1,8 +1,8 @@
 package home
 
 import (
+	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
-	. "github.com/hunterhug/beautyart/lib"
 	"time"
 )
 
@@ -18,11 +18,7 @@ type Album struct {
 }
 
 func init() {
-	orm.RegisterModel(new(Album))
-}
-
-func (m *Album) TableName() string {
-	return TableName("album")
+	orm.RegisterModelWithPrefix(beego.AppConfig.String("db_prefix"), new(Album))
 }
 
 func (m *Album) Insert() error {

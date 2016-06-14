@@ -32,11 +32,23 @@
 	<a href="">广州缀美画室</a>
 
 # 联系方式
-https://www.github.com/hunterhug 
-QQ：569929309
+	https://www.github.com/hunterhug 
+	QQ：569929309
 	
 # 项目约定
 
-1. RBAC权限相关的models和controllers统一放在admin文件夹，其他都在home文件夹
-2. URL router统一M/C/A方式，该方式需要验证权限，如rbac/public/index，其他如public/index不验证
-3. 模板灵活处理
+1. RBAC权限相关的models统一放在admin文件夹，其他都放在home文件夹.
+	前台控制相关的controllers统一放在home文件夹，其他都放在admin文件夹
+	URL router统一M/C/A方式，该正则url需要验证权限，如rbac/public/index，其他如public/index不验证。
+
+2. 登录说明
+	登陆过的用户只能注销后登录，支持cookie登录，进入后台时验证session，session不存在则验证cookie，如果用户
+	未被冻结，增加session，同时更改用户登录时间、登录IP等，cookie与登录IP绑定。
+
+3. 系统时间默认数据库本地时间，自定义时区暂时失效
+
+4. 后台模板一般在admin，前台模板在home，子文件夹为主题
+
+5. 所有配置在conf文件夹app.conf，支持国际化
+
+6. 数据库数据填充在models/*/*Init.go中定义

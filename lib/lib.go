@@ -3,16 +3,18 @@ package lib
 import (
 	"crypto/md5"
 	"encoding/hex"
+	// "fmt"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/context"
 	"net/url"
 	"strconv"
+	"strings"
 	"time"
 )
 
 func GetTime() time.Time {
 	timezone := float64(0)
-	v = beego.AppConfig.String("timezone")
+	v := beego.AppConfig.String("timezone")
 	timezone, _ = strconv.ParseFloat(v, 64)
 	add := timezone * float64(time.Hour)
 	return time.Now().UTC().Add(time.Duration(add))
@@ -58,9 +60,4 @@ func Rawurlencode(str string) string {
 func GetClientIp(this *context.Context) string {
 	s := strings.Split(this.Request.RemoteAddr, ":")
 	return s[0]
-}
-
-//返回带前缀的表名
-func TableName(str string) string {
-	return fmt.Sprintf("%s%s", beego.AppConfig.String("db_prefix"), str)
 }

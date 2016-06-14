@@ -1,7 +1,8 @@
-package blog
+package home
 
 import (
-	"github.com/hunterhug/beautyart/models"
+	. "github.com/hunterhug/beautyart/lib"
+	"github.com/hunterhug/beautyart/models/home"
 	"strconv"
 	"strings"
 )
@@ -12,28 +13,28 @@ type MainController struct {
 
 //首页, 只显示前N条
 func (this *MainController) Index() {
-	var list []*models.Post
-	query := new(models.Post).Query().Filter("status", 0).Filter("urltype", 0)
+	var list []*home.Post
+	query := new(home.Post).Query().Filter("status", 0).Filter("urltype", 0)
 	count, _ := query.Count()
 	if count > 0 {
 		query.OrderBy("-istop", "-views").Limit(this.pagesize, (this.page-1)*this.pagesize).All(&list)
 	}
 	this.Data["list"] = list
-	this.Data["pagebar"] = models.NewPager(int64(this.page), int64(count), int64(this.pagesize), "/index%d.html").ToString()
+	this.Data["pagebar"] = NewPager(int64(this.page), int64(count), int64(this.pagesize), "/index%d.html").ToString()
 	this.setHeadMetas()
 	this.display("index")
 }
 
 //blog分页显示
 func (this *MainController) BlogList() {
-	var list []*models.Post
-	query := new(models.Post).Query().Filter("status", 0).Filter("urltype", 0)
+	var list []*home.Post
+	query := new(home.Post).Query().Filter("status", 0).Filter("urltype", 0)
 	count, _ := query.Count()
 	if count > 0 {
 		query.OrderBy("-istop", "-posttime").Limit(this.pagesize, (this.page-1)*this.pagesize).All(&list)
 	}
 	this.Data["list"] = list
-	this.Data["pagebar"] = models.NewPager(int64(this.page), int64(count), int64(this.pagesize), "/life%d.html").ToString()
+	this.Data["pagebar"] = NewPager(int64(this.page), int64(count), int64(this.pagesize), "/life%d.html").ToString()
 	this.setHeadMetas("成长录")
 	this.display("life")
 }
@@ -53,8 +54,8 @@ func (this *MainController) Go404() {
 
 //说说
 func (this *MainController) Mood() {
-	var list []*models.Mood
-	query := new(models.Mood).Query()
+	var list []*home.Mood
+	query := new(home.Mood).Query()
 	count, _ := query.Count()
 	if count > 0 {
 		query.OrderBy("-posttime").Limit(this.pagesize, (this.page-1)*this.pagesize).All(&list)
@@ -62,21 +63,21 @@ func (this *MainController) Mood() {
 	this.Data["list"] = list
 	this.setHeadMetas("碎言碎语")
 	this.right = ""
-	this.Data["pagebar"] = models.NewPager(int64(this.page), int64(count), int64(this.pagesize), "/mood%d.html").ToString()
+	this.Data["pagebar"] = NewPager(int64(this.page), int64(count), int64(this.pagesize), "/mood%d.html").ToString()
 	this.display("mood")
 }
 
 //照片展示
 func (this *MainController) Photo() {
-	album := new(models.Album)
+	album := new(home.Album)
 	album.Id = int64(this.page)
 	err := album.Read()
 	if err != nil || album.Ishide != 0 {
 		this.Redirect("/404.html", 302)
 	}
 	this.setHeadMetas("相册 " + album.Name + " 内的照片")
-	var list []*models.Photo
-	new(models.Photo).Query().Filter("albumid", this.page).All(&list)
+	var list []*home.Photo
+	new(home.Photo).Query().Filter("albumid", this.page).All(&list)
 	this.right = ""
 	for _, v := range list {
 		v.Small = strings.Replace(v.Url, "bigpic", "smallpic", 1)
@@ -91,8 +92,8 @@ func (this *MainController) Album() {
 	if pagesize < 1 {
 		pagesize = 12
 	}
-	var list []*models.Album
-	query := new(models.Album).Query().Filter("ishide", 0)
+	var list []*home.Album
+	query := new(home.Album).Query().Filter("ishide", 0)
 	count, _ := query.Count()
 	if count > 0 {
 		query.OrderBy("-rank", "-posttime").Limit(pagesize, (this.page-1)*pagesize).All(&list)
@@ -100,14 +101,14 @@ func (this *MainController) Album() {
 	this.setHeadMetas("光影瞬间")
 	this.right = ""
 	this.Data["list"] = list
-	this.Data["pagebar"] = models.NewPager(int64(this.page), int64(count), int64(pagesize), "/album%d.html").ToString()
+	this.Data["pagebar"] = NewPager(int64(this.page), int64(count), int64(pagesize), "/album%d.html").ToString()
 	this.display("album")
 }
 
 //文章显示
 func (this *MainController) Show() {
 	var (
-		post *models.Post = new(models.Post)
+		post *home.Post = new(home.Post)
 		err  error
 	)
 	urlname := this.Ctx.Input.Param(":urlname")
@@ -124,7 +125,7 @@ func (this *MainController) Show() {
 	}
 	post.Views++
 	post.Update("Views")
-	models.Cache.Delete("hotblog")
+	Cache.Delete("hotblog")
 	post.Content = strings.Replace(post.Content, "_ueditor_page_break_tag_", "", -1)
 	pre, next := post.GetPreAndNext()
 	this.Data["post"] = post
@@ -141,9 +142,9 @@ func (this *MainController) Show() {
 
 //分类查看
 func (this *MainController) Category() {
-	var list []*models.Post
-	tagpost := new(models.TagPost)
-	tag := new(models.Tag)
+	var list []*home.Post
+	tagpost := new(home.TagPost)
+	tag := new(home.Tag)
 	tag.Name = this.Ctx.Input.Param(":name")
 
 	if tag.Read("Name") != nil {
@@ -152,17 +153,17 @@ func (this *MainController) Category() {
 	query := tagpost.Query().Filter("tagid", tag.Id).Filter("poststatus", 0)
 	count, _ := query.Count()
 	if count > 0 {
-		var tp []*models.TagPost
+		var tp []*home.TagPost
 		var pids []int64 = make([]int64, 0)
 		query.OrderBy("-posttime").Limit(this.pagesize, (this.page-1)*this.pagesize).All(&tp)
 		for _, v := range tp {
 			pids = append(pids, v.Postid)
 		}
-		new(models.Post).Query().Filter("id__in", pids).All(&list)
+		new(home.Post).Query().Filter("id__in", pids).All(&list)
 	}
 	this.Data["tag"] = tag
 	this.Data["list"] = list
-	this.Data["pagebar"] = models.NewPager(int64(this.page), int64(count), int64(this.pagesize), "/category/"+tag.Name+"/page/%d").ToString()
+	this.Data["pagebar"] = NewPager(int64(this.page), int64(count), int64(this.pagesize), "/category/"+tag.Name+"/page/%d").ToString()
 	this.setHeadMetas(tag.Name, tag.Name, tag.Name)
 	this.display("life")
 }

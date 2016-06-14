@@ -3,18 +3,8 @@ package models
 
 import (
 	"github.com/astaxie/beego"
-	. "github.com/hunterhug/beautyart/lib"
-	"mime"
 	"os"
 )
-
-var VERSION = beego.AppConfig.String("version")
-
-func init() {
-	beego.Trace("添加json格式化函数映射")
-	beego.AddFuncMap("stringsToJson", StringsToJson)
-	mime.AddExtensionType(".css", "text/css")
-}
 
 // 数据库开跑
 func Run() {

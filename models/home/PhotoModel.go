@@ -1,8 +1,8 @@
 package home
 
 import (
+	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
-	. "github.com/hunterhug/beautyart/lib"
 	"time"
 )
 
@@ -17,11 +17,7 @@ type Photo struct {
 }
 
 func init() {
-	orm.RegisterModel(new(Photo))
-}
-
-func (m *Photo) TableName() string {
-	return TableName("photo")
+	orm.RegisterModelWithPrefix(beego.AppConfig.String("db_prefix"), new(Photo))
 }
 
 func (m *Photo) Insert() error {

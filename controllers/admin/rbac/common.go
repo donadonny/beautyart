@@ -17,7 +17,7 @@ func (this *CommonController) Rsp(status bool, str string) {
 }
 
 // 获取模板位置
-func (this *CommonController) GetTemplatetype() string {
+func (this *CommonController) GetTemplate() string {
 	templatetype := beego.AppConfig.String("admin_template")
 	if templatetype == "" {
 		templatetype = "default"

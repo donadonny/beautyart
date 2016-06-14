@@ -1,7 +1,7 @@
 package rbac
 
 import (
-	m "beauty/models/admin"
+	m "github.com/hunterhug/beautyart/models/admin"
 )
 
 type UserController struct {
@@ -29,10 +29,10 @@ func (this *UserController) Index() {
 		tree := this.GetTree()
 		this.Data["tree"] = &tree
 		this.Data["users"] = &users
-		if this.GetTemplatetype() != "easyui" {
-			this.Layout = this.GetTemplatetype() + "/public/layout.tpl"
+		if this.GetTemplate() != "easyui" {
+			this.Layout = this.GetTemplate() + "/public/layout.tpl"
 		}
-		this.TplName = this.GetTemplatetype() + "/rbac/user.tpl"
+		this.TplName = this.GetTemplate() + "/rbac/user.tpl"
 	}
 
 }

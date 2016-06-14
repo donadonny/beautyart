@@ -1,6 +1,7 @@
 package home
 
 import (
+	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	"time"
 )
@@ -15,11 +16,7 @@ type TagPost struct {
 }
 
 func init() {
-	orm.RegisterModel(new(TagPost))
-}
-
-func (m *TagPost) TableName() string {
-	return TableName("tag_post")
+	orm.RegisterModelWithPrefix(beego.AppConfig.String("db_prefix"), new(TagPost))
 }
 
 func (m *TagPost) Insert() error {
