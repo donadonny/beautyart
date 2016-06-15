@@ -28,8 +28,17 @@ func InsertUser() {
 	u.Status = 2
 	o = orm.NewOrm()
 	o.Insert(u)
-	u.Username = "a"
-	o.Insert(u)
+
+	u1 := new(User)
+	u1.Username = "user"
+	u1.Nickname = "测试用户"
+	u1.Password = Pwdhash("user")
+	u1.Email = "569929309@qq.com"
+	u1.Remark = "测试用户"
+	u1.Status = 2
+	o = orm.NewOrm()
+	o.Insert(u1)
+
 	fmt.Println("insert user end")
 }
 
