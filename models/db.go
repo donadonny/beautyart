@@ -9,6 +9,7 @@ import (
 	"github.com/hunterhug/beautyart/models/admin"
 	"github.com/hunterhug/beautyart/models/home"
 	"os"
+	"time"
 	// _ "github.com/lib/pq"
 	// _ "github.com/mattn/go-sqlite3"
 )
@@ -63,7 +64,8 @@ func Connect() {
 	switch db_type {
 	case "mysql":
 		orm.RegisterDriver("mysql", orm.DRMySQL)
-		dns = fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8&loc=Local", db_user, db_pass, db_host, db_port, db_name)
+		orm.DefaultTimeLoc = time.UTC
+		dns = fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8", db_user, db_pass, db_host, db_port, db_name)
 		break
 	// case "postgres":
 	// 	orm.RegisterDriver("postgres", orm.DRPostgres)
@@ -80,7 +82,7 @@ func Connect() {
 	}
 	orm.RegisterDataBase("default", db_type, dns)
 
-	if beego.AppConfig.String("runmode") == "dev" {
+	if beego.AppConfig.String("dblog") == "open" {
 		beego.Trace("应用开发者模式，数据库操作进行调试，记录进db.log")
 		orm.Debug = true
 		w, _ := os.OpenFile("./db.log", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)

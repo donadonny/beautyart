@@ -2,11 +2,10 @@ package rbac
 
 import (
 	"encoding/json"
-	"strconv"
-	"strings"
-
 	"github.com/astaxie/beego/orm"
 	m "github.com/hunterhug/beautyart/models/admin"
+	"strconv"
+	"strings"
 )
 
 type RoleController struct {
@@ -34,7 +33,8 @@ func (this *RoleController) Index() {
 		this.ServeJSON()
 		return
 	} else {
-		this.TplName = this.GetTemplate() + "/rbac/role.tpl"
+		this.Layout = this.GetTemplate() + "/public/layout.html"
+		this.TplName = this.GetTemplate() + "/rbac/role.html"
 	}
 
 }
@@ -114,7 +114,8 @@ func (this *RoleController) AccessToNode() {
 		b, _ := json.Marshal(grouplist)
 		this.Data["grouplist"] = string(b)
 		this.Data["roleid"] = roleid
-		this.TplName = this.GetTemplate() + "/rbac/accesstonode.tpl"
+		this.Layout = this.GetTemplate() + "/public/layout.html"
+		this.TplName = this.GetTemplate() + "/rbac/accesstonode.html"
 	}
 
 }
@@ -159,7 +160,8 @@ func (this *RoleController) RoleToUserList() {
 		return
 	} else {
 		this.Data["roleid"] = roleid
-		this.TplName = this.GetTemplate() + "/rbac/roletouserlist.tpl"
+		this.Layout = this.GetTemplate() + "/public/layout.html"
+		this.TplName = this.GetTemplate() + "/rbac/roletouserlist.html"
 	}
 }
 

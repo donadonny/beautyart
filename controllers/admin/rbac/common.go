@@ -10,6 +10,10 @@ type CommonController struct {
 	Templatetype string //ui template type
 }
 
+func (this *CommonController) Prepare() {
+	this.Data["version"] = beego.AppConfig.String("version")
+}
+
 // 请求状态响应
 func (this *CommonController) Rsp(status bool, str string) {
 	this.Data["json"] = &map[string]interface{}{"status": status, "info": str}
@@ -32,6 +36,7 @@ func (this *CommonController) GetTree() []Tree {
 	for k, v := range nodes {
 		tree[k].Id = v["Id"].(int64)
 		tree[k].Text = v["Title"].(string)
+		tree[k].GroupId = v["Group"].(int64)
 		children, _ := m.GetNodeTree(v["Id"].(int64), 2)
 		tree[k].Children = make([]Tree, len(children))
 		for k1, v1 := range children {
@@ -40,5 +45,6 @@ func (this *CommonController) GetTree() []Tree {
 			tree[k].Children[k1].Attributes.Url = "/" + v["Name"].(string) + "/" + v1["Name"].(string)
 		}
 	}
+	// beego.Trace("%v", tree)
 	return tree
 }

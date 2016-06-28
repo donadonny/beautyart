@@ -1,48 +1,80 @@
 <!DOCTYPE html>
-<head>
-	<meta charset="utf-8" />
-	<title>登录</title>
-	<link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-	<style type="text/css">
-	body {background:#444}
-	p {}
-	.main {width:350px; margin:100px auto 0 auto; color:#888; overflow:hidden;}
-	.loginform {width:100%; background:#fff; color:#333}
-	fieldset {margin:20px;}
-	</style>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>用户登录|Login</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <script type="text/javascript" src="/static/js/jquery-2.1.4.min.js"></script>
+    <link rel="stylesheet" href="/static/home/amazi/css/amazeui.min.css" />
+    <style>
+    .header {
+        text-align: center;
+    }
+    
+    .header h1 {
+        font-size: 200%;
+        color: #333;
+        margin-top: 30px;
+    }
+    
+    .header p {
+        font-size: 14px;
+    }
+    </style>
 </head>
 
-<div class="main">
-	<div class="loginform">
-
-	<form method="post">
-		<input type="hidden" name="isajax" value="1" />
-	<fieldset>
-		<legend>后台登录</legend>
-		
-		{{if .errmsg}}
-		<div class="alert alert-error">
-		<button type="button" class="close" data-dismiss="alert">&times;</button>
-		{{.errmsg}}
-		</div>
-		{{end}}		
-
-		<label for="account">帐号</label>
-		<input type="text" name="account" class="input-xlarge" id="account" />
-		<label for="password">密码</label>
-		<input type="password" id="password" name="password" class="input-xlarge" />
-		<label for="yzm">验证码</label>
-		<input type="text" id="yzm" name="yzm" class="input-xlarge" />
-	    	{{create_captcha}}
-		<label class="checkbox">
-		  <input type="checkbox" id="remember" name="remember" value="yes"> 记住我一周
-		</label>
-		<p><button type="submit" class="btn btn-success">登 录</button></p>
-		<hr />
-	</fieldset>
-	</form>
-	</div>
-</div>
-
+<body>
+    <div class="header">
+        <div class="am-g">
+            <h1><a href='/'>缀美画室智能平台</a></h1>
+            <p>BeautyArt Intelligent Platform
+                <br/>画画就找最美画室！</p>
+        </div>
+        <div class="am-alert am-alert-success" id='warning-block' style="text-align:center">
+            <p>密码忘记请联系管理员QQ：569929309</p>
+        </div>
+        <hr />
+    </div>
+    <div class="am-g">
+        <div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
+            <h3>登录</h3>
+            <hr> {{if .errmsg}}
+            <div class="am-alert am-alert-danger" style="text-align:center">
+                {{.errmsg}}
+            </div>
+            {{end}}
+            <form class="am-form" id='loginform' method="post">
+                <input type="hidden" name="isajax" value="1" />
+                <label for="account">账号:</label>
+                <input type="text" id='account' name="account" required="required">
+                <br>
+                <label for="password">密码:</label>
+                <input type="password" name="password" id="password" required="required">
+                <br>
+                <label for="yzm">验证码:</label>
+                <input id="hashcode" required="required" name='yzm' type="text"> {{create_captcha}}
+                <label class="checkbox">
+                    <input type="checkbox" id="remember" name="remember" value="yes"> 记住我一周
+                </label>
+                <br />
+                <br />
+                <div class="am-cf">
+                    <input type="submit" value="登 录" class="am-btn am-btn-primary am-btn-sm am-fl">
+                </div>
+            </form>
+            <hr>
+            <p>2016-forever@缀美画室智能平台</p>
+            <div class="am-btn-group">
+                <p> Modify by <a href="http://weibo.com/hunterhug" target="_blank">一只尼玛</a>
+                    <a href="https://www.github.com/hunterhug"><i class="am-icon-github am-icon-sm"></i> Github</a></p>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>

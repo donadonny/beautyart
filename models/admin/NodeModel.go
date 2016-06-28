@@ -111,14 +111,26 @@ func UpdateNode(n *Node) (int64, error) {
 
 func DelNodeById(Id int64) (int64, error) {
 	o := orm.NewOrm()
-	status, err := o.Delete(&Node{Id: Id})
-	return status, err
+	node := new(Node)
+	candel, e1 := node.Query().Filter("Pid", Id).Count()
+	if candel == 0 && e1 == nil {
+		status, err := o.Delete(&Node{Id: Id})
+		return status, err
+	} else {
+		err := errors.New("下面还有目录")
+		return 0, err
+	}
+
 }
 
 func GetNodelistByGroupid(Groupid int64) (nodes []orm.Params, count int64) {
 	o := orm.NewOrm()
 	node := new(Node)
-	count, _ = o.QueryTable(node).Filter("Group", Groupid).RelatedSel().Values(&nodes)
+	if Groupid != 0 {
+		count, _ = o.QueryTable(node).Filter("Group", Groupid).RelatedSel().Values(&nodes)
+	} else {
+		count, _ = o.QueryTable(node).RelatedSel().Values(&nodes)
+	}
 	return nodes, count
 }
 
@@ -126,9 +138,41 @@ func GetNodeTree(pid int64, level int64) ([]orm.Params, error) {
 	o := orm.NewOrm()
 	node := new(Node)
 	var nodes []orm.Params
-	_, err := o.QueryTable(node).Filter("Pid", pid).Filter("Level", level).Filter("Status", 2).Values(&nodes)
+	_, err := o.QueryTable(node).Filter("Pid", pid).Filter("Level", level).Filter("Status", 1).Values(&nodes)
 	if err != nil {
 		return nodes, err
 	}
 	return nodes, nil
+}
+
+func (m *Node) Insert() error {
+	if _, err := orm.NewOrm().Insert(m); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *Node) Read(fields ...string) error {
+	if err := orm.NewOrm().Read(m, fields...); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *Node) Update(fields ...string) error {
+	if _, err := orm.NewOrm().Update(m, fields...); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *Node) Delete() error {
+	if _, err := orm.NewOrm().Delete(m); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *Node) Query() orm.QuerySeter {
+	return orm.NewOrm().QueryTable(m)
 }

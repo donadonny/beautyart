@@ -11,7 +11,8 @@ type baseController struct {
 }
 
 type Tree struct {
-	Id         int64      `json:"id"`   //
+	Id         int64      `json:"id"` //
+	GroupId    int64      `json:"-"`
 	Text       string     `json:"text"` //
 	IconCls    string     `json:"iconCls"`
 	Checked    string     `json:"checked"`

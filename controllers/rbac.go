@@ -26,7 +26,7 @@ func AccessRegister() {
 			params := strings.Split(strings.ToLower(ctx.Request.RequestURI), "/")
 			if CheckAccess(params) {
 				uinfo := ctx.Input.Session("userinfo")
-				if uinfo == nil {
+				if uinfo == nil && beego.AppConfig.String("cookie7") == "1" {
 					arr := strings.Split(ctx.GetCookie("auth"), "|")
 					if len(arr) == 2 {
 						idstr, password := arr[0], arr[1]

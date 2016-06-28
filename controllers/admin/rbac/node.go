@@ -2,6 +2,7 @@ package rbac
 
 import (
 	"encoding/json"
+	// "github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	m "github.com/hunterhug/beautyart/models/admin"
 )
@@ -17,28 +18,16 @@ func (this *NodeController) Rsp(status bool, str string) {
 
 func (this *NodeController) Index() {
 	if this.IsAjax() {
-		page, _ := this.GetInt64("page")
-		page_size, _ := this.GetInt64("rows")
-		sort := this.GetString("sort")
-		order := this.GetString("order")
-		if len(order) > 0 {
-			if order == "desc" {
-				sort = "-" + sort
-			}
-		} else {
-			sort = "Id"
-		}
-		nodes, count := m.GetNodelist(page, page_size, sort)
+		groupid, _ := this.GetInt64("group_id")
+		nodes, count := m.GetNodelistByGroupid(groupid)
+
 		for i := 0; i < len(nodes); i++ {
-			if nodes[i]["Pid"] != 0 {
-				nodes[i]["_parentId"] = nodes[i]["Pid"]
-			} else {
-				nodes[i]["state"] = "closed"
-			}
+			nodes[i]["_parentId"] = nodes[i]["Pid"]
 		}
 		if len(nodes) < 1 {
 			nodes = []orm.Params{}
 		}
+		// beego.Trace("%v", nodes)
 		this.Data["json"] = &map[string]interface{}{"total": count, "rows": &nodes}
 		this.ServeJSON()
 		return
@@ -46,7 +35,8 @@ func (this *NodeController) Index() {
 		grouplist := m.GroupList()
 		b, _ := json.Marshal(grouplist)
 		this.Data["grouplist"] = string(b)
-		this.TplName = this.GetTemplate() + "/rbac/node.tpl"
+		this.Layout = this.GetTemplate() + "/public/layout.html"
+		this.TplName = this.GetTemplate() + "/rbac/node.html"
 	}
 
 }

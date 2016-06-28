@@ -180,3 +180,35 @@ func AccessList(uid int64) (list []orm.Params, err error) {
 	}
 	return list, nil
 }
+
+func (m *Role) Insert() error {
+	if _, err := orm.NewOrm().Insert(m); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *Role) Read(fields ...string) error {
+	if err := orm.NewOrm().Read(m, fields...); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *Role) Update(fields ...string) error {
+	if _, err := orm.NewOrm().Update(m, fields...); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *Role) Delete() error {
+	if _, err := orm.NewOrm().Delete(m); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *Role) Query() orm.QuerySeter {
+	return orm.NewOrm().QueryTable(m)
+}

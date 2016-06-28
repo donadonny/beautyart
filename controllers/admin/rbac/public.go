@@ -7,9 +7,9 @@ import (
 	. "github.com/hunterhug/beautyart/controllers"
 	. "github.com/hunterhug/beautyart/lib"
 	"github.com/hunterhug/beautyart/models/admin"
-	"github.com/hunterhug/beautyart/models/home"
-	"os"
-	"runtime"
+	// "github.com/hunterhug/beautyart/models/home"
+	// "os"
+	// "runtime"
 	"strconv"
 	"strings"
 )
@@ -18,11 +18,13 @@ type MainController struct {
 	CommonController
 }
 
+var Cookie7 = beego.AppConfig.String("cookie7")
+
 // 后台首页
 func (this *MainController) Index() {
 	userinfo := this.GetSession("userinfo")
 	//如果没有seesion
-	if userinfo == nil {
+	if userinfo == nil && Cookie7 == "1" {
 		success, userinfo := CheckCookie(this.Ctx)
 		//查看是否有cookie
 		if success {
@@ -42,39 +44,35 @@ func (this *MainController) Index() {
 			this.Ctx.Redirect(302, beego.AppConfig.String("rbac_auth_gateway"))
 		}
 	}
+
+	if userinfo == nil {
+		this.Ctx.Redirect(302, beego.AppConfig.String("rbac_auth_gateway"))
+	}
 	// 获取模块rbac-节点 public/index    /rbac/public/index
 	tree := this.GetTree()
 
-	//这个没什么卵用
-	if this.IsAjax() {
-		this.Data["json"] = &tree
-		this.ServeJSON()
-		return
-	} else {
-		userinfo = this.GetSession("userinfo")
-		groups := admin.GroupList()
-		this.Data["user"] = userinfo.(admin.User)
-		this.Data["groups"] = groups
-		this.Data["tree"] = &tree
-		this.Data["hostname"], _ = os.Hostname()
-		this.Data["gover"] = runtime.Version()
-		this.Data["os"] = runtime.GOOS
-		this.Data["cpunum"] = runtime.NumCPU()
-		this.Data["arch"] = runtime.GOARCH
-		this.Data["postnum"], _ = new(home.Post).Query().Count()
-		this.Data["tagnum"], _ = new(home.Tag).Query().Count()
-		this.Data["usernum"], _ = new(admin.User).Query().Count()
-		this.Data["version"] = beego.AppConfig.String("version")
-		this.Layout = this.GetTemplate() + "/public/layout.html"
-		this.TplName = this.GetTemplate() + "/public/index.html"
-	}
+	userinfo = this.GetSession("userinfo")
+	groups := admin.GroupList()
+	this.Data["tree"] = tree
+	this.Data["user"] = userinfo.(admin.User)
+	this.Data["groups"] = groups
+	// this.Data["hostname"], _ = os.Hostname()
+	// this.Data["gover"] = runtime.Version()
+	// this.Data["os"] = runtime.GOOS
+	// this.Data["cpunum"] = runtime.NumCPU()
+	// this.Data["arch"] = runtime.GOARCH
+	// this.Data["postnum"], _ = new(home.Post).Query().Count()
+	// this.Data["tagnum"], _ = new(home.Tag).Query().Count()
+	// this.Data["usernum"], _ = new(admin.User).Query().Count()
+	this.TplName = this.GetTemplate() + "/public/admin.html"
+
 }
 
 //登录
 func (this *MainController) Login() {
 	// 查看是否已经登陆过
 	userinfo := this.GetSession("userinfo")
-	if userinfo == nil {
+	if userinfo == nil && Cookie7 == "1" {
 		success, userinfo := CheckCookie(this.Ctx)
 		//查看是否有cookie
 		if success {
@@ -89,8 +87,10 @@ func (this *MainController) Login() {
 			this.SetSession("accesslist", accesslist)
 			this.Ctx.Redirect(302, "/public/index")
 		}
-	} else {
+	} else if userinfo != nil {
 		this.Ctx.Redirect(302, "/public/index")
+	} else {
+
 	}
 
 	//登陆中
@@ -109,12 +109,13 @@ func (this *MainController) Login() {
 				user.Lastip = GetClientIp(this.Ctx)
 				user.Update()
 				authkey := Md5(GetClientIp(this.Ctx) + "|" + user.Password)
-				if remember == "yes" {
-					this.Ctx.SetCookie("auth", strconv.FormatInt(user.Id, 10)+"|"+authkey, 7*86400)
-				} else {
-					this.Ctx.SetCookie("auth", strconv.FormatInt(user.Id, 10)+"|"+authkey)
+				if Cookie7 == "1" {
+					if remember == "yes" {
+						this.Ctx.SetCookie("auth", strconv.FormatInt(user.Id, 10)+"|"+authkey, 7*86400)
+					} else {
+						this.Ctx.SetCookie("auth", strconv.FormatInt(user.Id, 10)+"|"+authkey)
+					}
 				}
-
 				//设置登陆session
 				this.SetSession("userinfo", user)
 				//设置权限列表session

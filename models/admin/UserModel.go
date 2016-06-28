@@ -2,7 +2,6 @@ package admin
 
 import (
 	"errors"
-	"log"
 	"time"
 
 	"github.com/astaxie/beego"
@@ -22,7 +21,7 @@ type User struct {
 	Remark        string    `orm:"null;size(200)" form:"Remark" valid:"MaxSize(200)"`
 	Status        int       `orm:"default(2)" form:"Status" valid:"Range(1,2)"`
 	Lastlogintime time.Time `orm:"null;type(datetime)" form:"-"`
-	Createtime    time.Time `orm:"type(datetime);auto_now_add" `
+	Createtime    time.Time `orm:"type(datetime)" `
 	Lastip        string
 	Role          []*Role `orm:"rel(m2m)"`
 }
@@ -43,7 +42,7 @@ func checkUser(u *User) (err error) {
 	b, _ := valid.Valid(&u)
 	if !b {
 		for _, err := range valid.Errors {
-			log.Println(err.Key, err.Message)
+			beego.Trace("%vfff%v", err.Key, err.Message)
 			return errors.New(err.Message)
 		}
 	}
@@ -65,7 +64,8 @@ func Getuserlist(page int64, page_size int64, sort string) (users []orm.Params, 
 	} else {
 		offset = (page - 1) * page_size
 	}
-	qs.Limit(page_size, offset).OrderBy(sort).Values(&users)
+	qs.Limit(page_size, offset).OrderBy(sort).Values(&users, "Createtime", "Email", "Id", "Lastip",
+		"Lastlogintime", "Logincount", "Nickname", "Remark", "Status", "Username")
 	count, _ = qs.Count()
 	return users, count
 }
@@ -83,6 +83,7 @@ func AddUser(u *User) (int64, error) {
 	user.Remark = u.Remark
 	user.Status = u.Status
 	user.Lastip = u.Lastip
+	user.Createtime = GetTime()
 	id, err := o.Insert(user)
 	return id, err
 }

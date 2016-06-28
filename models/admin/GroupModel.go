@@ -92,9 +92,15 @@ func UpdateGroup(g *Group) (int64, error) {
 	return num, err
 }
 
-func DelGroupById(Id int64) (int64, error) {
-	o := orm.NewOrm()
-	status, err := o.Delete(&Group{Id: Id})
+func DelGroupById(Id int64) (status int64, err error) {
+	node := new(Node)
+	num, e := node.Query().Filter("Group__id", Id).Count()
+	if num > 0 && e == nil {
+		err = errors.New("分组下有节点")
+	} else if num == 0 && e == nil {
+		o := orm.NewOrm()
+		status, err = o.Delete(&Group{Id: Id})
+	}
 	return status, err
 }
 
@@ -102,6 +108,38 @@ func GroupList() (groups []orm.Params) {
 	o := orm.NewOrm()
 	group := new(Group)
 	qs := o.QueryTable(group)
-	qs.Values(&groups, "id", "title")
+	qs.Values(&groups)
 	return groups
+}
+
+func (m *Group) Insert() error {
+	if _, err := orm.NewOrm().Insert(m); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *Group) Read(fields ...string) error {
+	if err := orm.NewOrm().Read(m, fields...); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *Group) Update(fields ...string) error {
+	if _, err := orm.NewOrm().Update(m, fields...); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *Group) Delete() error {
+	if _, err := orm.NewOrm().Delete(m); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *Group) Query() orm.QuerySeter {
+	return orm.NewOrm().QueryTable(m)
 }

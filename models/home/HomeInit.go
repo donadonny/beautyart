@@ -18,25 +18,23 @@ func insertOption() {
 	o.Insert()
 	o = Option{3, "timezone", "8"}
 	o.Insert()
-	o = Option{4, "sitename", "8"}
+	o = Option{4, "siteurl", "8"}
 	o.Insert()
-	o = Option{5, "siteurl", "8"}
+	o = Option{5, "subtitle", "8"}
 	o.Insert()
-	o = Option{6, "subtitle", "8"}
+	o = Option{6, "pagesize", "2"}
 	o.Insert()
-	o = Option{7, "pagesize", "2"}
+	o = Option{7, "keywords", "2"}
 	o.Insert()
-	o = Option{8, "keywords", "2"}
+	o = Option{8, "description", "2"}
+	o = Option{9, "stat", ""}
 	o.Insert()
-	o = Option{9, "description", "2"}
-	o = Option{10, "stat", ""}
+	o = Option{10, "duoshuo", ""}
 	o.Insert()
-	o = Option{11, "duoshuo", ""}
+	o = Option{11, "weibo", ""}
 	o.Insert()
-	o = Option{12, "weibo", ""}
+	o = Option{12, "github", ""}
 	o.Insert()
-	o = Option{13, "github", ""}
-	o.Insert()
-	o = Option{14, "albumsize", "3"}
+	o = Option{13, "albumsize", "3"}
 	o.Insert()
 }
