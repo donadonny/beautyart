@@ -31,13 +31,13 @@ func (this *CommonController) GetTemplate() string {
 
 // 获取权限各节点URL   权限控制器 用户节点  /rbac /nide/index
 func (this *CommonController) GetTree() []Tree {
-	nodes, _ := m.GetNodeTree(0, 1)
+	nodes, _ := m.GetNodeTree(0, 1) //第一层
 	tree := make([]Tree, len(nodes))
 	for k, v := range nodes {
 		tree[k].Id = v["Id"].(int64)
 		tree[k].Text = v["Title"].(string)
 		tree[k].GroupId = v["Group"].(int64)
-		children, _ := m.GetNodeTree(v["Id"].(int64), 2)
+		children, _ := m.GetNodeTree(v["Id"].(int64), 2) //第二层
 		tree[k].Children = make([]Tree, len(children))
 		for k1, v1 := range children {
 			tree[k].Children[k1].Id = v1["Id"].(int64)

@@ -27,6 +27,12 @@ $(function() {
                         width: 50,
                         align: 'center'
                     }, {
+                        field: 'Title',
+                        title: '标题',
+                        width: 150,
+                        align: 'center',
+                        editor: 'text'
+                    }, {
                         field: 'Name',
                         title: '组名',
                         width: 150,
@@ -60,7 +66,7 @@ $(function() {
                             for (var i = 0; i < statuslist.length; i++) {
                                 if (statuslist[i].statusid == value) return statuslist[i].name;
                             }
-                            return value;
+                            return "禁用0";
                         },
                         editor: {
                             type: 'combobox',

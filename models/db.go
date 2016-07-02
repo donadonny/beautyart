@@ -85,7 +85,10 @@ func Connect() {
 	if beego.AppConfig.String("dblog") == "open" {
 		beego.Trace("应用开发者模式，数据库操作进行调试，记录进db.log")
 		orm.Debug = true
-		w, _ := os.OpenFile("./db.log", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+		w, e := os.OpenFile("log/db.log", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+		if e != nil {
+			beego.Error(e.Error())
+		}
 		orm.DebugLog = orm.NewLog(w)
 	}
 

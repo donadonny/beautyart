@@ -97,8 +97,16 @@ func UpdateRole(r *Role) (int64, error) {
 
 func DelRoleById(Id int64) (int64, error) {
 	o := orm.NewOrm()
-	status, err := o.Delete(&Role{Id: Id})
-	return status, err
+	user := new(User)
+	count, err := user.Query().Filter("Role__Role__Id", Id).Count()
+	if err == nil && count > 0 {
+		return 0, errors.New("角色下有用户")
+	} else if err != nil {
+		return 0, err
+	} else {
+		status, err := o.Delete(&Role{Id: Id})
+		return status, err
+	}
 }
 
 func GetNodelistByRoleId(Id int64) (nodes []orm.Params, count int64) {
@@ -163,7 +171,7 @@ func AccessList(uid int64) (list []orm.Params, err error) {
 	var roles []orm.Params
 	o := orm.NewOrm()
 	role := new(Role)
-	_, err = o.QueryTable(role).Filter("User__User__Id", uid).Values(&roles)
+	_, err = o.QueryTable(role).Filter("Status", 1).Filter("User__User__Id", uid).Values(&roles) //补充，角色被禁用无法访问
 	if err != nil {
 		return nil, err
 	}

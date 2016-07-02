@@ -9,14 +9,15 @@ $(function() {
         textField: 'Name',
         value: roleid,
         onSelect: function(record) {
-            $("#datagrid2").datagrid("reload", {
-                Id: record.Id
-            });
+            vac.ajax(URL+"/RoleToUserList",{Id:record.Id},"GET",function(data){
+                        $("#datagrid2").datagrid("loadData",data)
+                    }
+            )
         }
     });
     //组用户列表
     $("#datagrid2").datagrid({
-        url: URL + '/RoleToUserList?',
+        url: URL + '/RoleToUserList?Id='+roleid,
         method: 'get',
         fitColumns: false,
         striped: true,

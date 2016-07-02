@@ -1,5 +1,4 @@
 # 项目名：广州缀美画室网站
-# 开发者：陈锦瀚
 # 开发语言:Go!!!!
 
 # 项目规划
@@ -37,6 +36,7 @@
 
 
 # 文件目录
+···
 beautyart
 ----conf 配置文件夹
 
@@ -61,6 +61,10 @@ beautyart
 	----home 	前台视图
 		----default 默认主题
 
+----log 日志
+----doc 说明文档
+···
+
 # 项目约定
 
 1. RBAC权限相关的models统一放在admin文件夹，其他都放在home文件夹.
@@ -68,7 +72,7 @@ beautyart
 	URL router统一M/C/A方式，该正则url需要验证权限，如rbac/public/index，其他如public/index不验证。
 
 2. 登录说明
-	登陆过的用户只能注销后登录，支持定义cookie登录，进入后台时验证session，session不存在则验证cookie，如果用户
+	登陆过的用户只能注销后登录，支持定义cookie登录。进入后台时验证session，session不存在则验证cookie，如果用户
 	未被冻结，增加session，同时更改用户登录时间、登录IP等，cookie与登录IP绑定。
 
 3. 系统时间默认数据库本地时间为东八区，北京时间。
@@ -89,3 +93,13 @@ beautyart
 	  -webkit-box-sizing: border-box;
 	          box-sizing: border-box;
 	}
+
+
+# 项目进展
+1. 开发手脚架搭建完毕，RBAC模块完成，2016/7/2
+
+
+
+
+
+# 平台使用说明参见doc文件夹

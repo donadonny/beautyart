@@ -5,6 +5,7 @@ import (
 	// 加载路由，不可省略
 	"github.com/astaxie/beego"
 	"github.com/beego/i18n"
+	"github.com/hunterhug/beautyart/controllers"
 	. "github.com/hunterhug/beautyart/lib"
 	"github.com/hunterhug/beautyart/models"
 	"github.com/hunterhug/beautyart/routers"
@@ -41,6 +42,9 @@ func init() {
 
 	beego.Trace("路由开始")
 	routers.Run()
+
+	beego.Trace("错误模板开启")
+	beego.ErrorController(&controllers.ErrorController{})
 }
 
 func main() {

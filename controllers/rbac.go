@@ -117,7 +117,7 @@ func GetAccessList(uid int64) (map[string]bool, error) {
 	}
 	alist := make([]*AccessNode, 0)
 	for _, l := range list {
-		if l["Pid"].(int64) == 0 && l["Level"].(int64) == 1 {
+		if l["Pid"].(int64) == 0 && l["Level"].(int64) == 1 && l["Status"].(int64) == 1 { //最严最好！！！
 			anode := new(AccessNode)
 			anode.Id = l["Id"].(int64)
 			anode.Name = l["Name"].(string)
@@ -125,7 +125,7 @@ func GetAccessList(uid int64) (map[string]bool, error) {
 		}
 	}
 	for _, l := range list {
-		if l["Level"].(int64) == 2 {
+		if l["Level"].(int64) == 2 && l["Status"].(int64) == 1 {
 			for _, an := range alist {
 				if an.Id == l["Pid"].(int64) {
 					anode := new(AccessNode)
@@ -137,7 +137,7 @@ func GetAccessList(uid int64) (map[string]bool, error) {
 		}
 	}
 	for _, l := range list {
-		if l["Level"].(int64) == 3 {
+		if l["Level"].(int64) == 3 && l["Status"].(int64) == 1 { //补充，如果第三层节点被禁用，则无法访问
 			for _, an := range alist {
 				for _, an1 := range an.Childrens {
 					if an1.Id == l["Pid"].(int64) {

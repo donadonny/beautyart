@@ -138,6 +138,7 @@ func GetNodeTree(pid int64, level int64) ([]orm.Params, error) {
 	o := orm.NewOrm()
 	node := new(Node)
 	var nodes []orm.Params
+	//史上最严权限，节点必须启用
 	_, err := o.QueryTable(node).Filter("Pid", pid).Filter("Level", level).Filter("Status", 1).Values(&nodes)
 	if err != nil {
 		return nodes, err

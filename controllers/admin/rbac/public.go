@@ -48,7 +48,11 @@ func (this *MainController) Index() {
 	if userinfo == nil {
 		this.Ctx.Redirect(302, beego.AppConfig.String("rbac_auth_gateway"))
 	}
+
+	// 权限最重要的部分，入口在此
 	// 获取模块rbac-节点 public/index    /rbac/public/index
+	// 分组关闭，则该分组所有菜单没有
+	// 第一/二层节点关闭,则菜单没有
 	tree := this.GetTree()
 
 	userinfo = this.GetSession("userinfo")
