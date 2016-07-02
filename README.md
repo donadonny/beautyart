@@ -26,9 +26,11 @@
 	./main -s
 	./main
 
+3. 平台使用说明参见doc文件夹
+
 可自由修改源代码，但必须保留友好链接
 
-	<a href="">广州缀美画室</a>
+	(http://wwww.beautyart.top)(广州缀美画室)
 
 # 联系方式
 	https://www.github.com/hunterhug 
@@ -36,7 +38,7 @@
 
 
 # 文件目录
-···
+````
 beautyart
 ----conf 配置文件夹
 
@@ -63,7 +65,7 @@ beautyart
 
 ----log 日志
 ----doc 说明文档
-···
+```
 
 # 项目约定
 
@@ -87,19 +89,14 @@ beautyart
 # 温馨提示
 
 1. Amaze Ui与EasyUi冲突，Amazeui.css第一行注释掉
+```
 	*,
 	*:before,
 	*:after {
 	  -webkit-box-sizing: border-box;
 	          box-sizing: border-box;
 	}
-
+```
 
 # 项目进展
 1. 开发手脚架搭建完毕，RBAC模块完成，2016/7/2
-
-
-
-
-
-# 平台使用说明参见doc文件夹
