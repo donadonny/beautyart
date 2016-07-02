@@ -21,16 +21,18 @@
 1. 运行init.sh进行包初始化
 2. 接着
 
+```
 	cd beauty
 	go build main.go
 	./main -s
 	./main
+```
 
 3. 平台使用说明参见doc文件夹
 
 可自由修改源代码，但必须保留友好链接
 
-	(http://wwww.beautyart.top)(广州缀美画室)
+	[http://wwww.beautyart.top](广州缀美画室)
 
 # 联系方式
 	https://www.github.com/hunterhug 
