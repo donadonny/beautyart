@@ -39,10 +39,9 @@ func (u *User) Valid(v *validation.Validation) {
 // 验证表单
 func checkUser(u *User) (err error) {
 	valid := validation.Validation{}
-	b, _ := valid.Valid(&u)
+	b, _ := valid.Valid(u)
 	if !b {
 		for _, err := range valid.Errors {
-			beego.Trace("%vfff%v", err.Key, err.Message)
 			return errors.New(err.Message)
 		}
 	}
@@ -89,34 +88,58 @@ func AddUser(u *User) (int64, error) {
 }
 
 func UpdateUser(u *User) (int64, error) {
-	if err := checkUser(u); err != nil {
-		return 0, err
-	}
 	o := orm.NewOrm()
 	user := make(orm.Params)
-	if len(u.Username) > 0 {
-		user["Username"] = u.Username
-	}
+	valid := validation.Validation{}
 	if len(u.Nickname) > 0 {
+		valid.MinSize(u.Nickname, 6, "昵称最小长度")
+		valid.MaxSize(u.Nickname, 20, "昵称最大长度")
 		user["Nickname"] = u.Nickname
 	}
 	if len(u.Email) > 0 {
+		valid.Email(u.Email, "邮箱")
 		user["Email"] = u.Email
 	}
 	if len(u.Remark) > 0 {
+		valid.MaxSize(u.Remark, 200, "最长备注")
 		user["Remark"] = u.Remark
-	}
-	if len(u.Password) > 0 {
-		user["Password"] = Strtomd5(u.Password)
-	}
-	if len(u.Lastip) > 0 {
-		user["Lastip"] = u.Lastip
 	}
 	if u.Status != 0 {
 		user["Status"] = u.Status
 	}
 	if len(user) == 0 {
-		return 0, errors.New("update field is empty")
+		return 0, errors.New("字段不能为空")
+	}
+	if valid.HasErrors() {
+		// 如果有错误信息，证明验证没通过
+		// 打印错误信息
+		for _, err := range valid.Errors {
+			return 0, errors.New(err.Key + ":" + err.Message)
+		}
+	}
+	var table User
+	num, err := o.QueryTable(table).Filter("Id", u.Id).Update(user)
+	return num, err
+}
+
+func UpdateUserPasswd(u *User) (int64, error) {
+	valid := validation.Validation{}
+	o := orm.NewOrm()
+	user := make(orm.Params)
+	if len(u.Password) > 0 {
+		valid.MinSize(u.Password, 6, "最小长度")
+		valid.MaxSize(u.Password, 20, "最大长度")
+		user["Password"] = Strtomd5(u.Password)
+	}
+	if len(user) == 0 {
+		return 0, errors.New("字段不能为空")
+	}
+	if valid.HasErrors() {
+		// 如果有错误信息，证明验证没通过
+		// 打印错误信息
+		for _, err := range valid.Errors {
+			return 0, errors.New(err.Key + ":" + err.Message)
+		}
 	}
 	var table User
 	num, err := o.QueryTable(table).Filter("Id", u.Id).Update(user)

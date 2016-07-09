@@ -35,13 +35,28 @@ $.extend($.fn.validatebox.defaults.rules, {
                 return false;
             } else {
                 if (!/^[a-zA-Z][\w]+$/.test(value)) {
-                    $.fn.validatebox.defaults.rules.account.message = '用户名只能字母开头，平且由数字、字母、下划线组成.';
+                    $.fn.validatebox.defaults.rules.account.message = '用户名只能字母开头，并且由数字、字母、下划线组成.';
                     return false;
                 } else {
                     return true;
                 }
             }
         }, message: ''
+    },
+     inputlen: {//param的值为[]中值
+        validator: function (value, param) {
+            if (value.length < param[0] || value.length > param[1]) {
+                $.fn.validatebox.defaults.rules.account.message = '长度必须在' + param[0] + '至' + param[1] + '范围';
+                return false;
+            } else{
+                return true
+            }
+        }, message: ''
+    },
+    equals: {    
+        validator: function(value,param){    
+            return value == $(param[0]).val();    
+        }, message: '两次不一致'
     },
     password:{
         validator:function(value, param){
@@ -57,11 +72,7 @@ $.extend($.fn.validatebox.defaults.rules, {
                     }
                 }
             }, message: ''
-        },
-		equals: {    
-        validator: function(value,param){    
-            return value == $(param[0]).val();    
-        },    
+        },   
         message: '两次输入不一致'   
     }    
 

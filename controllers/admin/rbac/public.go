@@ -149,32 +149,33 @@ func (this *MainController) Logout() {
 
 //修改密码
 func (this *MainController) Changepwd() {
-	userinfo := this.GetSession("userinfo")
-	if userinfo == nil {
-		this.Ctx.Redirect(302, beego.AppConfig.String("rbac_auth_gateway"))
-	}
-	oldpassword := this.GetString("oldpassword")
-	newpassword := this.GetString("newpassword")
-	repeatpassword := this.GetString("repeatpassword")
-	if newpassword != repeatpassword {
-		this.Rsp(false, "两次输入密码不一致")
-	}
-	user, err := CheckLogin(userinfo.(admin.User).Username, oldpassword)
-	if err == nil {
-		var u admin.User
-		u.Id = user.Id
-		u.Password = newpassword
-		id, err := admin.UpdateUser(&u)
-		if err == nil && id > 0 {
-			this.Rsp(true, "密码修改成功")
-			return
+	isajax := this.GetString("isajax")
+	if isajax == "1" {
+		password := this.GetString("password")
+		repassword := this.GetString("repassword")
+		if password == "" || repassword == "" {
+			this.Rsp(false, "不能为空")
+		} else if password != repassword {
+			this.Rsp(false, "两次密码不一致")
 		} else {
-			this.Rsp(false, err.Error())
-			return
+			if len(password) < 6 || len(password) > 20 {
+				this.Rsp(false, "长度应该6-20")
+			}
+			userinfo := this.GetSession("userinfo")
+			if userinfo == nil {
+				this.Rsp(false, "没有登陆")
+			}
+			user := admin.User{Id: userinfo.(admin.User).Id, Password: Pwdhash(password)}
+			err := user.Update("password")
+			if err != nil {
+				this.Rsp(false, err.Error())
+			} else {
+				this.Rsp(true, "更改成功")
+			}
 		}
+	} else {
+		this.TplName = this.GetTemplate() + "/public/changepwd.html"
 	}
-	this.Rsp(false, "密码有误|用户冻结")
-
 }
 
 func CheckLogin(username string, password string) (user admin.User, err error) {

@@ -15,6 +15,7 @@ func rbacrouter() {
 
 	beego.Router("/rbac/user/AddUser", &rbac.UserController{}, "*:AddUser")
 	beego.Router("/rbac/user/UpdateUser", &rbac.UserController{}, "*:UpdateUser")
+	beego.Router("/rbac/user/UpdateUserPasswd", &rbac.UserController{}, "*:UpdateUserPasswd")
 	beego.Router("/rbac/user/DelUser", &rbac.UserController{}, "*:DelUser")
 	beego.Router("/rbac/user/Index", &rbac.UserController{}, "*:Index")
 

@@ -177,7 +177,7 @@ $(function() {
             handler: function() {
                 var selectedRow = $("#datagrid").datagrid('getSelected');
                 var password = $('#password').val();
-                vac.ajax(URL + '/UpdateUser', {
+                vac.ajax(URL + '/UpdateUserPasswd', {
                     Id: selectedRow.Id,
                     Password: password
                 }, 'post', function(r) {
@@ -307,25 +307,25 @@ function delrow() {
                 <tr>
                     <td>用户名：</td>
                     <td>
-                        <input name="Username" class="easyui-validatebox" required="true" />
+                        <input name="Username" class="easyui-validatebox" required="true" validType='account[6,20]'/>
                     </td>
                 </tr>
                 <tr>
                     <td>昵称：</td>
                     <td>
-                        <input name="Nickname" class="easyui-validatebox" required="true" />
+                        <input name="Nickname" class="easyui-validatebox" required="true" validType="inputlen[2,20]"  />
                     </td>
                 </tr>
                 <tr>
                     <td>密码：</td>
                     <td>
-                        <input name="Password" type="password" class="easyui-validatebox" required="true" validType="password[4,20]" />
+                        <input id="passwd" name="Password" type="password" class="easyui-validatebox" required="true" validType="password[6,20]" />
                     </td>
                 </tr>
                 <tr>
                     <td>重复密码：</td>
                     <td>
-                        <input name="Repassword" type="password" class="easyui-validatebox" required="true" validType="password[4,20]" />
+                        <input name="Repassword" type="password" class="easyui-validatebox" required="true" validType="equals['#passwd']" />
                     </td>
                 </tr>
                 <tr>
@@ -359,7 +359,7 @@ function delrow() {
             <tr>
                 <td>密码：</td>
                 <td>
-                    <input name="Password" type="password" id="password" class="easyui-validatebox" required="true" validType="password[4,20]" />
+                    <input name="Password" type="password" id="password" class="easyui-validatebox" required="true" validType="password[6,20]" />
                 </td>
             </tr>
         </table>

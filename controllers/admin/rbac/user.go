@@ -69,6 +69,25 @@ func (this *UserController) UpdateUser() {
 
 }
 
+//UpdateUserPasswd
+func (this *UserController) UpdateUserPasswd() {
+	u := m.User{}
+	if err := this.ParseForm(&u); err != nil {
+		//handle error
+		this.Rsp(false, err.Error())
+		return
+	}
+	id, err := m.UpdateUserPasswd(&u)
+	if err == nil && id > 0 {
+		this.Rsp(true, "Success")
+		return
+	} else {
+		this.Rsp(false, err.Error())
+		return
+	}
+
+}
+
 func (this *UserController) DelUser() {
 	// Id, _ := this.GetInt64("Id")
 	// status, err := m.DelUserById(Id)
