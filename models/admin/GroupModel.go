@@ -13,7 +13,7 @@ type Group struct {
 	Name   string  `orm:"size(100)" form:"Name"  valid:"Required"`
 	Title  string  `orm:"size(100)" form:"Title"  valid:"Required"`
 	Status int     `orm:"default(2)" form:"Status" valid:"Range(1,2)"`
-	Sort   int     `orm:"default(1)" form:"Sort" valid:"Numeric"`
+	Sort   int     `orm:"default(1)" form:"Sort"`
 	Nodes  []*Node `orm:"reverse(many)"`
 }
 
@@ -27,7 +27,7 @@ func init() {
 
 func checkGroup(g *Group) (err error) {
 	valid := validation.Validation{}
-	b, _ := valid.Valid(&g)
+	b, _ := valid.Valid(g)
 	if !b {
 		for _, err := range valid.Errors {
 			log.Println(err.Key, err.Message)
@@ -67,9 +67,6 @@ func AddGroup(g *Group) (int64, error) {
 }
 
 func UpdateGroup(g *Group) (int64, error) {
-	if err := checkGroup(g); err != nil {
-		return 0, err
-	}
 	o := orm.NewOrm()
 	group := make(orm.Params)
 	if len(g.Name) > 0 {
