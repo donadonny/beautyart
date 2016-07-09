@@ -1,8 +1,6 @@
 package blog
 
 import (
-	"errors"
-	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	"time"
 )
@@ -10,9 +8,9 @@ import (
 type Category struct {
 	Id         int64
 	Title      string    `orm:"size(100)"`
-	Content    string    `orm:"type(text)"`
-	Createtime time.Time `orm:"type(datetime)"`
-	Updatetime time.Time `orm:"type(datetime)"`
+	Content    string    `orm:"type(text);null"`
+	Createtime time.Time `orm:"type(datetime);null"`
+	Updatetime time.Time `orm:"type(datetime);null"`
 	Sort       int
 	Status     int `orm:"default(2)"`
 	Username   string

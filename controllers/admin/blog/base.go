@@ -27,3 +27,12 @@ func (this *baseController) Prepare() {
 
 	this.Data["Lang"] = this.Lang
 }
+
+// 获取模板位置
+func (this *baseController) GetTemplate() string {
+	templatetype := beego.AppConfig.String("admin_template")
+	if templatetype == "" {
+		templatetype = "default"
+	}
+	return templatetype
+}

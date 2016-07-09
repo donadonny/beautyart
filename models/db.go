@@ -7,7 +7,7 @@ import (
 	"github.com/astaxie/beego/orm"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/hunterhug/beautyart/models/admin"
-	"github.com/hunterhug/beautyart/models/home"
+	_ "github.com/hunterhug/beautyart/models/blog"
 	"os"
 	"time"
 	// _ "github.com/lib/pq"
@@ -20,7 +20,6 @@ var o orm.Ormer
 func Createtb() {
 	beego.Trace("开始数据填充")
 	admin.InitData()
-	home.InitData()
 	beego.Trace("数据填充结束")
 }
 

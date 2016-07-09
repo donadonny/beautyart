@@ -91,7 +91,7 @@ func InsertNodes() {
 	g2 := new(Group)
 	g2.Id = 3
 	//nodes := make([20]Node)
-	nodes := [53]Node{
+	nodes := [54]Node{
 		{Id: 1, Name: "rbac", Title: "权限中心", Remark: "", Level: 1, Pid: 0, Status: 1, Group: g},
 		{Id: 2, Name: "node/index", Title: "节点管理", Remark: "", Level: 2, Pid: 1, Status: 1, Group: g},
 		{Id: 3, Name: "Index", Title: "节点首页", Remark: "", Level: 3, Pid: 2, Status: 1, Group: g},
@@ -123,17 +123,24 @@ func InsertNodes() {
 		{Id: 29, Name: "user/index", Title: "个人信息", Remark: "", Level: 2, Pid: 25, Status: 1, Group: g},
 		{Id: 30, Name: "Index", Title: "个人信息首页", Remark: "", Level: 3, Pid: 29, Status: 1, Group: g},
 		{Id: 31, Name: "UpdateUser", Title: "更新个人信息", Remark: "", Level: 3, Pid: 29, Status: 1, Group: g},
+		//文章
 		{Id: 32, Name: "blog", Title: "文章中心", Remark: "", Level: 1, Pid: 0, Status: 1, Group: g1},
-		{Id: 33, Name: "post/index", Title: "文章列表", Remark: "", Level: 2, Pid: 32, Status: 1, Group: g1},
+		//------
+		{Id: 33, Name: "paper/index", Title: "文章列表", Remark: "", Level: 2, Pid: 32, Status: 1, Group: g1},
 		{Id: 34, Name: "Index", Title: "文章列表首页", Remark: "", Level: 3, Pid: 33, Status: 1, Group: g1},
-		{Id: 35, Name: "AddPost", Title: "增加文章", Remark: "", Level: 3, Pid: 33, Status: 1, Group: g1},
-		{Id: 36, Name: "UpdatePost", Title: "修改文章", Remark: "", Level: 3, Pid: 33, Status: 1, Group: g1},
-		{Id: 37, Name: "DelPost", Title: "回收文章", Remark: "", Level: 3, Pid: 33, Status: 1, Group: g1},
-		{Id: 38, Name: "RealDelPost", Title: "删除文章", Remark: "", Level: 3, Pid: 33, Status: 1, Group: g1},
+		{Id: 35, Name: "AddPaper", Title: "增加文章", Remark: "", Level: 3, Pid: 33, Status: 1, Group: g1},
+		{Id: 36, Name: "UpdatePaper", Title: "修改文章", Remark: "", Level: 3, Pid: 33, Status: 1, Group: g1},
+		{Id: 37, Name: "DelPaper", Title: "回收文章", Remark: "", Level: 3, Pid: 33, Status: 1, Group: g1},
+		{Id: 38, Name: "RealDelPaper", Title: "删除文章", Remark: "", Level: 3, Pid: 33, Status: 1, Group: g1},
+		//文章
+		//文章目录
 		{Id: 39, Name: "category/index", Title: "目录列表", Remark: "", Level: 2, Pid: 32, Status: 1, Group: g1},
+		//------
 		{Id: 40, Name: "Index", Title: "目录列表首页", Remark: "", Level: 3, Pid: 39, Status: 1, Group: g1},
 		{Id: 41, Name: "AddCategory", Title: "增加目录", Remark: "", Level: 3, Pid: 39, Status: 1, Group: g1},
 		{Id: 42, Name: "UpdateCategory", Title: "修改目录", Remark: "", Level: 3, Pid: 39, Status: 1, Group: g1},
+		{Id: 54, Name: "DeleteCategory", Title: "删除目录", Remark: "", Level: 3, Pid: 39, Status: 1, Group: g1},
+		//文章目录
 		{Id: 43, Name: "picture", Title: "图片中心", Remark: "", Level: 1, Pid: 0, Status: 1, Group: g2},
 		{Id: 44, Name: "album/index", Title: "相册管理", Remark: "", Level: 2, Pid: 43, Status: 1, Group: g2},
 		{Id: 45, Name: "Index", Title: "相册首页", Remark: "", Level: 3, Pid: 44, Status: 1, Group: g2},
