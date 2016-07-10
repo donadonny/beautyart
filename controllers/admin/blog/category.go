@@ -1,7 +1,7 @@
 package blog
 
 import (
-	"github.com/astaxie/beego"
+	_ "github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	"github.com/hunterhug/beautyart/models/blog"
 )
@@ -40,6 +40,7 @@ func (this *CategoryController) Index() {
 }
 
 func (this *CategoryController) AddCategory() {
+	this.TplName = this.GetTemplate() + "/blog/addcate.html"
 }
 
 func (this *CategoryController) UpdateCategory() {
