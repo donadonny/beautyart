@@ -33,3 +33,5 @@ test/*
 log/
 views/admin/amazi/
 views/home/
+file/*
+/.gitignore
