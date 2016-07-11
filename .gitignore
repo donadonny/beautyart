@@ -2,7 +2,7 @@
 *.o
 *.a
 *.so
-
+*.xml
 # Folders
 _obj
 _test
@@ -28,3 +28,8 @@ static/upload/*
 *.exe
 
 test/*
+.idea/.name
+.idea/beautyart.iml
+log/
+views/admin/amazi/
+views/home/
