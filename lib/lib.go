@@ -50,6 +50,7 @@ func GetTodayString() string {
 	return time.Now().UTC().Add(time.Duration(add)).Format("20060102")
 }
 
+//
 func GetTimeString() string {
 	timezone := float64(0)
 	v := beego.AppConfig.String("timezone")
