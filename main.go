@@ -2,7 +2,6 @@
 package main
 
 import (
-	// 加载路由，不可省略
 	"github.com/astaxie/beego"
 	"github.com/beego/i18n"
 	"github.com/hunterhug/beautyart/controllers"
