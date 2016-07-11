@@ -12,4 +12,9 @@ func blogrouter() {
 	beego.Router("/blog/category/addcategory", &blog.CategoryController{}, "*:AddCategory")
 	beego.Router("/blog/category/updatecategory", &blog.CategoryController{}, "*:UpdateCategory")
 	beego.Router("/blog/category/deletecategory", &blog.CategoryController{}, "*:DeleteCategory")
+
+	beego.Router("/blog/file/upload", &blog.UploadController{}, "*:UploadFile")
+	beego.Router("/blog/file/filemanage", &blog.UploadController{}, "*:FileManage")
+	beego.Router("/public/file", &blog.UploadController{}, "*:GetWebFile")
+	//FileManage
 }

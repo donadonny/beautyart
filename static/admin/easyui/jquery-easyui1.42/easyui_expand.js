@@ -72,11 +72,8 @@ $.extend($.fn.validatebox.defaults.rules, {
                     }
                 }
             }, message: ''
-        },   
-        message: '两次输入不一致'   
-    }    
-
-})
+        } 
+    })
 //时间格式化
 Date.prototype.format = function(format){
     /*
