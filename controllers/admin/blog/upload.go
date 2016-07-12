@@ -8,6 +8,17 @@ import (
 	"strings"
 )
 
+var FileAllow = map[string][]string{
+	"image": {
+		"jpg", "jpeg", "png", "bmp"},
+	"flash": {
+		"swf", "flv"},
+	"media": {
+		"swf", "flv", "mp3", "wav", "wma", "wmv", "mid", "avi", "mpg", "asf", "rm", "rmvb"},
+	"file": {
+		"doc", "docx", "xls", "xlsx", "ppt", "htm", "html", "txt", "zip", "rar", "gz", "bz2"},
+	"other": {}}
+
 type UploadController struct {
 	baseController
 }
@@ -16,57 +27,91 @@ func (this *UploadController) UploadFile() {
 	/*
 		//定义允许上传的文件扩展名
 		$ext_arr = array(
-			'image' => array('gif', 'jpg', 'jpeg', 'png', 'bmp'),
-			'flash' => array('swf', 'flv'),
-			'media' => array('swf', 'flv', 'mp3', 'wav', 'wma', 'wmv', 'mid', 'avi', 'mpg', 'asf', 'rm', 'rmvb'),
-			'file' => array('doc', 'docx', 'xls', 'xlsx', 'ppt', 'htm', 'html', 'txt', 'zip', 'rar', 'gz', 'bz2'),
+			"image" => array("gif", "jpg", "jpeg", "png", "bmp"),
+			"flash" => array("swf", "flv"),
+			"media" => array("swf", "flv", "mp3", "wav", "wma", "wmv", "mid", "avi", "mpg", "asf", "rm", "rmvb"),
+			"file" => array("doc", "docx", "xls", "xlsx", "ppt", "htm", "html", "txt", "zip", "rar", "gz", "bz2"),
 		);
 		//最大文件大小
-		$max_size = 1000000;
-
+		$max_size = 1000000
 
 	*/
+
 	//初始化
-	fileerror := 1
-	dirpath := ""
-	filename := ""
+	fileerror := 1 //上传不成功标志位
+	dirpath := ""  //保存路径
+	filename := "" //文件名
 	filetype := this.GetString("dir", "file")
 
 	message := "什么都没发生"
 
 	//得到表单数据
 	f, h, err := this.GetFile("imgFile")
-
+	//关闭数据流
 	defer f.Close()
+
+	//出现错误
 	if err != nil {
 		message = err.Error()
 	} else {
-		//创建文件夹
-		dirpath, err = MakeEditorDir(filetype + "/" + GetTodayString())
-		if err != nil {
-			message = err.Error()
-		} else {
-			//新建文件名
-			filename = h.Filename
-			if HasFile(dirpath + "/" + filename) {
-				//文件名存在，放大招，改名
-				filename = GetTimeString() + h.Filename
-			}
-			//复制文件
-			err = CopyFS(f, dirpath+"/"+filename)
-			if err != nil {
-				message = err.Error()
+
+		//判断文件是否允许被添加
+		//dir类型正确
+		fileallowarray, ok := FileAllow[filetype]
+		if ok {
+			//得到文件后缀
+			filesuffix := GetFileSuffix(h.Filename)
+			//是否后缀正确
+			if InArray(fileallowarray, filesuffix) {
+				//创建文件夹
+				dirpath, err = MakeFileDir(filetype + "/" + GetTodayString())
+				if err != nil {
+					message = err.Error()
+				} else {
+					//新建文件名
+					filename = h.Filename
+					if HasFile(dirpath + "/" + filename) {
+						//文件名存在，放大招，改名
+						// filename = GetTimeString() + h.Filename
+						message = "文件重名"
+						goto END
+					}
+					//复制文件
+					err = CopyFS(f, dirpath+"/"+filename)
+					if err != nil {
+						message = err.Error()
+					} else {
+						fileerror = 0
+					}
+				}
 			} else {
-				fileerror = 0
+				message = "文件后缀不被允许"
 			}
+		} else {
+			message = "dir参数不允许"
 		}
 	}
-
+END:
 	if fileerror == 1 {
 		this.Data["json"] = &map[string]interface{}{"error": fileerror, "message": message}
 	} else {
-		urlstring := "/public/file?token=" + UrlE(dirpath+"/"+filename)
-		fmt.Println(dirpath + "/" + filename)
+		name := dirpath + "/" + filename
+		//http://lulijuan505.blog.163.com/blog/static/308369112015322102455860/
+		//Base64产生的/ + =出现在url会有问题
+		/*
+			base64
+			1、包含A-Z a-z 0-9 和加号“+”，斜杠“/” 用来作为开始的64个数字. 等号“=”用来作为后缀用途。
+			2、2进制的.
+			3、要比源数据多33%。
+			4、常用于邮件。
+
+			urlencode
+			除了 -_. 之外的所有非字母数字字符都将被替换成百分号（%）后跟两位十六进制数，空格则编码为加号（+）
+			  在神马情况下用
+
+		*/
+		urlstring := "/public/file?token=" + Base64E(UrlE(name))
+		fmt.Println(name)
 		this.Data["json"] = &map[string]interface{}{"error": fileerror, "url": urlstring}
 	}
 	this.ServeJSON()
@@ -74,12 +119,12 @@ func (this *UploadController) UploadFile() {
 
 func (this *UploadController) GetWebFile() {
 	id := this.GetString("token", "")
-	id = strings.Replace(UrlD(id), "\"", "", -1)
+	id = UrlD(Base64D(id))
 	fmt.Println(id)
 	if id == "" {
 		this.StopRun()
 	}
-	if strings.HasPrefix(id, GetEditorBaseDir()) {
+	if strings.HasPrefix(id, GetFileBaseDir()) {
 		data, e := ioutil.ReadFile(id)
 		if e != nil {
 			this.StopRun()
