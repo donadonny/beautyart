@@ -11,10 +11,10 @@ type Category struct {
 	Content    string    `orm:"type(text);null"`
 	Createtime time.Time `orm:"type(datetime);null"`
 	Updatetime time.Time `orm:"type(datetime);null"`
-	Sort       int
-	Status     int `orm:"default(2)"`
+	Sort       int64
+	Status     int64 `orm:"default(2)"`
 	Username   string
-	Pid        int
+	Pid        int64
 }
 
 func init() {

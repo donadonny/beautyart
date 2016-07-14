@@ -55,9 +55,9 @@ func (this *CategoryController) AddCategory() {
 			category.Createtime = GetTime()
 			category.Username = user.(admin.User).Username
 			category.Title = this.GetString("title", "")
-			category.Pid, _ = this.GetInt("mulu", 0)
-			category.Sort, _ = this.GetInt("order", 0)
-			category.Status, _ = this.GetInt("status", 2)
+			category.Pid, _ = this.GetInt64("mulu", 0)
+			category.Sort, _ = this.GetInt64("order", 0)
+			category.Status, _ = this.GetInt64("status", 2)
 			category.Content = this.GetString("content", "")
 			err := category.Insert()
 			if err != nil {
@@ -78,11 +78,15 @@ func (this *CategoryController) AddCategory() {
 }
 
 func (this *CategoryController) UpdateCategory() {
-	small, _ := this.GetInt("small", 0)
+	user := this.GetSession("userinfo")
+	if user == nil {
+		this.Rsp(false, "session失效，请重新进入后台首页")
+	}
+	small, _ := this.GetInt64("small", 0)
+	id, _ := this.GetInt64("id", 0)
 	//小更改
 	if small == 1 {
-		id, _ := this.GetInt64("id", 0)
-		status, _ := this.GetInt("status", 0)
+		status, _ := this.GetInt64("status", 0)
 		if id == 0 || status == 0 {
 			this.Rsp(false, "有问题")
 		} else {
@@ -100,8 +104,40 @@ func (this *CategoryController) UpdateCategory() {
 	} else {
 		if this.IsAjax() {
 			//大更改
+			thiscategory := new(blog.Category)
+			thiscategory.Id = id
+			thiscategory.Username = user.(admin.User).Username
+			thiscategory.Title = this.GetString("title", "")
+			thiscategory.Pid, _ = this.GetInt64("mulu", 0)
+			thiscategory.Sort, _ = this.GetInt64("order", 0)
+			thiscategory.Status, _ = this.GetInt64("status", 2)
+			thiscategory.Content = this.GetString("content", "")
+			thiscategory.Updatetime = GetTime()
+			err := thiscategory.Update()
+			if err != nil {
+				this.Rsp(false, err.Error())
+			}else {
+				this.Rsp(true, "更改成功")
+			}
 		} else {
+			if id == 0 {
+				this.Rsp(false, "没有id参数")
+			}
 			//显示更改页面
+			thiscategory := new(blog.Category)
+			thiscategory.Id = id
+			err := thiscategory.Read()
+			if err != nil {
+				this.Rsp(false, "不存在该目录或者数据库出错")
+			}
+			this.Data["thiscategory"] = thiscategory
+
+			category := new(blog.Category)
+			categorys := []orm.Params{}
+			category.Query().Filter("Pid", 0).OrderBy("-Sort", "Createtime").Values(&categorys)
+			this.Data["category"] = &categorys
+
+			this.TplName = this.GetTemplate() + "/blog/updatecate.html"
 		}
 
 	}
