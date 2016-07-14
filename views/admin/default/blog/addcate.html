@@ -89,17 +89,16 @@
     }
         */
     KindEditor.ready(function(K) {
-        window.editor = K.create('#editor_id', {
+        var option={
             themeType: 'simple',
             cssPath: '/static/admin/kindeditor/plugins/code/prettify.css',
             uploadJson: '/blog/file/upload',
             fileManagerJson: '/blog/file/filemanage',
             allowFileManager: true
-        });
-    });
-    </script>
-    <script type="text/javascript">
-    $(function() {
+        };
+        var editor = K.create('textarea[name="content"]',   option);
+        editor.sync();
+  
         $.formValidator.initConfig({
             formID: "user_form",
             submitOnce: true,
