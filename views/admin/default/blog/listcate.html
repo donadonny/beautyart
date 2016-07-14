@@ -135,6 +135,7 @@ function getabout() {
 
 function updatestatus(id, status) {
     $.post('/blog/category/updatecategory', {
+        "small":1,
         'id': id,
         'status': status
     }, function(result) {

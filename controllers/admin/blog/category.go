@@ -78,21 +78,32 @@ func (this *CategoryController) AddCategory() {
 }
 
 func (this *CategoryController) UpdateCategory() {
-	id, _ := this.GetInt64("id", 0)
-	status, _ := this.GetInt("status", 0)
-	if id == 0 || status == 0 {
-		this.Rsp(false, "有问题")
-	} else {
-		category := new(blog.Category)
-		category.Id = id
-		category.Status = status
-		category.Updatetime = GetTime()
-		err := category.Update("Status", "Updatetime")
-		if err != nil {
-			this.Rsp(false, "更新失败")
+	small, _ := this.GetInt("small", 0)
+	//小更改
+	if small == 1 {
+		id, _ := this.GetInt64("id", 0)
+		status, _ := this.GetInt("status", 0)
+		if id == 0 || status == 0 {
+			this.Rsp(false, "有问题")
 		} else {
-			this.Rsp(true, "更新成功")
+			category := new(blog.Category)
+			category.Id = id
+			category.Status = status
+			category.Updatetime = GetTime()
+			err := category.Update("Status", "Updatetime")
+			if err != nil {
+				this.Rsp(false, "更新失败")
+			} else {
+				this.Rsp(true, "更新成功")
+			}
 		}
+	} else {
+		if this.IsAjax() {
+			//大更改
+		} else {
+			//显示更改页面
+		}
+
 	}
 }
 
