@@ -45,3 +45,10 @@ func (m *Category) Delete() error {
 func (m *Category) Query() orm.QuerySeter {
 	return orm.NewOrm().QueryTable(m)
 }
+
+func (m *Category) Insert() error {
+	if _, err := orm.NewOrm().Insert(m); err != nil {
+		return err
+	}
+	return nil
+}

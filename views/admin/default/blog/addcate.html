@@ -13,7 +13,7 @@
 <body>
     <div class='container' style="margin-bottom: 50px;margin-top: 20px">
         <div class='col-md-9 col-md-offset-1'>
-            <form id="user_form" action="{:U('Admin/Blog/addcates')}" role="form">
+            <form id="user_form" action="/blog/category/addcategory" role="form">
                 <div class="form-group">
                     <div class="alert alert-warning" id='warning-block'>
                         <p>增加分类</p>
@@ -28,9 +28,9 @@
                     <label>父目录</label>
                     <select id='mulu' class="form-control" name='mulu'>
                         <option value=0>---顶级目录---</option>
-                        <volist name='category' id='vo'>
-                            <option value={$vo.id}>{$vo.title}</option>
-                        </volist>
+                         {{range $index, $e :=.category}}
+                        <option value={{$e.Id}}>{{$e.Title}}</option>
+                        {{end}}
                     </select>
                 </div>
                 <div class="form-group">
@@ -45,7 +45,7 @@
                     <label>目录状态</label>
                     <div class="radio">
                         <label>
-                            <input type="radio" name="status" value="0">禁用目录
+                            <input type="radio" name="status" value="2">禁用目录
                         </label>
                     </div>
                     <div class="radio">
@@ -105,13 +105,13 @@
             submitOnce: true,
             onSuccess: function() {
                 var registerForm = $("#user_form");
-                $.post(registerForm.attr("action"), registerForm.serialize(), function(data) {
-                    alert(data);
-                    if (data == '增加成功') {
-                        window.location.href = "{:U('Admin/Blog/addcate')}";
+                $.post(registerForm.attr("action"), registerForm.serialize()+"&isajax=1", function(data) {
+                    alert(data.info)
+                    if (data.status) {
+                        window.location.href = "/blog/category/addcategory";
                         return;
                     }
-                    $('#warning-block p').html('<strong>警告！</strong>' + data);
+                    $('#warning-block p').html('<strong>警告！</strong>' + data.info);
                     return;
                 });
             }

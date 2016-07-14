@@ -23,6 +23,10 @@ type UploadController struct {
 	baseController
 }
 
+type Sizer interface {
+	Size() int64
+}
+
 func (this *UploadController) UploadFile() {
 	/*
 		//定义允许上传的文件扩展名
@@ -38,15 +42,18 @@ func (this *UploadController) UploadFile() {
 	*/
 
 	//初始化
-	fileerror := 1 //上传不成功标志位
-	dirpath := ""  //保存路径
-	filename := "" //文件名
+	fileerror := 1       //上传不成功标志位
+	dirpath := ""        //保存路径
+	filename := ""       //文件名
+	filebytes := 1 << 25 // (1<<25)/1000.0/1000.0 33.54 不能超出33M
 	filetype := this.GetString("dir", "file")
 
 	message := "什么都没发生"
 
 	//得到表单数据
-	f, h, err := this.GetFile("imgFile")
+	// f, h, err := this.GetFile("imgFile")
+	f, h, err := this.Ctx.Request.FormFile("imgFile")
+
 	//关闭数据流
 	defer f.Close()
 
@@ -63,6 +70,17 @@ func (this *UploadController) UploadFile() {
 			filesuffix := GetFileSuffix(h.Filename)
 			//是否后缀正确
 			if InArray(fileallowarray, filesuffix) {
+				//获取大小
+				if fileSizer, ok := f.(Sizer); ok {
+					fileSize := fileSizer.Size()
+					// fmt.Printf("上传%v文件的大小为: %v", fileSize, h.Filename)
+					if fileSize > int64(filebytes) {
+						message = "获取上传文件错误:文件大小超出33M"
+						goto END
+					}
+				} else {
+					message = "获取上传文件错误:无法读取文件大小"
+				}
 				//创建文件夹
 				dirpath, err = MakeFileDir(filetype + "/" + GetTodayString())
 				if err != nil {
@@ -72,9 +90,9 @@ func (this *UploadController) UploadFile() {
 					filename = h.Filename
 					if HasFile(dirpath + "/" + filename) {
 						//文件名存在，放大招，改名
-						// filename = GetTimeString() + h.Filename
-						message = "文件重名"
-						goto END
+						filename = GetTimeString() + h.Filename
+						// message = "文件重名"
+						// goto END
 					}
 					//复制文件
 					err = CopyFS(f, dirpath+"/"+filename)

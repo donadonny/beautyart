@@ -46,11 +46,19 @@ $('#dg').datagrid({
         }, {
             field: 'Createtime',
             title: '创建时间',
-            width: 200
+            width: 200,
+                formatter: function(value, row, index) {
+                    if (value) return phpjs.date("Y-m-d H:i:s", phpjs.strtotime(value));
+                    return value;
+                }
         }, {
             field: 'Updatetime',
             title: '更新时间',
-            width: 200
+            width: 200,
+                formatter: function(value, row, index) {
+                    if (value) return phpjs.date("Y-m-d H:i:s", phpjs.strtotime(value));
+                    return value;
+                }
         }, {
             field: 'Sort',
             title: '排序',
@@ -128,11 +136,11 @@ function getabout() {
 function updatestatus(id, status) {
     $.post('/blog/category/updatecategory', {
         'id': id,
-        'status': Status
+        'status': status
     }, function(result) {
         $.messager.show({ // show error message
             title: '消息',
-            msg: result
+            msg: result.info
         });
         $('#dg').datagrid('reload'); // reload the user da
     });

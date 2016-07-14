@@ -48,3 +48,10 @@ func (m *Paper) Delete() error {
 func (m *Paper) Query() orm.QuerySeter {
 	return orm.NewOrm().QueryTable(m)
 }
+
+func (m *Paper) Insert() error {
+	if _, err := orm.NewOrm().Insert(m); err != nil {
+		return err
+	}
+	return nil
+}
