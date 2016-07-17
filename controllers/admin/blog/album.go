@@ -2,23 +2,23 @@ package blog
 
 import (
 	// "fmt"
-	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	. "github.com/hunterhug/beautyart/lib"
 	"github.com/hunterhug/beautyart/models/admin"
 	"github.com/hunterhug/beautyart/models/blog"
+	"github.com/astaxie/beego"
 )
 
-type CategoryController struct {
+type AlbumController struct {
 	baseController
 }
 
 const (
-	beautyid = 0 //最美画室网站
-	blogtype = 0 //博客类型
+	siteid = 0 //两个变量会和其他冲突，所以命名要不一样
+	categorytype = 1
 )
 
-func (this *CategoryController) Index() {
+func (this *AlbumController) Index() {
 	/*
 	   status: status,
 	     mulu: mulu
@@ -30,9 +30,9 @@ func (this *CategoryController) Index() {
 		mulu, _ := this.GetInt64("mulu", 0)
 		// beego.Trace(status, mulu)
 		if status == 0 {
-			category.Query().Filter("Pid", mulu).Filter("Siteid", beautyid).Filter("Type", blogtype).OrderBy("-Sort", "Createtime").Values(&categorys)
+			category.Query().Filter("Pid", mulu).Filter("Siteid", siteid).Filter("Type", categorytype).OrderBy("-Sort", "Createtime").Values(&categorys)
 		} else {
-			category.Query().Filter("Pid", mulu).Filter("Status", status).Filter("Siteid", beautyid).Filter("Type", blogtype).OrderBy("-Sort", "Createtime").Values(&categorys)
+			category.Query().Filter("Pid", mulu).Filter("Status", status).Filter("Siteid", siteid).Filter("Type", categorytype).OrderBy("-Sort", "Createtime").Values(&categorys)
 		}
 		count := len(categorys)
 		// beego.Trace("%v", categorys)
@@ -40,14 +40,14 @@ func (this *CategoryController) Index() {
 		this.ServeJSON()
 		return
 	} else {
-		category.Query().Filter("Pid", 0).Filter("Siteid", beautyid).Filter("Type", blogtype).OrderBy("-Sort", "Createtime").Values(&categorys)
+		category.Query().Filter("Pid", 0).Filter("Siteid", siteid).Filter("Type", categorytype).OrderBy("-Sort", "Createtime").Values(&categorys)
 		this.Data["category"] = &categorys
-		this.Layout = this.GetTemplate() + "/blog/layout.html"
-		this.TplName = this.GetTemplate() + "/blog/listcate.html"
+		this.Layout = this.GetTemplate() + "/album/layout.html"
+		this.TplName = this.GetTemplate() + "/album/listcate.html"
 	}
 }
 
-func (this *CategoryController) AddCategory() {
+func (this *AlbumController) AddCategory() {
 	user := this.GetSession("userinfo")
 	isajax, _ := this.GetInt("isajax", 0)
 	if isajax == 1 {
@@ -58,15 +58,15 @@ func (this *CategoryController) AddCategory() {
 		} else {
 			category := new(blog.Category)
 			category.Createtime = GetTime()
-			category.Username = user.(admin.User).Nickname
+			category.Username = user.(admin.User).Username
 			category.Title = this.GetString("title", "")
 			category.Pid, _ = this.GetInt64("mulu", 0)
 			category.Sort, _ = this.GetInt64("order", 0)
 			category.Status, _ = this.GetInt64("status", 2)
 			category.Content = this.GetString("content", "")
 			category.Image = this.GetString("photo", "")
-			category.Siteid = beautyid
-			category.Type = blogtype
+			category.Siteid = siteid
+			category.Type = categorytype
 			err := category.Insert()
 			if err != nil {
 				message = err.Error()
@@ -79,13 +79,13 @@ func (this *CategoryController) AddCategory() {
 	} else {
 		category := new(blog.Category)
 		categorys := []orm.Params{}
-		category.Query().Filter("Pid", 0).Filter("Siteid", beautyid).Filter("Type", blogtype).OrderBy("-Sort", "Createtime").Values(&categorys)
+		category.Query().Filter("Pid", 0).Filter("Siteid", siteid).Filter("Type", categorytype).OrderBy("-Sort", "Createtime").Values(&categorys)
 		this.Data["category"] = &categorys
-		this.TplName = this.GetTemplate() + "/blog/addcate.html"
+		this.TplName = this.GetTemplate() + "/album/addcate.html"
 	}
 }
 
-func (this *CategoryController) UpdateCategory() {
+func (this *AlbumController) UpdateCategory() {
 	user := this.GetSession("userinfo")
 	if user == nil {
 		this.Rsp(false, "session失效，请重新进入后台首页")
@@ -114,7 +114,7 @@ func (this *CategoryController) UpdateCategory() {
 			//大更改
 			thiscategory := new(blog.Category)
 			thiscategory.Id = id
-			thiscategory.Username = user.(admin.User).Nickname
+			thiscategory.Username = user.(admin.User).Username
 			thiscategory.Title = this.GetString("title", "")
 			thiscategory.Pid, _ = this.GetInt64("mulu", 0)
 			thiscategory.Sort, _ = this.GetInt64("order", 0)
@@ -152,22 +152,22 @@ func (this *CategoryController) UpdateCategory() {
 
 			category := new(blog.Category)
 			categorys := []orm.Params{}
-			category.Query().Exclude("Id", id).Filter("Pid", 0).Filter("Siteid", beautyid).Filter("Type", blogtype).OrderBy("-Sort", "Createtime").Values(&categorys)
+			category.Query().Exclude("Id", id).Filter("Pid", 0).Filter("Siteid", siteid).Filter("Type", categorytype).OrderBy("-Sort", "Createtime").Values(&categorys)
 			this.Data["category"] = &categorys
 
-			this.TplName = this.GetTemplate() + "/blog/updatecate.html"
+			this.TplName = this.GetTemplate() + "/album/updatecate.html"
 		}
 
 	}
 }
 
-func (this *CategoryController) DeleteCategory() {
+func (this *AlbumController) DeleteCategory() {
 	category := new(blog.Category)
 	id, err := this.GetInt64("id", 0)
 	if err != nil || id == 0 {
 		this.Rsp(false, "出现错误")
 	}
-	num, err := category.Query().Filter("Id", id).Filter("Siteid", beautyid).Filter("Type", blogtype).Count()
+	num, err := category.Query().Filter("Id", id).Filter("Siteid", siteid).Filter("Type", categorytype).Count()
 	if err != nil {
 		this.Rsp(false, err.Error())
 	}else if num == 0 {

@@ -26,6 +26,7 @@ _testmain.go
 static/upload/*
 *.log
 *.exe
+*.exe~
 
 test/*
 .idea/.name

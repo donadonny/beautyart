@@ -1,7 +1,7 @@
 package blog
 
 import (
-	"fmt"
+	//"fmt"
 	_ "github.com/astaxie/beego"
 	. "github.com/hunterhug/beautyart/lib"
 	"io/ioutil"
@@ -10,7 +10,7 @@ import (
 
 var FileAllow = map[string][]string{
 	"image": {
-		"jpg", "jpeg", "png", "bmp"},
+		"jpg", "jpeg", "png", "bmp", "gif"},
 	"flash": {
 		"swf", "flv"},
 	"media": {
@@ -40,7 +40,24 @@ func (this *UploadController) UploadFile() {
 		$max_size = 1000000
 
 	*/
+	/*
+	POST参数¶
 
+	imgFile: 文件form名称
+	dir: 上传类型，分别为image、flash、media、file
+	返回格式(JSON)
+
+	//成功时
+	{
+		"error" : 0,
+		"url" : "http://www.example.com/path/to/file.ext"
+	}
+	//失败时
+	{
+		"error" : 1,
+		"message" : "错误信息"
+	}
+	    */
 	//初始化
 	fileerror := 1       //上传不成功标志位
 	dirpath := ""        //保存路径
@@ -95,7 +112,7 @@ func (this *UploadController) UploadFile() {
 						// goto END
 					}
 					//复制文件
-					err = CopyFS(f, dirpath+"/"+filename)
+					err = CopyFS(f, dirpath + "/" + filename)
 					if err != nil {
 						message = err.Error()
 					} else {
@@ -109,7 +126,7 @@ func (this *UploadController) UploadFile() {
 			message = "dir参数不允许"
 		}
 	}
-END:
+	END:
 	if fileerror == 1 {
 		this.Data["json"] = &map[string]interface{}{"error": fileerror, "message": message}
 	} else {
@@ -128,9 +145,10 @@ END:
 			  在神马情况下用
 
 		*/
-		urlstring := "/public/file?token=" + Base64E(UrlE(name))
-		fmt.Println(name)
-		this.Data["json"] = &map[string]interface{}{"error": fileerror, "url": urlstring}
+		token:=Base64E(UrlE(name))
+		urlstring := "/public/file/getfile?token=" + token
+		//fmt.Println(name)
+		this.Data["json"] = &map[string]interface{}{"error": fileerror, "url": urlstring,"token":token}
 	}
 	this.ServeJSON()
 }
@@ -138,7 +156,7 @@ END:
 func (this *UploadController) GetWebFile() {
 	id := this.GetString("token", "")
 	id = UrlD(Base64D(id))
-	fmt.Println(id)
+	//fmt.Println(id)
 	if id == "" {
 		this.StopRun()
 	}

@@ -85,7 +85,12 @@ beautyart
 6. 数据库数据填充在models/*/*Init.go中定义
 7. 视图模板均放在static中
 8. 图片上传参考文档doc/文件上传说明.md
+9. Category模型说明
 
+```
+	Siteid    int64  //0缀美   1其他网站
+	Type int64     //0表示文章 1表示相册
+```
 
 # 温馨提示
 1. Amaze Ui与EasyUi冲突，Amazeui.css第一行注释掉

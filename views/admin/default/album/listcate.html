@@ -1,4 +1,4 @@
-<table id="dg" title="文章分类（仅支持二级分类）" style="width:550px;height:250px">
+<table id="dg" title="相册分类（仅支持二级分类）" style="width:550px;height:250px">
 </table>
 <div id="toolbar">
     <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="updateuser()">编辑分类</a>
@@ -23,7 +23,7 @@
 </div>
 <script type="text/javascript">
 $('#dg').datagrid({
-    url: '/blog/category/index',
+    url: '/picture/album/index',
     collapsible: true,
     toolbar: '#toolbar',
     rownumbers: true,
@@ -97,7 +97,7 @@ function destroyUser() {
     if (rows.length != 0) {
         $.messager.confirm('Confirm', '你确定要删除?', function(r) {
             if (r) {
-                var uri = "/blog/category/deletecategory";
+                var uri = "/picture/album/deletealbum";
                 for (var i = 0; i < rows.length; i++) {
                     var row = rows[i];
                     $.post(uri, {
@@ -120,14 +120,14 @@ function destroyUser() {
 function updateuser() {
     var row = $('#dg').datagrid('getSelected');
     if (row) {
-        window.open("/blog/category/updatecategory?id=" + row.Id);
+        window.open("/picture/album/updatealbum?id=" + row.Id);
     } else {
         alert("请勾选按钮")
     }
 }
 
 function adduser() {
-    window.open("/blog/category/addcategory");
+    window.open("/picture/album/addalbum");
 }
 
 
@@ -141,7 +141,7 @@ function getabout() {
 }
 
 function updatestatus(id, status) {
-    $.post('/blog/category/updatecategory', {
+    $.post('/picture/album/updatealbum', {
         "small":1,
         'id': id,
         'status': status

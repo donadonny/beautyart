@@ -12,8 +12,8 @@
 
 <body>
 <div class='container' style="margin-bottom: 50px;margin-top: 20px">
-    <div class='col-md-8'>
-        <form id="user_form" action="/blog/category/updatecategory" role="form">
+     <div class='col-md-8'>
+        <form id="user_form" action="/picture/album/updatealbum" role="form">
             <div class="form-group">
                 <div class="alert alert-warning" id='warning-block'>
                     <p>修改分类</p>
@@ -55,32 +55,32 @@
             </div>
             <div class="form-group">
                 <label>目录状态</label>
-            {{if eq .thiscategory.Status 2}}
-                <div class="radio">
-                    <label>
-                        <input type="radio" name="status" value="2" checked>禁用目录
-                    </label>
-                </div>
-                <div class="radio">
-                    <label>
-                        <input type="radio" name="status" value="1">启用目录
-                    </label>
-                </div>
-            {{else}}
-                <div class="radio">
-                    <label>
-                        <input type="radio" name="status" value="2">禁用目录
-                    </label>
-                </div>
-                <div class="radio">
-                    <label>
-                        <input type="radio" name="status" value="1" checked>启用目录
-                    </label>
-                </div>
-            {{end}}
+                {{if eq .thiscategory.Status 2}}
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="status" value="2" checked>禁用目录
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="status" value="1">启用目录
+                        </label>
+                    </div>
+                {{else}}
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="status" value="2">禁用目录
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="status" value="1" checked>启用目录
+                        </label>
+                    </div>
+                {{end}}
             </div>
 
-            <div id='uploadlogo'></div>
+     <div id='uploadlogo'></div>
             <div class="form-group">
                 <div>
                     <button type="submit" class="btn btn-default">修改分类</button>
@@ -89,7 +89,7 @@
 
         </form>
     </div>
-    <div class='col-md-3 col-md-offset-1'>
+ <div class='col-md-3 col-md-offset-1'>
         <div align="center">
             <h1>图片</h1>
 
@@ -208,6 +208,5 @@
     });
 
 </script>
-
 </body>
 </html>

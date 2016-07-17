@@ -14,6 +14,9 @@ type Category struct {
 	Sort       int64
 	Status     int64 `orm:"default(2)"`
 	Username   string
+	Siteid    int64  //0缀美   1其他网站
+	Type int64     //0表示文章 1表示相册
+	Image string
 	Pid        int64
 }
 

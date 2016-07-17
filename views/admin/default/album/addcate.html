@@ -6,67 +6,45 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>修改分类</title>
+    <title>增加相册分类</title>
     <link rel="stylesheet" href="/static/home/bootstrap/css/bootstrap.min.css">
 </head>
 
 <body>
 <div class='container' style="margin-bottom: 50px;margin-top: 20px">
     <div class='col-md-8'>
-        <form id="user_form" action="/blog/category/updatecategory" role="form">
+        <form id="user_form" action="/picture/album/addalbum" role="form">
             <div class="form-group">
                 <div class="alert alert-warning" id='warning-block'>
-                    <p>修改分类</p>
+                    <p>增加分类</p>
                 </div>
-                <input type='text' name='id' value="{{.thiscategory.Id}}" hidden="hidden">
-
                 <div>
                     <label>目录标题</label>
-                    <input type="text" class="form-control" name="title" id="title"
-                           placeholder="请输入目录标题" required="required" value="{{.thiscategory.Title}}">
+                    <input type="text" class="form-control" name="title" id="title" placeholder="请输入目录标题"
+                           required="required">
                 </div>
                 <div id="titleTip"></div>
             </div>
             <div class="form-group">
                 <label>父目录</label>
                 <select id='mulu' class="form-control" name='mulu'>
-                {{if eq 0 .thiscategory.Pid}}
-                    <option value=0 selected="selected">---顶级目录---</option>
-                {{else}}
                     <option value=0>---顶级目录---</option>
-                {{end}}
-                {{range $i,$e:=.category}}
-                {{if eq $.thiscategory.Pid $e.Id}}
-                    <option value={{$e.Id}} selected="selected">{{$e.Title}}</option>
-                {{else}}
+                {{range $index, $e :=.category}}
                     <option value={{$e.Id}}>{{$e.Title}}</option>
-                {{end}}
                 {{end}}
                 </select>
             </div>
             <div class="form-group">
                 <label>目录简介</label>
-                <textarea id="editor" rows="8" class="form-control" name="content"
-                          placeholder="目录简介">{{.thiscategory.Content}}</textarea>
+                <textarea class="form-control" rows="8" id="editor_id" name="content" placeholder="目录简介"></textarea>
             </div>
             <div class="form-group">
                 <label>目录排序</label>
-                <input type="number" class="form-control" name="order" value='{{.thiscategory.Sort}}' min="0"/>
+                <input type="number" class="form-control" name="order" value='0' min="0"/>
             </div>
             <div class="form-group">
                 <label>目录状态</label>
-            {{if eq .thiscategory.Status 2}}
-                <div class="radio">
-                    <label>
-                        <input type="radio" name="status" value="2" checked>禁用目录
-                    </label>
-                </div>
-                <div class="radio">
-                    <label>
-                        <input type="radio" name="status" value="1">启用目录
-                    </label>
-                </div>
-            {{else}}
+
                 <div class="radio">
                     <label>
                         <input type="radio" name="status" value="2">禁用目录
@@ -77,16 +55,13 @@
                         <input type="radio" name="status" value="1" checked>启用目录
                     </label>
                 </div>
-            {{end}}
             </div>
-
             <div id='uploadlogo'></div>
             <div class="form-group">
                 <div>
-                    <button type="submit" class="btn btn-default">修改分类</button>
+                    <button type="submit" class="btn btn-default">增加分类</button>
                 </div>
             </div>
-
         </form>
     </div>
     <div class='col-md-3 col-md-offset-1'>
@@ -94,8 +69,7 @@
             <h1>图片</h1>
 
             <div>
-                <img src="/public/file/getfile?token={{.thiscategory.Image}}" id='logoimg' class="am-img-responsive"
-                     alt="图片"
+                <img src="/static/ico/logo.jpg" id='logoimg' class="am-img-responsive" alt="图片"
                      style="border:1px red solid;height: 260px; width: 260px;"/>
 
                 <p>请上传格式为.png .jpg .jpeg的图片。</p>
@@ -106,8 +80,7 @@
             <div>
                 <button type="submit" class="btn btn-default" id='upload_button'>上传图片</button>
             </div>
-            <div class="btn btn-success"><a id='lookphoto' href="/public/file/getfile?token={{.thiscategory.Image}}"
-                                            target="_blank">查看图片</a></div>
+            <div class="btn btn-success"><a id='lookphoto' href="/static/ico/logo.jpg" target="_blank">查看图片</a></div>
         </div>
     </div>
 </div>
@@ -120,7 +93,7 @@
 <script charset="utf-8" src="/static/admin/kindeditor/kindeditor-all-min.js"></script>
 <script charset="utf-8" src="/static/admin/kindeditor/lang/zh-CN.js"></script>
 <script src="/static/tool/ajaxupload.js"></script>
-<script type="text/javascript">
+<script>
     KindEditor.ready(function (K) {
         var option = {
             themeType: 'simple',
@@ -133,28 +106,36 @@
         editor.sync();
 
         $.formValidator.initConfig({
-            formID: "user_form", submitOnce: true,
+            formID: "user_form",
+            submitOnce: true,
             onSuccess: function () {
                 var registerForm = $("#user_form");
-                $.post(registerForm.attr("action"), registerForm.serialize(), function (data) {
+                $.post(registerForm.attr("action"), registerForm.serialize() + "&isajax=1", function (data) {
                     alert(data.info)
-                    if (!data.status) {
-                        $('#warning-block p').html('<strong>警告！</strong>' + data.info);
+                    if (data.status) {
+                        window.location.href = "/picture/album/addalbum";
+                        return;
                     }
+                    $('#warning-block p').html('<strong>警告！</strong>' + data.info);
                     return;
                 });
             }
         });
 
-        $("#title").formValidator({onShowText: "请输入目录标题"})
+        $("#title").formValidator({
+            onShowText: "请输入目录标题"
+        })
                 .inputValidator({
                     min: 1,
                     max: 100,
                     onError: "标题最多100个字符",
-                    empty: {leftEmpty: false, rightEmpty: false, emptyError: "标题两边不能为空"}
+                    empty: {
+                        leftEmpty: false,
+                        rightEmpty: false,
+                        emptyError: "标题两边不能为空"
+                    }
                 })
     });
-
 </script>
 <script>
     $(function () {
@@ -208,6 +189,5 @@
     });
 
 </script>
-
 </body>
 </html>
