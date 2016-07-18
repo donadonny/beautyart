@@ -1,7 +1,7 @@
 package blog
 
 import (
-	//"fmt"
+	"fmt"
 	_ "github.com/astaxie/beego"
 	. "github.com/hunterhug/beautyart/lib"
 	"io/ioutil"
@@ -17,7 +17,12 @@ var FileAllow = map[string][]string{
 		"swf", "flv", "mp3", "wav", "wma", "wmv", "mid", "avi", "mpg", "asf", "rm", "rmvb"},
 	"file": {
 		"doc", "docx", "xls", "xlsx", "ppt", "htm", "html", "txt", "zip", "rar", "gz", "bz2"},
-	"other": {}}
+	"other": {
+		"jpg", "jpeg", "png", "bmp", "gif","swf", "flv","mp3",
+		"wav", "wma", "wmv", "mid", "avi", "mpg", "asf", "rm", "rmvb",
+		"doc", "docx", "xls", "xlsx", "ppt", "htm", "html", "txt", "zip", "rar", "gz", "bz2"}}
+
+var filebytes = 1 << 25 // (1<<25)/1000.0/1000.0 33.54 不能超出33M
 
 type UploadController struct {
 	baseController
@@ -27,24 +32,10 @@ type Sizer interface {
 	Size() int64
 }
 
-func (this *UploadController) UploadFile() {
 	/*
-		//定义允许上传的文件扩展名
-		$ext_arr = array(
-			"image" => array("gif", "jpg", "jpeg", "png", "bmp"),
-			"flash" => array("swf", "flv"),
-			"media" => array("swf", "flv", "mp3", "wav", "wma", "wmv", "mid", "avi", "mpg", "asf", "rm", "rmvb"),
-			"file" => array("doc", "docx", "xls", "xlsx", "ppt", "htm", "html", "txt", "zip", "rar", "gz", "bz2"),
-		);
-		//最大文件大小
-		$max_size = 1000000
-
-	*/
-	/*
-	POST参数¶
 
 	imgFile: 文件form名称
-	dir: 上传类型，分别为image、flash、media、file
+	dir: 上传类型，分别为image、flash、media、file、other
 	返回格式(JSON)
 
 	//成功时
@@ -56,14 +47,15 @@ func (this *UploadController) UploadFile() {
 	{
 		"error" : 1,
 		"message" : "错误信息"
+		"token":"加密文件地址"
 	}
-	    */
+	*/
+func (this *UploadController) UploadFile() {
 	//初始化
 	fileerror := 1       //上传不成功标志位
 	dirpath := ""        //保存路径
 	filename := ""       //文件名
-	filebytes := 1 << 25 // (1<<25)/1000.0/1000.0 33.54 不能超出33M
-	filetype := this.GetString("dir", "file")
+	filetype := this.GetString("dir", "other")
 
 	message := "什么都没发生"
 
@@ -156,7 +148,7 @@ func (this *UploadController) UploadFile() {
 func (this *UploadController) GetWebFile() {
 	id := this.GetString("token", "")
 	id = UrlD(Base64D(id))
-	//fmt.Println(id)
+	fmt.Println(id)
 	if id == "" {
 		this.StopRun()
 	}

@@ -12,12 +12,14 @@ type Paper struct {
 	Descontent string    `orm:"type(text);null"`
 	Createtime time.Time `orm:"type(datetime);null"`
 	Updatetime time.Time `orm:"type(datetime);null"`
-	Sort       int
-	Status     int `orm:"default(2)"`
+	Sort       int64
+	Status     int64 `orm:"default(2)"`
 	Username   string
 	Photo      string
-	View       int
-	Cid        int
+	View       int64
+	Cid        int64
+	Isroll	int64 `orm:"default(0)"`
+	Ishot int64 `orm:"default(0)"`
 }
 
 func init() {
