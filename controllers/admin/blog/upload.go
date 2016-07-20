@@ -22,7 +22,7 @@ var FileAllow = map[string][]string{
 		"wav", "wma", "wmv", "mid", "avi", "mpg", "asf", "rm", "rmvb",
 		"doc", "docx", "xls", "xlsx", "ppt", "htm", "html", "txt", "zip", "rar", "gz", "bz2"}}
 
-var filebytes = 1 << 25 // (1<<25)/1000.0/1000.0 33.54 不能超出33M
+var Filebytes = 1 << 25 // (1<<25)/1000.0/1000.0 33.54 不能超出33M
 
 type UploadController struct {
 	baseController
@@ -83,7 +83,7 @@ func (this *UploadController) UploadFile() {
 				if fileSizer, ok := f.(Sizer); ok {
 					fileSize := fileSizer.Size()
 					// fmt.Printf("上传%v文件的大小为: %v", fileSize, h.Filename)
-					if fileSize > int64(filebytes) {
+					if fileSize > int64(Filebytes) {
 						message = "获取上传文件错误:文件大小超出33M"
 						goto END
 					}

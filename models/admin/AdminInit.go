@@ -94,9 +94,9 @@ func InsertNodes() {
 	nodes := []Node{
 		/*
 
-		RBAC管理中心
+			RBAC管理中心
 
-		 */
+		*/
 		{Id: 1, Name: "rbac", Title: "权限中心", Remark: "", Level: 1, Pid: 0, Status: 1, Group: g},
 		{Id: 2, Name: "node/index", Title: "节点管理", Remark: "", Level: 2, Pid: 1, Status: 1, Group: g},
 		{Id: 3, Name: "Index", Title: "节点首页", Remark: "", Level: 3, Pid: 2, Status: 1, Group: g},
@@ -124,9 +124,9 @@ func InsertNodes() {
 
 		/*
 
-		配置中心
+			配置中心
 
-		 */
+		*/
 		{Id: 25, Name: "account", Title: "配置中心", Remark: "", Level: 1, Pid: 0, Status: 1, Group: g},
 		//-------
 		//网站配置
@@ -142,7 +142,7 @@ func InsertNodes() {
 
 		/*
 
-		文章中心
+			文章中心
 
 		*/
 		{Id: 32, Name: "blog", Title: "文章中心", Remark: "", Level: 1, Pid: 0, Status: 1, Group: g1},
@@ -161,10 +161,10 @@ func InsertNodes() {
 		{Id: 41, Name: "DeletePaper", Title: "回收文章", Remark: "", Level: 3, Pid: 37, Status: 1, Group: g1},
 		{Id: 42, Name: "RealDelPaper", Title: "删除文章", Remark: "", Level: 3, Pid: 37, Status: 1, Group: g1},
 		//文章
-		
+
 		/*
 
-		图片管理
+			图片管理
 
 		*/
 		{Id: 43, Name: "picture", Title: "图片中心", Remark: "", Level: 1, Pid: 0, Status: 1, Group: g2},
@@ -185,11 +185,10 @@ func InsertNodes() {
 
 		//补充的。ID无效
 		{Id: 54, Name: "DeleteCategory", Title: "删除目录", Remark: "", Level: 3, Pid: 39, Status: 1, Group: g1},
-
 	}
 	for _, v := range nodes {
 		n := new(Node)
-		n.Id = v.Id  //这句是无效的
+		n.Id = v.Id //这句是无效的
 		n.Name = v.Name
 		n.Title = v.Title
 		n.Remark = v.Remark

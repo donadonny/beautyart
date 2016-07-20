@@ -47,7 +47,7 @@
 
 可自由修改源代码，但必须保留友好链接
 
-	[http://wwww.beautyart.top](广州缀美画室)
+	(http://wwww.beautyart.top)(广州缀美画室)
 
 # 联系方式
 	https://www.github.com/hunterhug 
@@ -121,3 +121,4 @@ beautyart
 
 # 项目进展
 1. 开发手脚架搭建完毕，RBAC模块完成，2016/7/2
+2. 文章相册模块合二为一，完成一半，2016/7/15

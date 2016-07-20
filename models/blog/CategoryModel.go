@@ -8,16 +8,16 @@ import (
 type Category struct {
 	Id         int64
 	Title      string    `orm:"size(100)"`
-	Content    string    `orm:"type(text);null"`
+	Content    string    `orm:"type(text);null"` //内容
 	Createtime time.Time `orm:"type(datetime);null"`
 	Updatetime time.Time `orm:"type(datetime);null"`
-	Sort       int64
-	Status     int64 `orm:"default(2)"`
-	Username   string
-	Siteid    int64  //0缀美   1其他网站
-	Type int64     //0表示文章 1表示相册
-	Image string
-	Pid        int64
+	Sort       int64     //排序
+	Status     int64     `orm:"default(2)"` //1开启 2关闭
+	Username   string    //用户称
+	Siteid     int64     //0缀美   1其他网站
+	Type       int64     //0表示文章 1表示相册
+	Image      string    //图片地址，加密
+	Pid        int64     //父类id
 }
 
 func init() {

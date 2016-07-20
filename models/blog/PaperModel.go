@@ -7,19 +7,19 @@ import (
 
 type Paper struct {
 	Id         int64
-	Title      string    `orm:"size(100)"`
-	Content    string    `orm:"type(text)";null`
-	Descontent string    `orm:"type(text);null"`
+	Title      string    `orm:"size(100)"`       //标题
+	Content    string    `orm:"type(text)";null` //内容
+	Descontent string    `orm:"type(text);null"` //内容简介
 	Createtime time.Time `orm:"type(datetime);null"`
 	Updatetime time.Time `orm:"type(datetime);null"`
-	Sort       int64
-	Status     int64 `orm:"default(2)"`
-	Username   string
-	Photo      string
-	View       int64
-	Cid        int64
-	Isroll	int64 `orm:"default(0)"`
-	Ishot int64 `orm:"default(0)"`
+	Sort       int64     //排序
+	Status     int64     `orm:"default(0)"` //0 未审核 1审核 2回收站
+	Username   string    //昵称
+	Photo      string    //图片加密地址
+	View       int64     //浏览量
+	Cid        int64     //分类
+	Isroll     int64     `orm:"default(0)"` //是否置顶 1置顶
+	Ishot      int64     `orm:"default(0)"` //是否热门 1热门
 }
 
 func init() {

@@ -13,11 +13,6 @@ type CategoryController struct {
 	baseController
 }
 
-const (
-	beautyid = 0 //最美画室网站
-	blogtype = 0 //博客类型
-)
-
 func (this *CategoryController) Index() {
 	/*
 	   status: status,
@@ -128,13 +123,13 @@ func (this *CategoryController) UpdateCategory() {
 			if photo != "" {
 				thiscategory.Image = photo
 				err = thiscategory.Update("Username", "Title", "Pid", "Sort", "Status", "Content", "Updatetime", "Image")
-			}else {
+			} else {
 				err = thiscategory.Update("Username", "Title", "Pid", "Sort", "Status", "Content", "Updatetime")
 				beego.Trace("空图片：" + photo)
 			}
 			if err != nil {
 				this.Rsp(false, err.Error())
-			}else {
+			} else {
 				this.Rsp(true, "更改成功")
 			}
 		} else {
@@ -170,27 +165,27 @@ func (this *CategoryController) DeleteCategory() {
 	num, err := category.Query().Filter("Id", id).Filter("Siteid", beautyid).Filter("Type", blogtype).Count()
 	if err != nil {
 		this.Rsp(false, err.Error())
-	}else if num == 0 {
+	} else if num == 0 {
 		this.Rsp(false, "找不到该目录")
-	}else {
+	} else {
 		paper := new(blog.Paper)
 		num1, err1 := paper.Query().Filter("Cid", id).Count()
 		if num1 != 0 {
 			this.Rsp(false, "目录下有小东西")
-		}else if err1 != nil {
+		} else if err1 != nil {
 			this.Rsp(false, err1.Error())
-		}else {
+		} else {
 			num2, err2 := category.Query().Filter("Pid", id).Count()
 			if err2 != nil {
 				this.Rsp(false, err2.Error())
-			}else if num2 != 0 {
+			} else if num2 != 0 {
 				this.Rsp(false, "目录下有目录")
-			}else {
+			} else {
 				category.Id = id
 				err3 := category.Delete()
 				if err3 != nil {
 					this.Rsp(false, err2.Error())
-				}else {
+				} else {
 					this.Rsp(true, "删除成功")
 				}
 			}
