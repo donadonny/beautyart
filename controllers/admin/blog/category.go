@@ -53,7 +53,7 @@ func (this *CategoryController) AddCategory() {
 		} else {
 			category := new(blog.Category)
 			category.Createtime = GetTime()
-			category.Username = user.(admin.User).Nickname
+			category.Username = user.(admin.User).Username
 			category.Title = this.GetString("title", "")
 			category.Pid, _ = this.GetInt64("mulu", 0)
 			category.Sort, _ = this.GetInt64("order", 0)

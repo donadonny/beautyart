@@ -14,12 +14,14 @@ type Paper struct {
 	Updatetime time.Time `orm:"type(datetime);null"`
 	Sort       int64     //排序
 	Status     int64     `orm:"default(0)"` //0 未审核 1审核 2回收站
-	Username   string    //昵称
+	Author   string    //昵称
 	Photo      string    //图片加密地址
 	View       int64     //浏览量
 	Cid        int64     //分类
-	Isroll     int64     `orm:"default(0)"` //是否置顶 1置顶
+	Istop     int64     `orm:"default(0)"` //是否置顶 1置顶
 	Ishot      int64     `orm:"default(0)"` //是否热门 1热门
+	Isroll int64  `orm:"default(0)"` //是否轮转
+	Rollpath string //自定义轮转地址
 }
 
 func init() {
@@ -32,6 +34,7 @@ func (m *Paper) Read(fields ...string) error {
 	}
 	return nil
 }
+
 
 func (m *Paper) Update(fields ...string) error {
 	if _, err := orm.NewOrm().Update(m, fields...); err != nil {

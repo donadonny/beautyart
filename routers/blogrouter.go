@@ -17,7 +17,9 @@ func blogrouter() {
 	beego.Router("/blog/paper/addpaper", &blog.PaperController{}, "*:AddPaper")
 	beego.Router("/blog/paper/updatepaper", &blog.PaperController{}, "*:UpdatePaper")
 	beego.Router("/blog/paper/deletepaper", &blog.PaperController{}, "*:DeletePaper")
+
 	beego.Router("/blog/paper/realdelpaper", &blog.PaperController{}, "*:RealDelPaper")
+	beego.Router("/blog/paper/rubbish", &blog.PaperController{}, "*:Rubbish")
 
 	//上传文件
 	beego.Router("/public/file/upload", &blog.UploadController{}, "*:UploadFile")

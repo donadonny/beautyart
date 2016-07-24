@@ -185,6 +185,7 @@ func InsertNodes() {
 
 		//补充的。ID无效
 		{Id: 54, Name: "DeleteCategory", Title: "删除目录", Remark: "", Level: 3, Pid: 39, Status: 1, Group: g1},
+		{Id: 55, Name: "paper/rubbish", Title: "回收站", Remark: "", Level: 2, Pid: 32, Status: 1, Group: g1},
 	}
 	for _, v := range nodes {
 		n := new(Node)

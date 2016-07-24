@@ -1,10 +1,8 @@
-<table id="dg" title="文章列表" style="width:550px;height:250px">
+<table id="dg" title="文章回收站" style="width:550px;height:250px">
 </table>
 
 <div id="toolbar">
-    <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="updateuser()">编辑文章</a>
     <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyUser()">删除文章</a>
-    <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="adduser()">增加文章</a>
 
 
     <label>目录：</label>
@@ -16,12 +14,6 @@
         <option value={{$e1.Id}}>-------{{$e1.Title}}</option>
     {{end}}
     {{end}}
-    </select>
-    <label>状态：</label>
-    <select id='status' class="form-control" name='status' style='width:120px;margin: 0 5px'>
-        <option value=-1></option>
-        <option value=1>已开启</option>
-        <option value=0>已关闭</option>
     </select>
     <label>置顶：</label>
         <select id='top' class="form-control" name='top' style='width:120px;margin: 0 5px'>
@@ -41,7 +33,7 @@
 
 <script type="text/javascript">
     $('#dg').datagrid({
-        url: '/blog/paper/index',
+        url: '/blog/paper/rubbish',
         collapsible: true,
         toolbar: '#toolbar',
         rownumbers: true,
@@ -83,19 +75,6 @@
             {field: 'View', title: '浏览量', width: 100},
             {field: 'Sort', title: '排序', width: 100},
             {
-                field: 'Status', title: '状态', width: 120,
-                formatter: function (value, row, index) {
-                    //alert(value);
-                    $para = row.Id + ',';
-                    if (value == 1) {
-                        return "已开启|<button style='color:red;font-size:1.1em;margin-left:10px;cursor:pointer' onclick='updatestatus(" + $para + "0)'>关闭</a>";
-                    } else {
-                        return "已关闭|<button style='color:red;font-size:1.1em;margin-left:10px;cursor:pointer' onclick='updatestatus(" + $para + "1)'>开启</a>";
-                    }
-                }
-            }
-            ,
-            {
                 field: 'Istop', title: '是否置顶', width: 120,
                 formatter: function (value, row, index) {
                     if (value == 1) {
@@ -131,9 +110,9 @@
     function destroyUser() {
         var rows = $('#dg').datagrid('getSelections');
         if (rows.length != 0) {
-            $.messager.confirm('Confirm', '你确定要删除，删除后在回收站?', function (r) {
+            $.messager.confirm('Confirm', '你确定要彻底删除？', function (r) {
                 if (r) {
-                    var uri = "/blog/paper/deletepaper";
+                    var uri = "/blog/paper/realdelpaper";
                     for (var i = 0; i < rows.length; i++) {
                         var row = rows[i];
                         $.post(uri, {'id': row.Id}, function (result) {
@@ -151,23 +130,8 @@
         }
     }
 
-
-    function updateuser() {
-        var row = $('#dg').datagrid('getSelected');
-        if (row) {
-            window.open("/blog/paper/updatepaper?id=" + row.Id);
-        } else {
-            alert("请勾选按钮")
-        }
-    }
-
-    function adduser() {
-        window.open("/blog/paper/addpaper");
-    }
-
-
     function getabout() {
-        var status = $('#status').val();
+        var status = 2;
         var cid = $('#cid').val();
         var top=$("#top").val();
         var roll=$("#roll").val();
@@ -177,16 +141,5 @@
             top:top,
             roll:roll
         });
-    }
-
-    function updatestatus(id, status) {
-        $.post('/blog/paper/updatepaper', {'small':1,'id': id, 'status': status}, function (result) {
-            $.messager.show({	// show error message
-                title: '消息',
-                msg: result.info
-            });
-            $('#dg').datagrid('reload');	// reload the user da
-        });
-
     }
 </script>
