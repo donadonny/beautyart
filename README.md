@@ -19,13 +19,13 @@
 
 ## 项目规划
 >环境要求：golang=1.6,mysql=5.6
->框架：	beego
->起始时间：2016.6.10
->结束时间：2016.
+><p>框架：	beego
+><p>起始时间：2016.6.10
+><p>结束时间：2016.
 
 ## 项目托管
 >阿里云服务器： Ubuntu
->域名：http://www.beautyart.top
+><p>域名：http://www.beautyart.top
 
 ## 参考
 1. 基于角色的访问控制（Role-Based Access Control）作为传统访问控制
@@ -45,12 +45,12 @@
 ```
 
 >平台使用说明参见doc文件夹
->可自由修改源代码，但必须保留友好链接
->[http://wwww.beautyart.top](广州缀美画室)
+><p>可自由修改源代码，但必须保留友好链接
+><p>[http://wwww.beautyart.top](广州缀美画室)
 
 ## 联系方式
 >https://www.github.com/hunterhug 
->QQ：569929309
+><p>QQ：569929309
 
 
 ## 文件目录
@@ -98,11 +98,17 @@ beautyart
 	同时更改用户登录时间、登录IP等，cookie与登录IP绑定。
 
 3. >系统时间默认数据库本地时间为东八区，北京时间。
+
 4. >后台模板在views/admin，前台模板在views/home，子文件夹为主题，默认主题为default
+
 5. >所有配置在conf文件夹conf/app.conf，支持国际化
+
 6. >数据库数据填充在models/*/*Init.go中定义
+
 7. >视图模板均放在static中
+
 8. >图片上传参考文档doc/文件上传说明.md
+
 9. >Category模型说明
 
 ```
