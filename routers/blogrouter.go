@@ -44,4 +44,18 @@ func blogrouter() {
 	beego.Router("/picture/photo/realdelpaper", &blog.PhotoController{}, "*:RealDelPaper")
 	beego.Router("/picture/photo/rubbish", &blog.PhotoController{}, "*:Rubbish")
 
+	//个人信息配置
+	beego.Router("config/user/index", &blog.ConfigController{},"*:IndexUser")
+	beego.Router("config/user/updateuser", &blog.ConfigController{},"*:UpdateUser")
+
+	//网站配置
+	beego.Router("config/option/index", &blog.ConfigController{},"*:IndexOption")
+	beego.Router("config/option/updateoption", &blog.ConfigController{},"*:UpdateOption")
+
+	//首页图片轮转
+	beego.Router("/config/roll/index", &blog.RollController{}, "*:Index")
+	beego.Router("/config/roll/addroll", &blog.RollController{}, "*:AddRoll")
+	beego.Router("/config/roll/updateroll", &blog.RollController{}, "*:UpdateRoll")
+	beego.Router("/config/roll/deleteroll", &blog.RollController{}, "*:DeleteRoll")
+
 }
