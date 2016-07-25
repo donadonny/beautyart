@@ -6,7 +6,7 @@ import (
 	. "github.com/hunterhug/beautyart/lib"
 	"github.com/hunterhug/beautyart/models/admin"
 	"github.com/hunterhug/beautyart/models/blog"
-	"github.com/astaxie/beego"
+	//"github.com/astaxie/beego"
 )
 
 type AlbumController struct {
@@ -119,14 +119,14 @@ func (this *AlbumController) UpdateCategory() {
 			thiscategory.Updatetime = GetTime()
 			//不存在则不改图片
 			photo := this.GetString("photo", "")
-			beego.Trace("图片：" + photo)
+			//beego.Trace("图片：" + photo)
 			var err error
 			if photo != "" {
 				thiscategory.Image = photo
 				err = thiscategory.Update("Username", "Title", "Pid", "Sort", "Status", "Content", "Updatetime", "Image")
 			}else {
 				err = thiscategory.Update("Username", "Title", "Pid", "Sort", "Status", "Content", "Updatetime")
-				beego.Trace("空图片：" + photo)
+				//beego.Trace("空图片：" + photo)
 			}
 			if err != nil {
 				this.Rsp(false, err.Error())

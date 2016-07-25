@@ -34,4 +34,14 @@ func blogrouter() {
 	beego.Router("/picture/album/addalbum", &blog.AlbumController{}, "*:AddCategory")
 	beego.Router("/picture/album/updatealbum", &blog.AlbumController{}, "*:UpdateCategory")
 	beego.Router("/picture/album/deletealbum", &blog.AlbumController{}, "*:DeleteCategory")
+
+
+	beego.Router("/picture/photo/index", &blog.PhotoController{}, "*:Index")
+	beego.Router("/picture/photo/addpaper", &blog.PhotoController{}, "*:AddPaper")
+	beego.Router("/picture/photo/updatepaper", &blog.PhotoController{}, "*:UpdatePaper")
+	beego.Router("/picture/photo/deletepaper", &blog.PhotoController{}, "*:DeletePaper")
+
+	beego.Router("/picture/photo/realdelpaper", &blog.PhotoController{}, "*:RealDelPaper")
+	beego.Router("/picture/photo/rubbish", &blog.PhotoController{}, "*:Rubbish")
+
 }

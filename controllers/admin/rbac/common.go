@@ -29,7 +29,7 @@ func (this *CommonController) GetTemplate() string {
 	return templatetype
 }
 
-// 获取权限各节点URL   权限控制器 用户节点  /rbac /nide/index
+// 获取权限各节点URL   权限控制器 用户节点  /rbac /node/index
 func (this *CommonController) GetTree() []Tree {
 	nodes, _ := m.GetNodeTree(0, 1) //第一层
 	tree := make([]Tree, len(nodes))
