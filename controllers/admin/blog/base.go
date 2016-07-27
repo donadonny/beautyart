@@ -40,4 +40,5 @@ func (this *baseController) GetTemplate() string {
 func (this *baseController) Rsp(status bool, str string) {
 	this.Data["json"] = &map[string]interface{}{"status": status, "info": str}
 	this.ServeJSON()
+	this.StopRun()
 }

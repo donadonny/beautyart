@@ -18,6 +18,7 @@ func (this *CommonController) Prepare() {
 func (this *CommonController) Rsp(status bool, str string) {
 	this.Data["json"] = &map[string]interface{}{"status": status, "info": str}
 	this.ServeJSON()
+	this.StopRun()
 }
 
 // 获取模板位置

@@ -4,6 +4,7 @@ package admin
 import (
 	"fmt"
 	. "github.com/hunterhug/beautyart/lib"
+	"github.com/hunterhug/beautyart/models/blog"
 )
 
 func InitData() {
@@ -11,8 +12,20 @@ func InitData() {
 	InsertGroup()
 	InsertRole()
 	InsertNodes()
+	InsertConfig()
 }
+//插入网站配置
+func InsertConfig() {
+	fmt.Println("insert config start")
+	c := new(blog.Config)
+	c.Title = "缀美美术"
+	err := c.Insert()
+	if err != nil {
+		fmt.Println(err.Error())
+	}
 
+	fmt.Println("insert config end")
+}
 // 用户数据
 func InsertUser() {
 	fmt.Println("insert user ...")
@@ -186,7 +199,7 @@ func InsertNodes() {
 		//图片
 
 		//补充的。ID无效
-		{Id: 55,Name: "DeleteCategory", Title: "删除目录", Remark: "", Level: 3, Pid: 33, Status: 1, Group: g1},
+		{Id: 55, Name: "DeleteCategory", Title: "删除目录", Remark: "", Level: 3, Pid: 33, Status: 1, Group: g1},
 
 		///
 		{Id: 56, Name: "paper/rubbish", Title: "文章回收站", Remark: "", Level: 2, Pid: 32, Status: 1, Group: g1},

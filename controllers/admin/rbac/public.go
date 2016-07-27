@@ -150,7 +150,21 @@ func (this *MainController) Logout() {
 //修改密码
 func (this *MainController) Changepwd() {
 	isajax := this.GetString("isajax")
+	userinfo := this.GetSession("userinfo")
+	if userinfo == nil {
+		this.Rsp(false, "没有登陆")
+	}
 	if isajax == "1" {
+		nowpassword := this.GetString("nowpassword")
+		user := new(admin.User)
+		user.Id = userinfo.(admin.User).Id
+		err := user.Read()
+		if err != nil {
+			this.Rsp(false, err.Error())
+		}
+		if Md5(nowpassword) != user.Password {
+			this.Rsp(false, "原始密码错误")
+		}
 		password := this.GetString("password")
 		repassword := this.GetString("repassword")
 		if password == "" || repassword == "" {
@@ -161,11 +175,8 @@ func (this *MainController) Changepwd() {
 			if len(password) < 6 || len(password) > 20 {
 				this.Rsp(false, "长度应该6-20")
 			}
-			userinfo := this.GetSession("userinfo")
-			if userinfo == nil {
-				this.Rsp(false, "没有登陆")
-			}
-			user := admin.User{Id: userinfo.(admin.User).Id, Password: Pwdhash(password)}
+
+			user.Password = Pwdhash(password)
 			err := user.Update("password")
 			if err != nil {
 				this.Rsp(false, err.Error())

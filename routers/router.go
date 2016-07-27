@@ -5,5 +5,5 @@ package routers
 func Run() {
 	rbacrouter()
 	blogrouter()
-	// homerouter()
+	homerouter()
 }

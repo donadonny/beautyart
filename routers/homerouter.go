@@ -1,15 +1,17 @@
 package routers
 
-// import (
+import "github.com/astaxie/beego"
+
+ import (
 // 	"github.com/astaxie/beego"
 // 	"github.com/hunterhug/beautyart/controllers/admin"
-// 	"github.com/hunterhug/beautyart/controllers/home"
-// )
+ 	"github.com/hunterhug/beautyart/controllers/home"
+ )
 
-// func homerouter() {
+func homerouter() {
 
 // 	//前台路由
-// 	beego.Router("/", &home.MainController{}, "*:Index")
+ 	beego.Router("/", &home.MainController{}, "*:Index")
 // 	beego.Router("/404.html", &home.MainController{}, "*:Go404")
 // 	beego.Router("/index:page:int.html", &home.MainController{}, "*:Index")
 
@@ -36,4 +38,4 @@ package routers
 // 	beego.Router("/book.html", &home.MainController{}, "*:Book")
 // 	beego.Router("/:urlname(.+)", &home.MainController{}, "*:Show") //别名访问
 
-// }
+ }
