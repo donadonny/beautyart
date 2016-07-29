@@ -294,6 +294,18 @@ p {
   margin: 0;
   padding: 0;
 }
+
+#jinhan h1,
+#jinhan h2,
+#jinhan h3,
+#jinhan h4,
+#jinhan h5,
+#jinhan h6,
+#jinhan p{
+  margin:10px;
+  padding: 2px;
+}
+
 /*@font-face {*/
   /*font-family: 'TrajanPro';*/
   /*src: url('../fonts/TrajanPro.eot');*/
@@ -446,6 +458,8 @@ p {
   float: left;
   overflow: hidden;
 }
+
+
 .box-row-3 .box-col-1 .bd,
 .box-row-3 .box-col-2 .bd,
 .box-row-3 .box-col-3 .bd {
@@ -558,11 +572,13 @@ p {
   margin: 0;
 }
 .main-nav li {
-  width: 60px;
+  /*width: 60px;*/
   height: 60px;
   float: left;
   line-height: 60px;
-  padding: 0 3px 0 0;
+  /*padding: 0 3px 0 0;*/
+  padding:0 10px;
+  margin-left: 10px;
   background: url(./img/dot_3px.png) no-repeat right center;
 }
 .main-nav li a {

@@ -23,13 +23,18 @@ func (this *MainController) Index() {
 	roll.Query().Filter("Status", 1).OrderBy("-Sort", "Createtime").Values(&rolls)
 	this.Data["roll"] = rolls
 
-	//目录
+	this.Data["category"]=getcategory(0,0)
+	this.Data["photo"]=getcategory(0,1)
+
+	this.TplName = this.GetTemplate() + "/index.html"
+}
+
+func getcategory(beautyid int,blogtype int) []orm.Params{
+		//目录
 	//文章列表首页
 	category := new(blog.Category)
 	categorys := []orm.Params{}
 	//查询条件：缀美文章类型，一级
-	beautyid:=0
-	blogtype:=0
 	category.Query().Filter("Status",1).Filter("Pid", 0).Filter("Siteid", beautyid).Filter("Type", blogtype).OrderBy("-Sort", "Createtime").Values(&categorys, "Id", "Title")
 	for _, cate := range categorys {
 		//二级
@@ -37,7 +42,6 @@ func (this *MainController) Index() {
 		category.Query().Filter("Pid", cate["Id"]).OrderBy("-Sort", "Createtime").Values(&son, "Id", "Title")
 		cate["Son"] = son
 	}
-	this.Data["category"] = &categorys
+	return  categorys
 
-	this.TplName = this.GetTemplate() + "/index.html"
 }
