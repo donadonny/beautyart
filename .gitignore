@@ -33,7 +33,7 @@ test/*
 .idea/beautyart.iml
 *.iml
 log/
-views/admin/amazi/
-views/home/
-file/*
+#views/admin/amazi/
+#views/home/
+#file/*
 /.gitignore

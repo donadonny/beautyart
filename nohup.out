@@ -3335,3 +3335,4 @@ file/image/20160729/W020160627371993136116.jpg
 2016/07/30 01:37:15 [1;34m[router.go:829][D] | GET        | /                                        | 5.467604ms       | match      | /                                        | [0m
 2016/07/30 01:37:21 [1;33m[staticfile.go:51][W] Can't find/open the file:  /favicon.ico file not find [0m
 2016/07/30 01:37:25 [1;34m[router.go:829][D] | GET        | /public/1/26.html                        | 1.225604ms       | notmatch   | [0m
+2016/07/30 01:40:02 [1;34m[router.go:829][D] | GET        | /                                        | 6.104851ms       | match      | /                                        | [0m
