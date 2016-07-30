@@ -138,9 +138,9 @@ func (this *UploadController) UploadFile() {
 
 		*/
 		token:=Base64E(UrlE(name))
-		urlstring := "/public/file/getfile?token=" + token
+		//urlstring := "/public/file/getfile?token=" + token
 		//fmt.Println(name)
-		this.Data["json"] = &map[string]interface{}{"error": fileerror, "url": urlstring,"token":token}
+		this.Data["json"] = &map[string]interface{}{"error": fileerror, "url":"/"+name,"token":token}
 	}
 	this.ServeJSON()
 }

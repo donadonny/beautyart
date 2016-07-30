@@ -26,7 +26,7 @@ func (this *PhotoController) Index() {
 		cid, _ := this.GetInt64("cid", -1)
 		top, _ := this.GetInt64("top", -1)
 		roll, _ := this.GetInt64("roll", -1)
-		q := paper.Query()
+		q := paper.Query().Filter("Type",1)
 		if status != -1 {
 			q = q.Filter("Status", status)
 		}else {
@@ -108,6 +108,7 @@ func (this *PhotoController) AddPaper() {
 		paper.Rollpath = rollpath
 		paper.Photo = photo
 		paper.Createtime = GetTime()
+		paper.Type=1
 		err := paper.Insert()
 		if err != nil {
 			this.Rsp(false, err.Error())
@@ -279,7 +280,7 @@ func (this *PhotoController)  Rubbish() {
 		top, _ := this.GetInt64("top", -1)
 		roll, _ := this.GetInt64("roll", -1)
 		q := paper.Query()
-		q = q.Filter("Status", status)
+		q = q.Filter("Status", status).Filter("Type",1)
 
 		if cid != -1 {
 			q = q.Filter("Cid", cid)

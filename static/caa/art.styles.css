@@ -1,7 +1,21 @@
-/*!
- * Copyright 2015 Hiro.
- * Email ihong@outlook.com
- */
+.btn-to-top {
+	background:
+		url("./uparrow.png")
+		no-repeat scroll 14px 14px #FCFCFC;
+	display: block;
+	height: 60px;
+	overflow: hidden;
+	text-indent: -99em;
+	width: 58px;
+	border-radius: 0px 0px 7px 7px;
+	border: 1px solid #E5E5E5;
+  position: fixed;
+  right: 20px;
+  bottom: 20%;
+}
+li {
+  list-style-type:none;
+}
 .color-red {
   color: #ed000b;
 }
@@ -577,9 +591,9 @@ p {
   float: left;
   line-height: 60px;
   /*padding: 0 3px 0 0;*/
-  padding:0 10px;
-  margin-left: 10px;
-  background: url(./img/dot_3px.png) no-repeat right center;
+  padding:0 8px;
+  margin-left: 8px;
+  /*background: url(./img/dot_3px.png) no-repeat right center;*/
 }
 .main-nav li a {
   width: 100%;
@@ -607,6 +621,7 @@ p {
   z-index: 101;
   padding-top: 40px;
   display: none;
+  text-align: center;
 }
 .sub-nav.current {
   display: block;

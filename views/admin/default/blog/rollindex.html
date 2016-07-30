@@ -84,8 +84,8 @@
     {{range $i,$e:=.roll}}
         <div class="col-sm-6 col-md-4">
             <div class="thumbnail">
-                <a href="/public/file/getfile?token={{$e.Photo}}" target="_blank">
-                    <img src="/public/file/getfile?token={{$e.Photo}}">
+                <a href="{{$e.Photo}}" target="_blank">
+                    <img src="{{$e.Photo}}">
                 </a>
 
                 <div class="caption">
@@ -244,7 +244,7 @@
                     confirmdiv.text("上传完成");
                     $("#logoimg").attr("src", response.url);
                     $('#lookphoto').attr("href", response.url);
-                    $("#uploadlogo").html("<input hidden='hidden' type='hidden'  name='photo' value='" + response.token + "'>");
+                    $("#uploadlogo").html("<input hidden='hidden' type='hidden'  name='photo' value='" + response.url + "'>");
                 }
 
                 window.clearInterval(interval);

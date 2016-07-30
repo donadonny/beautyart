@@ -33,9 +33,9 @@
 
 <!--导航-->
 <div class="header">
-    <div class="wrap clearfix">
+    <li class="wrap clearfix">
         <a target="_blank" href="/" class="logo fl">
-            <img style="width:190px;height:34px" src="/public/file/getfile?token={{.config.Photo}}" alt=""/>
+            <img style="width:190px;height:34px" src="{{.config.Photo}}" alt=""/>
         </a>
         <ul class="main-nav" id="mainNav" style="padding-right:178px">
             <li>
@@ -43,12 +43,31 @@
             </li>
             {{range $i,$e:=.category}}
             <li>
-                <a target="_blank" href="/{{$e.Id}}/">{{$e.Title}}</a>
+                <a target="_blank" href="/{{$e.Title}}/">{{$e.Title}}</a>
                 {{if $e.Son}}
                 <dl class="sub-nav">
                     <dt>
                         {{range $j,$ee:=$e.Son}}
-                        <a target="_blank" href="/{{$ee.Id}}/" data-id="#jl_{{$ee.Id}}" class="tab-nav">{{$ee.Title}}</a>
+                        <li>
+                        <a target="_blank" href="/{{$ee.Title}}/" data-id="#jl_{{$ee.Id}}" class="tab-nav">{{$ee.Title}}</a>
+                        </li>
+                        {{end}}
+                    </dt>
+                </dl>
+                {{end}}
+            </li>
+            {{end}}
+
+            {{range $i,$e:=.photo}}
+            <li>
+                <a target="_blank" href="/{{$e.Title}}/">{{$e.Title}}</a>
+                {{if $e.Son}}
+                <dl class="sub-nav">
+                    <dt>
+                        {{range $j,$ee:=$e.Son}}
+                        <li>
+                        <a target="_blank" href="/{{$ee.Title}}/" data-id="#jl_{{$ee.Id}}" class="tab-nav">{{$ee.Title}}</a>
+                        </li>
                         {{end}}
                     </dt>
                 </dl>
@@ -56,6 +75,7 @@
             </li>
             {{end}}
         </ul>
+    <div style="position: absolute;right: 0px;top:10px;font-size: 1.2em">联系方式：{{.config.Phone}}</div>
     </div>
 </div>
 <!--导航结束-->
@@ -66,7 +86,7 @@
         <div class="dg-wrapper">
         {{range $i,$e:=.roll}}
             <a target="blank" href="{{$e.Url}}">
-                <img src="/public/file/getfile?token={{$e.Photo}}" alt="{{$e.Title}}"/>
+                <img src="{{$e.Photo}}" alt="{{$e.Title}}"/>
             </a>
         {{end}}
         </div>
@@ -80,133 +100,191 @@
 
 <!-- 内容区1 -->
 <div class="wrap container">
+    <div class="box-row-2"><div style="padding: 10px;padding-top:5px;font-size:1.2em;color:red"><marquee direction="right">{{.config.Slogan}}</marquee></div></div>
     <!--文章区-->
     <div class="box-row-2">
         <div class="box box-col-1">
             <div class="hd hd-tabs" data-toggle="tabs">
                 <h2 class="tab-nav one current" data-id="#z1">
-                    <a target="_blank" href="#" class="more"></a>高考喜报
+                    <a target="_blank" href="/{{.t1c.Title}}" class="more"></a>{{.t1c.Title}}
                 </h2>
 
                 <h2 class="tab-nav" data-id="#z2">
-                    <a target="_blank" href="#" class="more"></a>画室动态
+                    <a target="_blank" href="/{{.t2c.Title}}" class="more"></a>{{.t2c.Title}}
                 </h2>
             </div>
             <div class="bd">
                 <div class="news-list tab-plane" id="z1">
                     <ul>
                         <li class="pic">
-                            <a target="blank" href="#">
-                                <img src="/static/caa/img_45.png" alt=""/>
+                        {{if .t1c}}
+                            <a target="blank" href="/{{.t1c.Title}}">
+                                <img src="{{.t1c.Image}}" alt=""/>
                             </a>
+                        {{end}}
+
                         </li>
-                        <li><em class="fr en">07/07</em><a target="_blank" href="./zhzx/hd/201607/t20160718_63016.html" class="tit">陶瓷艺术设计新专业论证会</a></li>
-                        <li><em class="fr en">07/07</em><a target="_blank" href="./zhzx/hd/201607/t20160718_63016.html" class="tit">陶瓷艺术设计新专业论证会</a></li>
-                        <li><em class="fr en">07/07</em><a target="_blank" href="./zhzx/hd/201607/t20160718_63016.html" class="tit">陶瓷艺术设计新专业论证会</a></li>
-                        <li><em class="fr en">07/07</em><a target="_blank" href="./zhzx/hd/201607/t20160718_63016.html" class="tit">陶瓷艺术设计新专业论证会</a></li>
+                        {{range $i,$e:=.t1}}
+                            <li><!--<em class="fr en">{{dateformat $e.Createtime "2006/1/02"}}
+                            </em>-->
+                                <a target="_blank" href="/{{$e.Cid}}/{{$e.Id}}" class="tit">
+                                {{if eq $e.Istop 1}}[顶] {{else}}{{end}}{{substr $e.Title 0 20}}...
+                                </a>
+                            </li>
+                        {{end}}
                     </ul>
                 </div>
                 <div class="news-list tab-plane" id="z2" style="display:none">
                     <ul>
                         <li class="pic">
-                            <a target="blank" href="#">
-                                <img src="/static/caa/img_45.png" alt=""/>
+                        {{if .t2c}}
+                            <a target="blank" href="/{{.t2c.Title}}">
+                                <img src="{{.t2c.Image}}" alt=""/>
                             </a>
+                        {{end}}
+
                         </li>
-
-                        <li><em class="fr en">07/07</em><a target="_blank" href="./lxyz/201607/t20160715_63015.html" class="tit">招生办党支部召开 “两学一做学习教育会</a></li>
-                        <li><em class="fr en">07/07</em><a target="_blank" href="./lxyz/201607/t20160715_63015.html" class="tit">招生办党支部召开 “两学一做学习教育会</a></li>
-                        <li><em class="fr en">07/07</em><a target="_blank" href="./lxyz/201607/t20160715_63015.html" class="tit">招生办党支部召开 “两学一做学习教育会</a></li>
-                        <li><em class="fr en">07/07</em><a target="_blank" href="./lxyz/201607/t20160715_63015.html" class="tit">招生办党支部召开 “两学一做学习教育会</a></li>
-                        <li><em class="fr en">07/07</em><a target="_blank" href="./lxyz/201607/t20160715_63015.html" class="tit">招生办党支部召开 “两学一做学习教育会</a></li>
-
+                        {{range $i,$e:=.t2}}
+                            <li><!--<em class="fr en">{{dateformat $e.Createtime "2006/1/02"}}
+                            </em>-->
+                                <a target="_blank" href="/{{$e.Cid}}/{{$e.Id}}" class="tit">
+                                {{if eq $e.Istop 1}}[顶] {{else}}{{end}}{{substr $e.Title 0 20}}...
+                                </a>
+                            </li>
+                        {{end}}
                     </ul>
                 </div>
             </div>
         </div>
-        <!-- /.box -->
         <div class="box box-col-2">
             <div class="hd hd-tabs" data-toggle="tabs">
-                <a target="blank" href="#" class="more"></a><h2 class="tab-nav one current" data-id="#z3">招生动态</h2>
+                <a target="blank" href="/{{.t3c.Title}}" class="more"></a><h2 class="tab-nav one current" data-id="#z3">{{.t3c.Title}}</h2>
 
-                <h2 class="tab-nav" data-id="#z4"><a target="blank" href="#" class="more"></a>美术新闻</h2>
+                <h2 class="tab-nav" data-id="#z4"><a target="blank" href="/{{.t4c.Title}}" class="more"></a>{{.t4c.Title}}</h2>
             </div>
             <div class="bd">
                 <div class="news-list tab-plane" id="z3">
                     <ul>
-                        <li><em class="fr en">07/07</em><a target="blank" href="./xsyg/201607/t20160707_62932.html" class="tit">作品征集：Inter-Youth国际高等艺术学院青年绘画展</a></li>
+                        {{range $i,$e:=.t3}}
+                            <li><em class="fr en">{{dateformat $e.Createtime "2006/1/02"}}
+                            </em>
+                                <a target="_blank" href="/{{$e.Cid}}/{{$e.Id}}" class="tit">
+                                {{if eq $e.Istop 1}}[顶] {{else}}{{end}}{{substr $e.Title 0 30}}...
+                                </a>
+                            </li>
+                        {{end}}
                     </ul>
                 </div>
                 <div class="news-list tab-plane" style="display:none" id="z4">
                     <ul>
-                        <li><em class="fr en">07/13</em><a target="blank" href="./tzgg/201607/t20160713_62946.html" class="tit">中国美术学院2016年秋季招收博士后研究人员简章</a></li>
+                            {{range $i,$e:=.t4}}
+                            <li><em class="fr en">{{dateformat $e.Createtime "2006/1/02"}}
+                            </em>
+                                <a target="_blank" href="/{{$e.Cid}}/{{$e.Id}}" class="tit">
+                                {{if eq $e.Istop 1}}[顶] {{else}}{{end}}{{substr $e.Title 0 30}}...
+                                </a>
+                            </li>
+                        {{end}}
                     </ul>
                 </div>
             </div>
         </div>
-        <!-- /.box -->
     </div>
     <!--文章区结束-->
 
     <!--学生风采-->
     <div class="box-row-3">
-        <div class="box box-col-1">
+        <!--最多六张 -->
+        <div class="box">
+			<div class="hd">
+			<a target="blank" href="{{.t5c.Title}}" class="more"></a>
+				<h2>{{.t5c.Title}}<span class="en">ACADEMY DAILY</span></h2>
+			</div>
+			<div class="bd">
+				<div class="book-scroll">
+					<div class="book-scroll-wrap">
+						<ul>
+                            {{range $i,$e:=.t5}}
+                            {{if eq $i 0}}
+							<li class="open">
+                                {{else}}
+                                    	<li>
+                                {{end}}
+                                <a href="javascript:void(0);" class="pic">
+                                    <div class="red-date">
+									<div>{{dateformat $e.Createtime "01/02"}}</div>
+									<a target="blank" href="/{{$e.Cid}}/{{$e.Id}}"><img src="{{$e.Photo}}" alt="{{$e.Title}}"></a>
+                                    </div>
+								</a>
+								<div class="detail">
+									<h3>{{substr $e.Title 0 40}}</h3>
+									<p>{{substr $e.Descontent 0 100}}</p>
+									<p></p>
+									<p></p>
+									<p>&nbsp;</p>
+									<p><a target="blank" href="/{{$e.Cid}}/{{$e.Id}}">详细内容</a></p>
+								</div>
+							</li>
+                            {{end}}
+						</ul>
+					</div>
+					<a href="javascript:void(0)" class="btn-prev">prev</a>
+					<a href="javascript:void(0)" class="btn-next">next</a>
+				</div>
+			</div>
+		</div>
+        {{range $i,$e:=.t6}}
+            {{if eq $i 0}}
+            <div class="box box-col-1">
+            {{else if eq $i 1}}
+                <div class="box box-col-2">
+                {{else}}
+                    <div class="box box-col-3">
+                    {{end}}
             <div class="hd">
-                <h2>学员风采</h2>
+                {{if eq $i 0}}
+                <h2>{{$.t6c.Title}}</h2>
+                {{end}}
+                {{if eq $i 2}}
+                <a target="_blank" href="/{{$.t6c.Title}}" class="more"></a>
+                {{end}}
             </div>
             <div class="bd">
-                <a target="blank" href="http://en.caa.edu.cn/"><img src="/static/caa/img_54.png" alt=""/></a>
+                <div style="text-align:center;padding: 5px;font-size: 1.2em;color:gray">{{$e.Title}}</div>
+                <a target="blank" href="{{$e.Cid}}/{{$e.Id}}">
+                    <img src="{{$e.Photo}}" alt="{{$e.Title}}"/>
+                </a>
             </div>
+
         </div>
-        <!-- /.box -->
-        <div class="box box-col-2">
-            <div class="hd">
-            </div>
-            <div class="bd">
-                <a target="blank" href="http://sjgm.caa.edu.cn/"><img src="/static/caa/img_56.png" alt=""/></a>
-            </div>
-        </div>
-        <!-- /.box -->
-        <div class="box box-col-3">
-            <div class="hd">
-                 <a target="_blank" href="#" class="more"></a>
-            </div>
-            <div class="bd">
-                <a target="blank" href="./yzjt/"><img src="/static/caa/img_58.png" alt=""/></a>
-            </div>
-        </div>
-        <!-- /.box -->
+        {{end}}
     </div>
     <!--学生风采结束-->
 
     <!--教师风采-->
     <div class="box-row-3">
-        <div class="box box-col-1">
+        {{range $i,$e:=.t7}}
+            {{if eq $i 0}}
+            <div class="box box-col-1">
+            {{else if eq $i 1}}
+                <div class="box box-col-2">
+                {{else}}
+                    <div class="box box-col-3">
+                    {{end}}
             <div class="hd">
-                <h2>教师风采</h2>
+                {{if eq $i 0}}
+                <h2>{{$.t7c.Title}}</h2>
+                {{end}}
+                {{if eq $i 2}}
+                <a target="_blank" href="/{{$.t7c.Title}}" class="more"></a>
+                {{end}}
             </div>
             <div class="bd">
-                <a target="blank" href="http://en.caa.edu.cn/"><img src="/static/caa/img_54.png" alt=""/></a>
+                <div style="text-align:center;padding: 5px;font-size: 1.2em;color:gray">{{$e.Title}}</div>
+                <a target="blank" href="{{$e.Cid}}/{{$e.Id}}"><img src="{{$e.Photo}}" alt="{{$e.Title}}"/></a>
             </div>
         </div>
-        <!-- /.box -->
-        <div class="box box-col-2">
-            <div class="hd">
-            </div>
-            <div class="bd">
-                <a target="blank" href="http://sjgm.caa.edu.cn/"><img src="/static/caa/img_56.png" alt=""/></a>
-            </div>
-        </div>
-        <!-- /.box -->
-        <div class="box box-col-3">
-            <div class="hd">
-                 <a target="_blank" href="#" class="more"></a>
-            </div>
-            <div class="bd">
-                <a target="blank" href="./yzjt/"><img src="/static/caa/img_58.png" alt=""/></a>
-            </div>
-        </div>
-        <!-- /.box -->
+        {{end}}
     </div>
     <!--教师风采结束-->
 
@@ -224,58 +302,50 @@
 
     <!--学生作品 -->
     <div class="box-row-3">
-        <div class="box box-col-1">
+        {{range $i,$e:=.t8}}
+            {{if lt $i 3}}
+                {{if eq $i 0}}
+                <div class="box box-col-1">
+                {{else if eq $i 1}}
+                    <div class="box box-col-2">
+                    {{else}}
+                        <div class="box box-col-3">
+                        {{end}}
             <div class="hd">
-                <h2>学生作品</h2>
+                {{if eq $i 0}}
+                <h2>{{$.t8c.Title}}</h2>
+                {{end}}
+                {{if eq $i 2}}
+                <a target="_blank" href="/{{$.t8c.Title}}" class="more"></a>
+                {{end}}
             </div>
             <div class="bd">
-                <a target="blank" href="http://en.caa.edu.cn/"><img src="/static/caa/img_54.png" alt=""/></a>
+                <div style="text-align:center;padding: 5px;font-size: 1.2em;color:gray">{{$e.Title}}</div>
+                <a target="blank" href="{{$e.Cid}}/{{$e.Id}}"><img src="{{$e.Photo}}" alt="{{$e.Title}}"/></a>
             </div>
         </div>
-        <!-- /.box -->
-        <div class="box box-col-2">
-            <div class="hd">
-            </div>
-            <div class="bd">
-                <a target="blank" href="http://sjgm.caa.edu.cn/"><img src="/static/caa/img_56.png" alt=""/></a>
-            </div>
-        </div>
-        <!-- /.box -->
-        <div class="box box-col-3">
-            <div class="hd">
-                 <a target="_blank" href="#" class="more"></a>
-            </div>
-            <div class="bd">
-                <a target="blank" href="./yzjt/"><img src="/static/caa/img_58.png" alt=""/></a>
-            </div>
-        </div>
-        <!-- /.box -->
+            {{end}}
+        {{end}}
     </div>
     <div class="box-row-3">
-        <div class="box box-col-1">
+        {{range $i,$e:=.t8}}
+            {{if gt $i 2}}
+                {{if eq $i 3}}
+                <div class="box box-col-1">
+                {{else if eq $i 4}}
+                    <div class="box box-col-2">
+                    {{else}}
+                        <div class="box box-col-3">
+                        {{end}}
             <div class="hd">
             </div>
             <div class="bd">
-                <a target="blank" href="http://en.caa.edu.cn/"><img src="/static/caa/img_54.png" alt=""/></a>
+                <div style="text-align:center;padding: 5px;font-size: 1.2em;color:gray">{{$e.Title}}</div>
+                <a target="blank" href="{{$e.Cid}}/{{$e.Id}}"><img src="{{$e.Photo}}" alt="{{$e.Title}}"/></a>
             </div>
         </div>
-        <!-- /.box -->
-        <div class="box box-col-2">
-            <div class="hd">
-            </div>
-            <div class="bd">
-                <a target="blank" href="http://sjgm.caa.edu.cn/"><img src="/static/caa/img_56.png" alt=""/></a>
-            </div>
-        </div>
-        <!-- /.box -->
-        <div class="box box-col-3">
-            <div class="hd">
-            </div>
-            <div class="bd">
-                <a target="blank" href="./yzjt/"><img src="/static/caa/img_58.png" alt=""/></a>
-            </div>
-        </div>
-        <!-- /.box -->
+            {{end}}
+        {{end}}
     </div>
     <!--学生作品结束 -->
 
@@ -284,37 +354,6 @@
 
 <!-- 内容区2 -->
 <div class="wrap container">
-
-    <!--教材介绍 -->
-    <div class="box-row-3">
-        <div class="box box-col-1">
-            <div class="hd">
-                <h2>教材介绍</h2>
-            </div>
-            <div class="bd">
-                <a target="blank" href="http://en.caa.edu.cn/"><img src="/static/caa/img_54.png" alt=""/></a>
-            </div>
-        </div>
-        <!-- /.box -->
-        <div class="box box-col-2">
-            <div class="hd">
-            </div>
-            <div class="bd">
-                <a target="blank" href="http://sjgm.caa.edu.cn/"><img src="/static/caa/img_56.png" alt=""/></a>
-            </div>
-        </div>
-        <!-- /.box -->
-        <div class="box box-col-3">
-            <div class="hd">
-            </div>
-            <div class="bd">
-                <a target="blank" href="./yzjt/"><img src="/static/caa/img_58.png" alt=""/></a>
-            </div>
-        </div>
-        <!-- /.box -->
-    </div>
-    <!--教材介绍 -->
-
     <!--网站介绍 -->
     <div class="box">
         <div class="hd">
@@ -329,14 +368,37 @@
 </div>
 <!--内容区2结束 -->
 
+
 <!--脚部 -->
 <div class="footer">
     <div class="wrap">
+        <!--
+        <div class="box">
+				<div class="hd">
+					<h2>导航<span class="en">NAVIGATION</span></h2>
+				</div>
+				<div class="bd">
+					<div class="tab-content">
+						<div class="tab-plane" id="syyx">
+							<div class="news-list">
+								<ul><li><a target="blank" href="/xy/jxjg/zghyys/" class="tit">中国画与书法艺术学院</a></li></ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>-->
         <div class="logo-link">
-        <div style="text-align:center;font-size:1.1em">{{str2html .config.Code3}}</div>
+        <div>{{str2html .config.Code3}}</div>
         </div>
     </div>
 </div>
 <!--脚部结束 -->
+    	<p>
+        	<a class="btn-to-top" title="返回顶部" target="_self" href="#">回顶部</a>
+    	</p>
+ <!-- JiaThis Button BEGIN -->
+<script type="text/javascript" src="http://v3.jiathis.com/code_mini/jiathis_r.js" charset="utf-8"></script>
+            <!--统计-->
+{{str2html .config.Code2}}
 </body>
 </html>

@@ -153,9 +153,9 @@
             allowFileManager: true
         };
         var editor = K.create('textarea[name="content"]', option);
-        var editor1 = K.create('textarea[name="descontent"]', option);
+//        var editor1 = K.create('textarea[name="descontent"]', option);
         editor.sync();
-        editor1.sync();
+//        editor1.sync();
 
         $.formValidator.initConfig({
             formID: "user_form", submitOnce: true,
@@ -232,7 +232,7 @@
                     confirmdiv.text("上传完成");
                     $("#logoimg").attr("src", response.url);
                     $('#lookphoto').attr("href", response.url);
-                    $("#uploadlogo").html("<input hidden='hidden' type='hidden'  name='photo' value='" + response.token + "'>");
+                    $("#uploadlogo").html("<input hidden='hidden' type='hidden'  name='photo' value='" + response.url + "'>");
                 }
 
                 window.clearInterval(interval);

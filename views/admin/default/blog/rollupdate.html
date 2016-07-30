@@ -81,7 +81,7 @@
     </div>
     <div class='col-md-3 col-md-offset-1'>
         <div align="center">
-            <img src="/public/file/getfile?token={{.roll.Photo}}" id='logoimg' class="am-img-responsive" alt="图片"
+            <img src="{{.roll.Photo}}" id='logoimg' class="am-img-responsive" alt="图片"
                  style="border:1px red solid;height: 260px; width: 260px;"/>
 
             <p>请上传格式为.png .jpg .jpeg的图片。</p>
@@ -92,7 +92,7 @@
             <div>
                 <button type="submit" class="btn btn-default" id='upload_button'>上传图片</button>
             </div>
-            <div class="btn btn-success"><a id='lookphoto' href="/public/file/getfile?token={{.roll.Photo}}"
+            <div class="btn btn-success"><a id='lookphoto' href="{{.roll.Photo}}"
                                             target="_blank">查看图片</a>
             </div>
         </div>
@@ -178,7 +178,7 @@
                     confirmdiv.text("上传完成");
                     $("#logoimg").attr("src", response.url);
                     $('#lookphoto').attr("href", response.url);
-                    $("#uploadlogo").html("<input hidden='hidden' type='hidden'  name='photo' value='" + response.token + "'>");
+                    $("#uploadlogo").html("<input hidden='hidden' type='hidden'  name='photo' value='" + response.url + "'>");
                 }
 
                 window.clearInterval(interval);
