@@ -21,6 +21,7 @@
         }
     </style>
 </head>
+<body>
 <!--装饰-->
 <div class="min-head clearfix">
     <div class="nav wrap text-right">
@@ -43,7 +44,7 @@
             </li>
             {{range $i,$e:=.category}}
             <li>
-                <a target="_blank" href="/{{$e.Title}}/">{{$e.Title}}</a>
+                <a target="_blank" href="/{{substr $e.Title 0 20}}/">{{substr $e.Title 0 20}}</a>
                 {{if $e.Son}}
                 <dl class="sub-nav">
                     <dt>
@@ -60,7 +61,7 @@
 
             {{range $i,$e:=.photo}}
             <li>
-                <a target="_blank" href="/{{$e.Title}}/">{{$e.Title}}</a>
+                <a target="_blank" href="/{{substr $e.Title 0 20}}/">{{substr $e.Title 0 20}}</a>
                 {{if $e.Son}}
                 <dl class="sub-nav">
                     <dt>
@@ -86,7 +87,7 @@
         <div class="dg-wrapper">
         {{range $i,$e:=.roll}}
             <a target="blank" href="{{$e.Url}}">
-                <img src="{{$e.Photo}}" alt="{{$e.Title}}"/>
+                <img src="{{$e.Photo}}" alt="{{substr $e.Title 0 20}}"/>
             </a>
         {{end}}
         </div>
@@ -127,7 +128,7 @@
                         {{range $i,$e:=.t1}}
                             <li><!--<em class="fr en">{{dateformat $e.Createtime "2006/1/02"}}
                             </em>-->
-                                <a target="_blank" href="/{{$e.Cid}}/{{$e.Id}}" class="tit">
+                                <a target="_blank" href="/{{$.t1c.Title}}/{{$e.Id}}" class="tit">
                                 {{if eq $e.Istop 1}}[顶] {{else}}{{end}}{{substr $e.Title 0 20}}...
                                 </a>
                             </li>
@@ -147,7 +148,7 @@
                         {{range $i,$e:=.t2}}
                             <li><!--<em class="fr en">{{dateformat $e.Createtime "2006/1/02"}}
                             </em>-->
-                                <a target="_blank" href="/{{$e.Cid}}/{{$e.Id}}" class="tit">
+                                <a target="_blank" href="/{{$.t2c.Title}}/{{$e.Id}}" class="tit">
                                 {{if eq $e.Istop 1}}[顶] {{else}}{{end}}{{substr $e.Title 0 20}}...
                                 </a>
                             </li>
@@ -168,7 +169,7 @@
                         {{range $i,$e:=.t3}}
                             <li><em class="fr en">{{dateformat $e.Createtime "2006/1/02"}}
                             </em>
-                                <a target="_blank" href="/{{$e.Cid}}/{{$e.Id}}" class="tit">
+                                <a target="_blank" href="/{{$.t3c.Title}}/{{$e.Id}}" class="tit">
                                 {{if eq $e.Istop 1}}[顶] {{else}}{{end}}{{substr $e.Title 0 30}}...
                                 </a>
                             </li>
@@ -180,7 +181,7 @@
                             {{range $i,$e:=.t4}}
                             <li><em class="fr en">{{dateformat $e.Createtime "2006/1/02"}}
                             </em>
-                                <a target="_blank" href="/{{$e.Cid}}/{{$e.Id}}" class="tit">
+                                <a target="_blank" href="/{{$.t4c.Title}}/{{$e.Id}}" class="tit">
                                 {{if eq $e.Istop 1}}[顶] {{else}}{{end}}{{substr $e.Title 0 30}}...
                                 </a>
                             </li>
@@ -213,7 +214,7 @@
                                 <a href="javascript:void(0);" class="pic">
                                     <div class="red-date">
 									<div>{{dateformat $e.Createtime "01/02"}}</div>
-									<a target="blank" href="/{{$e.Cid}}/{{$e.Id}}"><img src="{{$e.Photo}}" alt="{{$e.Title}}"></a>
+									<a target="blank" href="/{{$.t5c.Title}}/{{$e.Id}}"><img src="{{$e.Photo}}" alt="{{substr $e.Title 0 20}}"></a>
                                     </div>
 								</a>
 								<div class="detail">
@@ -222,7 +223,7 @@
 									<p></p>
 									<p></p>
 									<p>&nbsp;</p>
-									<p><a target="blank" href="/{{$e.Cid}}/{{$e.Id}}">详细内容</a></p>
+									<p><a target="blank" href="/{{$.t5c.Title}}/{{$e.Id}}">详细内容</a></p>
 								</div>
 							</li>
                             {{end}}
@@ -250,9 +251,9 @@
                 {{end}}
             </div>
             <div class="bd">
-                <div style="text-align:center;padding: 5px;font-size: 1.2em;color:gray">{{$e.Title}}</div>
-                <a target="blank" href="{{$e.Cid}}/{{$e.Id}}">
-                    <img src="{{$e.Photo}}" alt="{{$e.Title}}"/>
+                <div style="text-align:center;padding: 5px;font-size: 1.2em;color:gray">{{substr $e.Title 0 20}}</div>
+                <a target="blank" href="{{$.t6c.Title}}/{{$e.Id}}">
+                    <img src="{{$e.Photo}}" alt="{{substr $e.Title 0 20}}"/>
                 </a>
             </div>
 
@@ -280,8 +281,8 @@
                 {{end}}
             </div>
             <div class="bd">
-                <div style="text-align:center;padding: 5px;font-size: 1.2em;color:gray">{{$e.Title}}</div>
-                <a target="blank" href="{{$e.Cid}}/{{$e.Id}}"><img src="{{$e.Photo}}" alt="{{$e.Title}}"/></a>
+                <div style="text-align:center;padding: 5px;font-size: 1.2em;color:gray">{{substr $e.Title 0 20}}</div>
+                <a target="blank" href="{{$.t7c.Title}}/{{$e.Id}}"><img src="{{$e.Photo}}" alt="{{substr $e.Title 0 20}}"/></a>
             </div>
         </div>
         {{end}}
@@ -320,8 +321,8 @@
                 {{end}}
             </div>
             <div class="bd">
-                <div style="text-align:center;padding: 5px;font-size: 1.2em;color:gray">{{$e.Title}}</div>
-                <a target="blank" href="{{$e.Cid}}/{{$e.Id}}"><img src="{{$e.Photo}}" alt="{{$e.Title}}"/></a>
+                <div style="text-align:center;padding: 5px;font-size: 1.2em;color:gray">{{substr $e.Title 0 20}}</div>
+                <a target="blank" href="{{$.t8c.Title}}/{{$e.Id}}"><img src="{{$e.Photo}}" alt="{{substr $e.Title 0 20}}"/></a>
             </div>
         </div>
             {{end}}
@@ -340,8 +341,8 @@
             <div class="hd">
             </div>
             <div class="bd">
-                <div style="text-align:center;padding: 5px;font-size: 1.2em;color:gray">{{$e.Title}}</div>
-                <a target="blank" href="{{$e.Cid}}/{{$e.Id}}"><img src="{{$e.Photo}}" alt="{{$e.Title}}"/></a>
+                <div style="text-align:center;padding: 5px;font-size: 1.2em;color:gray">{{substr $e.Title 0 20}}</div>
+                <a target="blank" href="{{$.t8c.Title}}/{{$e.Id}}"><img src="{{$e.Photo}}" alt="{{substr $e.Title 0 20}}"/></a>
             </div>
         </div>
             {{end}}

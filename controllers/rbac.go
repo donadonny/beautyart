@@ -78,7 +78,7 @@ func AccessRegister() {
 
 //Determine whether need to verify
 func CheckAccess(params []string) bool {
-	if len(params) < 3 {
+	if len(params) <= 3 {
 		return false
 	}
 	for _, nap := range strings.Split(beego.AppConfig.String("not_auth_package"), ",") {

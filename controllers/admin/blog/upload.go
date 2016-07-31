@@ -1,7 +1,7 @@
 package blog
 
 import (
-	"fmt"
+	_ "fmt"
 	_ "github.com/astaxie/beego"
 	. "github.com/hunterhug/beautyart/lib"
 	"io/ioutil"
@@ -148,7 +148,7 @@ func (this *UploadController) UploadFile() {
 func (this *UploadController) GetWebFile() {
 	id := this.GetString("token", "")
 	id = UrlD(Base64D(id))
-	fmt.Println(id)
+	//fmt.Println(id)
 	if id == "" {
 		this.StopRun()
 	}
