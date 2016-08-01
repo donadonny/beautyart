@@ -22,6 +22,7 @@ type Paper struct {
 	Ishot      int64     `orm:"default(0)"` //是否热门 1热门
 	Isroll int64  `orm:"default(0)"` //是否轮转
 	Rollpath string //自定义轮转地址
+	Type int64 //0表示文章，1表示图片
 }
 
 func init() {

@@ -164,7 +164,7 @@
             <h1>图片</h1>
 
             <div>
-                <img src="/public/file/getfile?token={{.thispaper.Photo}}" id='logoimg' class="am-img-responsive"
+                <img src="{{.thispaper.Photo}}" id='logoimg' class="am-img-responsive"
                      alt="图片"
                      style="border:1px red solid;height: 260px; width: 260px;"/>
 
@@ -176,7 +176,7 @@
             <div>
                 <button type="submit" class="btn btn-default" id='upload_button'>上传图片</button>
             </div>
-            <div class="btn btn-success"><a id='lookphoto' href="/public/file/getfile?token={{.thispaper.Photo}}"
+            <div class="btn btn-success"><a id='lookphoto' href="{{.thispaper.Photo}}"
                                             target="_blank">查看图片</a></div>
         </div>
     </div>
@@ -200,9 +200,9 @@
             allowFileManager: true
         };
         var editor = K.create('textarea[name="content"]', option);
-        var editor1 = K.create('textarea[name="descontent"]', option);
+//        var editor1 = K.create('textarea[name="descontent"]', option);
         editor.sync();
-        editor1.sync();
+//        editor1.sync();
 
         $.formValidator.initConfig({
             formID: "user_form", submitOnce: true,
@@ -275,7 +275,7 @@
                     confirmdiv.text("上传完成");
                     $("#logoimg").attr("src", response.url);
                     $('#lookphoto').attr("href", response.url);
-                    $("#uploadlogo").html("<input hidden='hidden' type='hidden'  name='photo' value='" + response.token + "'>");
+                    $("#uploadlogo").html("<input hidden='hidden' type='hidden'  name='photo' value='" + response.url + "'>");
                 }
 
                 window.clearInterval(interval);

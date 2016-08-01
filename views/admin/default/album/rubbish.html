@@ -3,6 +3,7 @@
 
 <div id="toolbar">
     <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyUser()">删除图片</a>
+     <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="descoverUser()">恢复图片</a>
 
 
     <label>目录：</label>
@@ -141,5 +142,28 @@
             top:top,
             roll:roll
         });
+    }
+
+     function descoverUser(){
+                var rows = $('#dg').datagrid('getSelections');
+        if (rows.length != 0) {
+            $.messager.confirm('Confirm', '你确定要恢复？', function (r) {
+                if (r) {
+                    var uri = "/picture/photo/updatepaper";
+                    for (var i = 0; i < rows.length; i++) {
+                        var row = rows[i];
+                        $.post(uri, {'small':1,'id': row.Id,'status':0}, function (result) {
+                            $.messager.show({	// show error message
+                                title: '消息',
+                                msg: result.info
+                            });
+                            $('#dg').datagrid('reload');	// reload the user da
+                        });
+                    }
+                }
+            });
+        } else {
+            alert("请勾选按钮")
+        }
     }
 </script>

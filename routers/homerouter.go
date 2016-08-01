@@ -12,6 +12,8 @@ func homerouter() {
 
 // 	//前台路由
  	beego.Router("/", &home.MainController{}, "*:Index")
+ 	beego.Router("/:id/", &home.MainController{}, "*:Category")
+	beego.Router("/:cid/:id/", &home.MainController{}, "*:Paper")
 // 	beego.Router("/404.html", &home.MainController{}, "*:Go404")
 // 	beego.Router("/index:page:int.html", &home.MainController{}, "*:Index")
 

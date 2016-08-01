@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>网站配置</title>
+        <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="/static/home/bootstrap/css/bootstrap.min.css">
 </head>
 <body>
 <div class='container' style="margin-bottom: 50px;margin-top: 20px">
     <div class="row">
-        <div class='col-md-6 col-md-offset-1'>
+        <div class='col-md-8'>
             <form id="user_form" action="/config/option/updateoption" role="form">
                 <div class="form-group">
                     <div class="alert alert-warning" id='warning-block'>
@@ -29,35 +33,31 @@
                 <div class="form-group">
                     <div>
                         <label for="name">网站描述</label>
-                        <textarea class="form-control" rows="5" name="content" id="content" required="required">{{.config.Content}}</textarea>
+                        <textarea  class="form-control" rows="10" name="content" id="content">{{.config.Content}}</textarea>
                     </div>
-                    <div id="contentTip"></div>
                 </div>
 
                 <div class="form-group">
                     <div>
                         <label for="address">联系地址</label>
-                        <textarea class="form-control" rows="5" name="address" id="address"
-                                  required="required">{{.config.Address}}</textarea>
+                        <textarea class="form-control" rows="10" name="address" id="address">{{.config.Address}}</textarea>
                     </div>
-                    <div id="addressTip"></div>
                 </div>
 
                 <div class="form-group">
                     <div>
                         <label for='phone'>联系电话</label>
                         <input type="text" class="form-control" name="phone" id="phone"
-                               placeholder="请输入手机或电话" required="required" value="{{.config.Phone}}">
+                               placeholder="请输入手机或电话"  value="{{.config.Phone}}">
                     </div>
                     <div id="phoneTip"></div>
                 </div>
                 <div class="form-group">
                     <div>
-                        <label for='webinfo'>备案信息</label>
-                        <textarea class="form-control" rows="5" name="webinfo" id="webinfo"
+                        <label for='webinfo'>首页配置（非专业人士勿改）</label>
+                        <textarea class="form-control" rows="10" name="webinfo" id="webinfo"
                                   required="required">{{.config.Webinfo}}</textarea>
                     </div>
-                    <div id='webinfoTip'></div>
                 </div>
                 <div class="form-group">
                     <div>
@@ -74,8 +74,8 @@
                 </div>
                 <div class="form-group">
                     <div>
-                        <label for='code3'>友情链接</label>
-                        <textarea class="form-control" rows="5" name="code3" id="code3">{{.config.Code3}}</textarea>
+                        <label for='code3'>网站脚部</label>
+                        <textarea class="form-control" rows="10" name="code3" id="code3">{{.config.Code3}}</textarea>
                     </div>
                 </div>
                 <div id='uploadlogo'></div>
@@ -87,9 +87,9 @@
                 </div>
             </form>
         </div>
-        <div class='col-md-4 col-md-offset-1'>
+        <div class='col-md-4'>
             <div align="center">
-                <img src="/public/file/getfile?token={{.config.Photo}}" id='logoimg' class="am-img-responsive" alt="图片"
+                <img src="{{.config.Photo}}" id='logoimg' class="am-img-responsive" alt="图片"
                      style="border:1px red solid;height: 260px; width: 260px;"/>
 
                 <p>请上传格式为.png .jpg .jpeg的图片。</p>
@@ -100,7 +100,7 @@
                 <div>
                     <button type="submit" class="btn btn-default" id='upload_button'>上传Logo</button>
                 </div>
-                <div class="btn btn-success"><a id='lookphoto' href="/public/file/getfile?token={{.config.Photo}}"
+                <div class="btn btn-success"><a id='lookphoto' href="{{.config.Photo}}"
                                                 target="_blank">查看Logo</a>
                 </div>
             </div>
@@ -112,8 +112,26 @@
         charset="UTF-8"></script>
 <script src="/static/admin/formvalidator4.1.3/formValidatorRegex.js" type="text/javascript" charset="UTF-8"></script>
 <script src="/static/tool/ajaxupload.js"></script>
+<link rel="stylesheet" href="/static/admin/kindeditor/themes/default/default.css"/>
+<link rel="stylesheet" href="/static/admin/kindeditor/themes/simple/simple.css"/>
+<script charset="utf-8" src="/static/admin/kindeditor/kindeditor-all-min.js"></script>
+<script charset="utf-8" src="/static/admin/kindeditor/lang/zh-CN.js"></script>
+<script src="/static/tool/ajaxupload.js"></script>
 <script type="text/javascript">
-    $(function () {
+    KindEditor.ready(function (K) {
+        var option = {
+            themeType: 'simple',
+            cssPath: '/static/admin/kindeditor/plugins/code/prettify.css',
+            uploadJson: '/public/file/upload',
+            fileManagerJson: '/public/file/filemanage',
+            allowFileManager: true
+        };
+        var editor = K.create('textarea[name="content"]', option);
+        var editor1 = K.create('textarea[name="address"]', option);
+         var editor2 = K.create('textarea[name="code3"]', option);
+        editor.sync();
+        editor1.sync();
+        editor2.sync();
         $.formValidator.initConfig({
             formID: "user_form", submitOnce: true,
             onSuccess: function () {
@@ -136,27 +154,10 @@
                 });
 
 
-        $("#content").formValidator({onShowText: "请输入网站描述"})
-                .inputValidator({min: 0, max: 600, onError: "最多600个字符"});
-
-        $("#address").formValidator({onShowText: "请输入联系地址"})
-                .inputValidator({
-                    min: 0,
-                    max: 500,
-                    onError: "最多500个字符",
-                    empty: {leftEmpty: false, rightEmpty: false, emptyError: "描述两边不能为空"}
-                });
 
         $("#phone").formValidator({onFocus: "如0768-8888888或11位手机号码", onCorrect: "谢谢你的合作"})
                 .regexValidator({regExp: ["tel", "mobile"], dataType: "enum", onError: "你输入的手机或电话格式不正确"});
 
-        $("#webinfo").formValidator({onShowText: "请输入备案信息"})
-                .inputValidator({
-                    min: 0,
-                    max: 300,
-                    onError: "最多300个字符",
-                    empty: {leftEmpty: false, rightEmpty: false, emptyError: "描述两边不能为空"}
-                });
     });
 
 </script>
@@ -202,7 +203,7 @@
                     confirmdiv.text("上传完成");
                     $("#logoimg").attr("src", response.url);
                     $('#lookphoto').attr("href", response.url);
-                    $("#uploadlogo").html("<input hidden='hidden' type='hidden'  name='photo' value='" + response.token + "'>");
+                    $("#uploadlogo").html("<input hidden='hidden' type='hidden'  name='photo' value='" + response.url + "'>");
                 }
 
                 window.clearInterval(interval);

@@ -1,7 +1,21 @@
-/*!
- * Copyright 2015 Hiro.
- * Email ihong@outlook.com
- */
+.btn-to-top {
+	background:
+		url("./uparrow.png")
+		no-repeat scroll 14px 14px #FCFCFC;
+	display: block;
+	height: 60px;
+	overflow: hidden;
+	text-indent: -99em;
+	width: 58px;
+	border-radius: 0px 0px 7px 7px;
+	border: 1px solid #E5E5E5;
+  position: fixed;
+  right: 20px;
+  bottom: 20%;
+}
+li {
+  list-style-type:none;
+}
 .color-red {
   color: #ed000b;
 }
@@ -87,6 +101,8 @@ sub {
 }
 img {
   border: 0;
+  max-width: 100%;
+  max-height: 100%;
 }
 svg:not(:root) {
   overflow: hidden;
@@ -197,7 +213,7 @@ a {
 }
 a:hover,
 a:active {
-  color: #333333;
+  color: #ffcdbc;
 }
 /*æµ®åŠ¨*/
 .fl {
@@ -577,9 +593,15 @@ p {
   float: left;
   line-height: 60px;
   /*padding: 0 3px 0 0;*/
+<<<<<<< HEAD
   padding:0 10px;
   margin-left: 10px;
   background: url(./img/dot_3px.png) no-repeat right center;
+=======
+  padding:0 8px;
+  margin-left: 8px;
+  /*background: url(./img/dot_3px.png) no-repeat right center;*/
+>>>>>>> afd3d0991419218cb81a70b23d850e18d282efe8
 }
 .main-nav li a {
   width: 100%;
@@ -607,6 +629,8 @@ p {
   z-index: 101;
   padding-top: 40px;
   display: none;
+  text-align: center;
+
 }
 .sub-nav.current {
   display: block;
@@ -614,7 +638,7 @@ p {
 .sub-nav dt {
   padding: 20px 50px;
   height: 33px;
-  background: #fff;
+    background-color: ghostwhite;
   text-align: left;
   opacity: .93;
   filter: alpha(opacity=93);
@@ -625,7 +649,7 @@ p {
   display: block;
   float: left;
   line-height: 32px;
-  font-size: 13px;
+  font-size: 15px;
   text-align: left;
 }
 .sub-nav dt a.current {
