@@ -10,20 +10,20 @@ type Pager struct {
 	Page     int64
 	Totalnum int64
 	Pagesize int64
-	urlpath  string
+	Urlpath  string
 }
 
-func NewPager(page, totalnum, pagesize int64, urlpath string) *Pager {
+func NewPager(page, totalnum, pagesize int64, Urlpath string) *Pager {
 	p := new(Pager)
 	p.Page = page
 	p.Totalnum = totalnum
 	p.Pagesize = pagesize
-	p.urlpath = urlpath
+	p.Urlpath = Urlpath
 	return p
 }
 
 func (this *Pager) url(page int64) string {
-	return fmt.Sprintf(this.urlpath, page)
+	return fmt.Sprintf("%s?page=%d",this.Urlpath, page)
 }
 
 func (this *Pager) ToString() string {
@@ -56,9 +56,9 @@ func (this *Pager) ToString() string {
 
 	buf.WriteString("<div class=\"page\">")
 	if this.Page > 1 {
-		buf.WriteString(fmt.Sprintf("<a href=\"%s\">&laquo;</a>", this.url(this.Page-1)))
+		buf.WriteString(fmt.Sprintf("<a href=\"%s\"><div class=\"jj\">&laquo;</div></a>", this.url(this.Page-1)))
 	} else {
-		buf.WriteString("<b>&laquo;</b>")
+		buf.WriteString("<b><div class=\"jj\">&laquo;</div></b>")
 	}
 
 	if this.Page > linknum {
@@ -78,9 +78,9 @@ func (this *Pager) ToString() string {
 	}
 
 	if this.Page < totalpage {
-		buf.WriteString(fmt.Sprintf("<a href=\"%s\">&raquo;</a>", this.url(this.Page+1)))
+		buf.WriteString(fmt.Sprintf("<a href=\"%s\"><div class=\"jj\">&raquo;</div></a>", this.url(this.Page+1)))
 	} else {
-		buf.WriteString(fmt.Sprintf("<b>&raquo;</b>"))
+		buf.WriteString(fmt.Sprintf("<b><div class=\"jj\">&raquo;</div></b>"))
 	}
 	buf.WriteString("</div>")
 

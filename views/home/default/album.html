@@ -133,10 +133,25 @@
                         <div id="editor" style="width: 980px">
                         {{str2html .thiscategory.Content}}
                         </div>
+                        <!-- 多说评论框 start -->
+                        <div class="ds-thread" data-thread-key="/{{.thiscategory.Title}}" data-title="{{.thiscategory.Title}}" data-url="http://www.beautyart.top/{{.thiscategory.Title}}"></div>
+                    <!-- 多说评论框 end -->
+                    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+                    <script type="text/javascript">
+                    var duoshuoQuery = {short_name:"{{.config.Code1}}"};
+                        (function() {
+                            var ds = document.createElement('script');
+                            ds.type = 'text/javascript';ds.async = true;
+                            ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                            ds.charset = 'UTF-8';
+                            (document.getElementsByTagName('head')[0]
+                             || document.getElementsByTagName('body')[0]).appendChild(ds);
+                        })();
+                        </script>
+<!-- 多说公共JS代码 end -->
                     </div>
                 </div>
             </div>
-            <hr/>
 
             <div style="width:1100px">
 
@@ -146,15 +161,34 @@
                 <div class="box" style="float: left">
             <div class="bd">
                 <div style="text-align:center;padding: 5px;font-size: 1.2em;color:gray"><a target="blank" href="{{$e.Cid}}/{{$e.Id}}">{{substr $e.Title 0 20}}</a></div>
-                <a target="blank" href="{{$.thiscategory.Title}}/{{$e.Id}}"><img style="width:348px;height:348px"  src="{{$e.Photo}}" alt="{{substr $e.Title 0 20}}"/></a>
+                <a target="blank" href="/{{$.thiscategory.Title}}/{{$e.Id}}"><img style="width:348px;height:348px"  src="{{$e.Photo}}" alt="{{substr $e.Title 0 20}}"/></a>
             </div>
         </div>
         {{end}}
     </div>
+            {{str2html .nums}}
+                <style>
+                    .page{
+                        font-size: 1.1em;
+                        margin-top: 10px;
+                        text-align: center;
+                    }
+                    .jj{
+                        font-size: 1.5em;
+                        display: inline;
+                    }
+                    .page b{
+                        padding: 8px;
+                    }
+                    .page a{
+                        padding: 8px;
+                    }
+
+                </style>
     <!--学生作品结束 -->
 
             </div>
-            <div class="in-share" style="text-align: center;font-size: 15px">
+            <div class="in-share" style="text-align: center;font-size: 15px;margin-top: 10px">
                 {{if .son}}
                     {{range $i,$e:=.son}}
                     <p class="col">

@@ -120,36 +120,83 @@
             <h2>{{.thiscategory.Title}}<span class="en"></h2>
         </div>
         <div class="bd">
-            <div class="in-banner">
-                <div class="banner-wrap">
-                    <ul class="slide-items">
-                        <li><img src="{{.thiscategory.Image}}" alt="" style="width: 1048px;height:300px"/></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="in-content">
-                <div class=TRS_Editor>
-                    <div class="Custom_UnionStyle">
-                        <div id="editor" style="width: 980px">
-                        {{str2html .thiscategory.Content}}
-                        </div>
+				<div class="news-detail">
+					<div class="head">
+						<h1>{{substr .paper.Title 0 40}}</h1>
+						<p class="time" style='color:#444;'>作者：{{substr .paper.Author 0 10}}&nbsp;&nbsp;&nbsp;编辑于：{{dateformat .paper.Createtime "2006/1/02"}}&nbsp;&nbsp;&nbsp;阅读：{{.paper.View}}人</p>
+					</div>
+					<div class="detail">
+                        <div style="padding: 20px;font-size: 0.8em;font-style: italic;border-left: 5px solid gainsboro">
+                        简介：{{substr .paper.Descontent 0 100}}
+					    </div>
+                        <div style="padding: 5px;padding-top: 20px"><a href="{{.paper.Photo}}" target="_blank"><img src="{{.paper.Photo}}" /></a></div>
+                        <div style="padding: 5px;margin-bottom: 30px">
+                        {{str2html .paper.Content}}
+					    </div>
+                        <!-- 多说评论框 start -->
+                        <div class="ds-thread" data-thread-key="/{{.thiscategory.Title}}/{{.paper.Id}}" data-title="{{.paper.Title}}" data-url="http://www.beautyart.top/{{.thiscategory.Title}}/{{.paper.Id}}"></div>
+                    <!-- 多说评论框 end -->
+                    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+                    <script type="text/javascript">
+                    var duoshuoQuery = {short_name:"{{.config.Code1}}"};
+                        (function() {
+                            var ds = document.createElement('script');
+                            ds.type = 'text/javascript';ds.async = true;
+                            ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                            ds.charset = 'UTF-8';
+                            (document.getElementsByTagName('head')[0]
+                             || document.getElementsByTagName('body')[0]).appendChild(ds);
+                        })();
+                        </script>
+<!-- 多说公共JS代码 end -->
                     </div>
-                </div>
-            </div>
-            <hr/>
-            <div style="width:1000px">
-            <div class="in-content" style="width: 600px;margin: 0 auto;">
-                        {{range $i,$e:=.papers}}
-                        <li>
-                        <div  style="display: inline-block">
-                        <a href="/{{$e.Cid}}/{{$e.Id}}" style="font-size: 1.1em;"><strong>{{substr $e.Title 0 30}}</strong></a>
-                        </div>
-                            <div style="display: inline-block;float: right">{{dateformat $e.Createtime "2006/1/02 15:04"}} 阅读:
-                            {{$e.View}} 人</div>
-                        </li>
-                        {{end}}
-            </div>
-            </div>
+				</div>
+				<div class="news-side" style="padding-top: 82px;padding-bottom: 20px">
+                    <div class="more-news">
+
+						<ul>
+                            {{range $i,$e:=.papers}}
+							<li>
+                            <a href="/{{$.thiscategory.Title}}/{{$e.Id}}" style="font-size: 1.1em;">
+                            <strong>
+                                {{if eq $e.Istop 1}}
+                                [顶]{{end}}
+                            {{substr $e.Title 0 25}}
+                            </strong>
+                            </a>
+                                <span  style="float: right">{{dateformat $e.Createtime "2006/1/02"}} &nbsp;&nbsp;阅读:
+                            {{$e.View}} 人</span>
+							</li>
+                            {{end}}
+
+						</ul>
+                                    {{str2html .nums}}
+                <style>
+                    .page{
+                        font-size: 1.1em;
+                        margin-top: 10px;
+                        text-align: center;
+                    }
+                    .jj{
+                        font-size: 1.5em;
+                        display: inline;
+                    }
+                    .page b{
+                        padding: 8px;
+                    }
+                    .page a{
+                        padding: 8px;
+                    }
+
+                </style>
+					</div>
+                    </div>
+        </div>
+    </div>
+
+
+<!-- 内容区2 -->
+<div class="wrap container">
             <div class="in-share" style="text-align: center;font-size: 15px">
                 {{if .son}}
                     {{range $i,$e:=.son}}
@@ -159,13 +206,6 @@
                     {{end}}
                 {{end}}
             </div>
-        </div>
-    </div>
-</div>
-
-
-<!-- 内容区2 -->
-<div class="wrap container">
     <!--网站介绍 -->
     <div class="box">
         <div class="hd">
