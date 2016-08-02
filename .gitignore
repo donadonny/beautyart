@@ -29,7 +29,7 @@ static/upload/*
 *.exe~
 
 test/*
-.idea/.name
+.idea/*
 .idea/beautyart.iml
 *.iml
 log/
@@ -41,3 +41,4 @@ log/
 file/*
 >>>>>>> afd3d0991419218cb81a70b23d850e18d282efe8
 /.gitignore
+*.xml
