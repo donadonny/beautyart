@@ -29,7 +29,7 @@ static/upload/*
 *.exe~
 
 test/*
-.idea/.name
+.idea/*
 .idea/beautyart.iml
 *.iml
 log/
