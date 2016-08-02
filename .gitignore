@@ -37,3 +37,4 @@ log/
 #views/home/
 file/*
 /.gitignore
+*.xml
