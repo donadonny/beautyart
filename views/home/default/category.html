@@ -16,8 +16,14 @@
     <script type="text/javascript" src="/static/caa/6697.js"></script>
     <link rel="stylesheet" href="/static/admin/kindeditor/plugins/code/prettify1.css"/>
 <script charset="utf-8" src="/static/admin/kindeditor/plugins/code/prettify.js"></script>
-    <script>
+   	<script type="text/javascript" src="/static/tool/jquery.lazyload.min.js"></script>
+   <script>
         $(function(){
+          $("img").lazyload({ 
+       /*   placeholder : "images/loading.gif",*/
+                 effect: "fadeIn"
+           });  
+
               prettyPrint()
         })
 

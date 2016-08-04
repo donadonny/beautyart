@@ -14,7 +14,16 @@
     <script src="/static/caa/jquery.gallery.js"></script>
     <script src="/static/caa/art.js"></script>
     <script type="text/javascript" src="/static/caa/6697.js"></script>
+   	<script type="text/javascript" src="/static/tool/jquery.lazyload.min.js"></script>
+   <script>
+        $(function(){
+          $("img").lazyload({ 
+       /*   placeholder : "images/loading.gif",*/
+                 effect: "fadeIn"
+           });  
+        })
 
+    </script>
     <style>
         .friend-link {
             padding: 0 120px
