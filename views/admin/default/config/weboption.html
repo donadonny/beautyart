@@ -50,7 +50,6 @@
                         <input type="text" class="form-control" name="phone" id="phone"
                                placeholder="请输入手机或电话"  value="{{.config.Phone}}">
                     </div>
-                    <div id="phoneTip"></div>
                 </div>
                 <div class="form-group">
                     <div>
@@ -155,8 +154,8 @@
 
 
 
-        $("#phone").formValidator({onFocus: "如0768-8888888或11位手机号码", onCorrect: "谢谢你的合作"})
-                .regexValidator({regExp: ["tel", "mobile"], dataType: "enum", onError: "你输入的手机或电话格式不正确"});
+     /*   $("#phone").formValidator({onFocus: "如0768-8888888或11位手机号码", onCorrect: "谢谢你的合作"})
+                .regexValidator({regExp: ["tel", "mobile"], dataType: "enum", onError: "你输入的手机或电话格式不正确"});*/
 
     });
 

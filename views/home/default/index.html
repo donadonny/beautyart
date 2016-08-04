@@ -25,8 +25,8 @@
 <!--装饰-->
 <div class="min-head clearfix">
     <div class="nav wrap text-right">
-       <!-- <a target="_blank" href="http://sjgm.caa.edu.cn">视觉国美</a>&nbsp;&nbsp;
-        <a target="_blank" href="http://en.caa.edu.cn/">EN</a>
+       <!-- <a  href="http://sjgm.caa.edu.cn">视觉国美</a>&nbsp;&nbsp;
+        <a  href="http://en.caa.edu.cn/">EN</a>
         -->
     </div>
 </div>
@@ -35,22 +35,22 @@
 <!--导航-->
 <div class="header">
     <li class="wrap clearfix">
-        <a target="_blank" href="/" class="logo fl">
+        <a href="/" class="logo fl">
             <img style="width:190px;height:34px" src="{{.config.Photo}}" alt=""/>
         </a>
         <ul class="main-nav" id="mainNav" style="padding-right:178px">
             <li>
-                <a target="_blank" href="/">首页</a>
+                <a href="/">首页</a>
             </li>
             {{range $i,$e:=.category}}
             <li>
-                <a target="_blank" href="/{{substr $e.Title 0 20}}/">{{substr $e.Title 0 20}}</a>
+                <a href="/{{substr $e.Title 0 20}}/">{{substr $e.Title 0 20}}</a>
                 {{if $e.Son}}
                 <dl class="sub-nav">
                     <dt>
                         {{range $j,$ee:=$e.Son}}
                         <li>
-                        <a target="_blank" href="/{{$ee.Title}}/" data-id="#jl_{{$ee.Id}}" class="tab-nav">{{$ee.Title}}</a>
+                        <a  href="/{{$ee.Title}}/" data-id="#jl_{{$ee.Id}}" class="tab-nav">{{$ee.Title}}</a>
                         </li>
                         {{end}}
                     </dt>
@@ -61,13 +61,13 @@
 
             {{range $i,$e:=.photo}}
             <li>
-                <a target="_blank" href="/{{substr $e.Title 0 20}}/">{{substr $e.Title 0 20}}</a>
+                <a  href="/{{substr $e.Title 0 20}}/">{{substr $e.Title 0 20}}</a>
                 {{if $e.Son}}
                 <dl class="sub-nav">
                     <dt>
                         {{range $j,$ee:=$e.Son}}
                         <li>
-                        <a target="_blank" href="/{{$ee.Title}}/" data-id="#jl_{{$ee.Id}}" class="tab-nav">{{$ee.Title}}</a>
+                        <a  href="/{{$ee.Title}}/" data-id="#jl_{{$ee.Id}}" class="tab-nav">{{$ee.Title}}</a>
                         </li>
                         {{end}}
                     </dt>
@@ -107,11 +107,11 @@
         <div class="box box-col-1">
             <div class="hd hd-tabs" data-toggle="tabs">
                 <h2 class="tab-nav one current" data-id="#z1">
-                    <a target="_blank" href="/{{.t1c.Title}}" class="more"></a>{{.t1c.Title}}
+                    <a  href="/{{.t1c.Title}}" class="more"></a>{{.t1c.Title}}
                 </h2>
 
                 <h2 class="tab-nav" data-id="#z2">
-                    <a target="_blank" href="/{{.t2c.Title}}" class="more"></a>{{.t2c.Title}}
+                    <a  href="/{{.t2c.Title}}" class="more"></a>{{.t2c.Title}}
                 </h2>
             </div>
             <div class="bd">
@@ -128,7 +128,7 @@
                         {{range $i,$e:=.t1}}
                             <li><!--<em class="fr en">{{dateformat $e.Createtime "2006/1/02"}}
                             </em>-->
-                                <a target="_blank" href="/{{$.t1c.Title}}/{{$e.Id}}" class="tit">
+                                <a  href="/{{$.t1c.Title}}/{{$e.Id}}" class="tit">
                                 {{if eq $e.Istop 1}}[顶] {{else}}{{end}}{{substr $e.Title 0 20}}...
                                 </a>
                             </li>
@@ -148,7 +148,7 @@
                         {{range $i,$e:=.t2}}
                             <li><!--<em class="fr en">{{dateformat $e.Createtime "2006/1/02"}}
                             </em>-->
-                                <a target="_blank" href="/{{$.t2c.Title}}/{{$e.Id}}" class="tit">
+                                <a  href="/{{$.t2c.Title}}/{{$e.Id}}" class="tit">
                                 {{if eq $e.Istop 1}}[顶] {{else}}{{end}}{{substr $e.Title 0 20}}...
                                 </a>
                             </li>
@@ -169,7 +169,7 @@
                         {{range $i,$e:=.t3}}
                             <li><em class="fr en">{{dateformat $e.Createtime "2006/1/02"}}
                             </em>
-                                <a target="_blank" href="/{{$.t3c.Title}}/{{$e.Id}}" class="tit">
+                                <a  href="/{{$.t3c.Title}}/{{$e.Id}}" class="tit">
                                 {{if eq $e.Istop 1}}[顶] {{else}}{{end}}{{substr $e.Title 0 30}}...
                                 </a>
                             </li>
@@ -181,7 +181,7 @@
                             {{range $i,$e:=.t4}}
                             <li><em class="fr en">{{dateformat $e.Createtime "2006/1/02"}}
                             </em>
-                                <a target="_blank" href="/{{$.t4c.Title}}/{{$e.Id}}" class="tit">
+                                <a  href="/{{$.t4c.Title}}/{{$e.Id}}" class="tit">
                                 {{if eq $e.Istop 1}}[顶] {{else}}{{end}}{{substr $e.Title 0 30}}...
                                 </a>
                             </li>
@@ -236,18 +236,18 @@
 		</div>
         {{range $i,$e:=.t6}}
             {{if eq $i 0}}
-            <div class="box box-col-1">
+            <div class="box box-col-1" style="height:343px">
             {{else if eq $i 1}}
-                <div class="box box-col-2">
+                <div class="box box-col-2" style="height:343px">
                 {{else}}
-                    <div class="box box-col-3">
+                    <div class="box box-col-3" style="height:343px">
                     {{end}}
             <div class="hd">
                 {{if eq $i 0}}
                 <h2>{{$.t6c.Title}}</h2>
                 {{end}}
                 {{if eq $i 2}}
-                <a target="_blank" href="/{{$.t6c.Title}}" class="more"></a>
+                <a  href="/{{$.t6c.Title}}" class="more"></a>
                 {{end}}
             </div>
             <div class="bd">
@@ -261,33 +261,6 @@
         {{end}}
     </div>
     <!--学生风采结束-->
-
-    <!--教师风采-->
-    <div class="box-row-3">
-        {{range $i,$e:=.t7}}
-            {{if eq $i 0}}
-            <div class="box box-col-1">
-            {{else if eq $i 1}}
-                <div class="box box-col-2">
-                {{else}}
-                    <div class="box box-col-3">
-                    {{end}}
-            <div class="hd">
-                {{if eq $i 0}}
-                <h2>{{$.t7c.Title}}</h2>
-                {{end}}
-                {{if eq $i 2}}
-                <a target="_blank" href="/{{$.t7c.Title}}" class="more"></a>
-                {{end}}
-            </div>
-            <div class="bd">
-                <div style="text-align:center;padding: 5px;font-size: 1.2em;color:gray">{{substr $e.Title 0 20}}</div>
-                <a target="blank" href="{{$.t7c.Title}}/{{$e.Id}}"><img src="{{$e.Photo}}" alt="{{substr $e.Title 0 20}}"/></a>
-            </div>
-        </div>
-        {{end}}
-    </div>
-    <!--教师风采结束-->
 
     <!--网站介绍 -->
     <div class="box">
@@ -317,28 +290,8 @@
                 <h2>{{$.t8c.Title}}</h2>
                 {{end}}
                 {{if eq $i 2}}
-                <a target="_blank" href="/{{$.t8c.Title}}" class="more"></a>
+                <a  href="/{{$.t8c.Title}}" class="more"></a>
                 {{end}}
-            </div>
-            <div class="bd">
-                <div style="text-align:center;padding: 5px;font-size: 1.2em;color:gray">{{substr $e.Title 0 20}}</div>
-                <a target="blank" href="{{$.t8c.Title}}/{{$e.Id}}"><img src="{{$e.Photo}}" alt="{{substr $e.Title 0 20}}"/></a>
-            </div>
-        </div>
-            {{end}}
-        {{end}}
-    </div>
-    <div class="box-row-3">
-        {{range $i,$e:=.t8}}
-            {{if gt $i 2}}
-                {{if eq $i 3}}
-                <div class="box box-col-1">
-                {{else if eq $i 4}}
-                    <div class="box box-col-2">
-                    {{else}}
-                        <div class="box box-col-3">
-                        {{end}}
-            <div class="hd">
             </div>
             <div class="bd">
                 <div style="text-align:center;padding: 5px;font-size: 1.2em;color:gray">{{substr $e.Title 0 20}}</div>
@@ -353,21 +306,6 @@
 </div>
 <!--内容区1结束 -->
 
-<!-- 内容区2 -->
-<div class="wrap container">
-    <!--网站介绍 -->
-    <div class="box">
-        <div class="hd">
-            <h2>联系画室</h2>
-        </div>
-
-        <div class="bd" id="jinhan">
-            {{str2html .config.Address}}
-        </div>
-    </div>
-    <!--网站介绍结束 -->
-</div>
-<!--内容区2结束 -->
 
 
 <!--脚部 -->
@@ -398,7 +336,7 @@
         	<a class="btn-to-top" title="返回顶部" target="_self" href="#">回顶部</a>
     	</p>
  <!-- JiaThis Button BEGIN -->
-<script type="text/javascript" src="http://v3.jiathis.com/code_mini/jiathis_r.js" charset="utf-8"></script>
+<!--<script type="text/javascript" src="http://v3.jiathis.com/code_mini/jiathis_r.js" charset="utf-8"></script>-->
             <!--统计-->
 {{str2html .config.Code2}}
 </body>

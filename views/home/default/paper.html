@@ -32,8 +32,8 @@
 <!--装饰-->
 <div class="min-head clearfix">
     <div class="nav wrap text-right">
-       <!-- <a target="_blank" href="http://sjgm.caa.edu.cn">视觉国美</a>&nbsp;&nbsp;
-        <a target="_blank" href="http://en.caa.edu.cn/">EN</a>
+       <!-- <a  href="http://sjgm.caa.edu.cn">视觉国美</a>&nbsp;&nbsp;
+        <a  href="http://en.caa.edu.cn/">EN</a>
         -->
     </div>
 </div>
@@ -42,22 +42,22 @@
 <!--导航-->
 <div class="header">
     <div class="wrap clearfix">
-        <a target="_blank" href="/" class="logo fl">
+        <a href="/" class="logo fl">
             <img style="width:190px;height:34px" src="{{.config.Photo}}" alt=""/>
         </a>
         <ul class="main-nav" id="mainNav" style="padding-right:178px">
             <li>
-                <a target="_blank" href="/">首页</a>
+                <a href="/">首页</a>
             </li>
             {{range $i,$e:=.category}}
             <li>
-                <a target="_blank" href="/{{$e.Title}}/">{{$e.Title}}</a>
+                <a href="/{{$e.Title}}/">{{$e.Title}}</a>
                 {{if $e.Son}}
                 <dl class="sub-nav">
                     <dt>
                         {{range $j,$ee:=$e.Son}}
                         <li>
-                        <a target="_blank" href="/{{$ee.Title}}/" data-id="#jl_{{$ee.Id}}" class="tab-nav">{{$ee.Title}}</a>
+                        <a  href="/{{$ee.Title}}/" data-id="#jl_{{$ee.Id}}" class="tab-nav">{{$ee.Title}}</a>
                         </li>
                         {{end}}
                     </dt>
@@ -68,13 +68,13 @@
 
             {{range $i,$e:=.photo}}
             <li>
-                <a target="_blank" href="/{{$e.Title}}/">{{$e.Title}}</a>
+                <a  href="/{{$e.Title}}/">{{$e.Title}}</a>
                 {{if $e.Son}}
                 <dl class="sub-nav">
                     <dt>
                         {{range $j,$ee:=$e.Son}}
                         <li>
-                        <a target="_blank" href="/{{$ee.Title}}/" data-id="#jl_{{$ee.Id}}" class="tab-nav">{{$ee.Title}}</a>
+                        <a  href="/{{$ee.Title}}/" data-id="#jl_{{$ee.Id}}" class="tab-nav">{{$ee.Title}}</a>
                         </li>
                         {{end}}
                     </dt>
@@ -93,13 +93,13 @@
         <!-- 内页菜单 -->
         {{if .son}}
         <div class="in-menu" id="inMenu">
-            <a target="_blank" href="javascript:void(0);" class="btn-menu"></a>
+            <a  href="javascript:void(0);" class="btn-menu"></a>
 
             <div class="menu-wrap">
                 <h3>{{$.thiscategory.Title}}</h3>
                 <ul class="menu-items">
                     {{range $i,$e:=.son}}
-                    <li><a target="_blank" href="/{{$e.Title}}" class="tab-nav current">{{$e.Title}}</a></li>
+                    <li><a  href="/{{$e.Title}}" class="tab-nav current">{{$e.Title}}</a></li>
                     {{end}}
                 </ul>
             </div>
@@ -110,11 +110,11 @@
 
         <div class="hd">
             <p class="history fr">
-                <a href="/" target="_blank" class="CurrChnlCls" style="font-size: 15px">首页</a>
+                <a href="/"  class="CurrChnlCls" style="font-size: 15px">首页</a>
                 {{if .father}}
-                <a href="/{{.father.Title}}" target="_blank" class="CurrChnlCls" style="font-size: 15px">-- {{.father.Title}}</a>
+                <a href="/{{.father.Title}}"  class="CurrChnlCls" style="font-size: 15px">-- {{.father.Title}}</a>
                 {{end}}
-                <a href="/{{.thiscategory.Title}}" target="_blank" class="CurrChnlCls" style="font-size: 15px;color:darkred">-- {{.thiscategory.Title}}</a>
+                <a href="/{{.thiscategory.Title}}"  class="CurrChnlCls" style="font-size: 15px;color:darkred">-- {{.thiscategory.Title}}</a>
             </p>
 
             <h2>{{.thiscategory.Title}}<span class="en"></h2>
@@ -129,7 +129,7 @@
                         <div style="padding: 20px;font-size: 0.8em;font-style: italic;border-left: 5px solid gainsboro">
                         简介：{{substr .paper.Descontent 0 100}}
 					    </div>
-                        <div style="padding: 5px;padding-top: 20px"><a href="{{.paper.Photo}}" target="_blank"><img src="{{.paper.Photo}}" /></a></div>
+                        <div style="padding: 5px;padding-top: 20px"><a href="{{.paper.Photo}}" ><img src="{{.paper.Photo}}" /></a></div>
                         <div style="padding: 5px;margin-bottom: 30px">
                         {{str2html .paper.Content}}
 					    </div>
@@ -201,22 +201,11 @@
                 {{if .son}}
                     {{range $i,$e:=.son}}
                     <p class="col">
-                        <a target="_blank" href="/{{$e.Title}}">-- {{$e.Title}}</a>
+                        <a  href="/{{$e.Title}}">-- {{$e.Title}}</a>
                     </p>
                     {{end}}
                 {{end}}
             </div>
-    <!--网站介绍 -->
-    <div class="box">
-        <div class="hd">
-            <h2>联系画室</h2>
-        </div>
-
-        <div class="bd" id="jinhan">
-            {{str2html .config.Address}}
-        </div>
-    </div>
-    <!--网站介绍结束 -->
 </div>
 <!--内容区2结束 -->
 
@@ -248,8 +237,7 @@
     	<p>
         	<a class="btn-to-top" title="返回顶部" target="_self" href="#">回顶部</a>
     	</p>
- <!-- JiaThis Button BEGIN -->
-<script type="text/javascript" src="http://v3.jiathis.com/code_mini/jiathis_r.js" charset="utf-8"></script>
+<!--<script type="text/javascript" src="http://v3.jiathis.com/code_mini/jiathis_r.js" charset="utf-8"></script>-->
             <!--统计-->
 {{str2html .config.Code2}}
 </body>

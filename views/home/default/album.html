@@ -32,8 +32,8 @@
 <!--装饰-->
 <div class="min-head clearfix">
     <div class="nav wrap text-right">
-       <!-- <a target="_blank" href="http://sjgm.caa.edu.cn">视觉国美</a>&nbsp;&nbsp;
-        <a target="_blank" href="http://en.caa.edu.cn/">EN</a>
+       <!-- <a  href="http://sjgm.caa.edu.cn">视觉国美</a>&nbsp;&nbsp;
+        <a  href="http://en.caa.edu.cn/">EN</a>
         -->
     </div>
 </div>
@@ -42,22 +42,22 @@
 <!--导航-->
 <div class="header">
     <div class="wrap clearfix">
-        <a target="_blank" href="/" class="logo fl">
+        <a href="/" class="logo fl">
             <img style="width:190px;height:34px" src="{{.config.Photo}}" alt=""/>
         </a>
         <ul class="main-nav" id="mainNav" style="padding-right:178px">
             <li>
-                <a target="_blank" href="/">首页</a>
+                <a href="/">首页</a>
             </li>
             {{range $i,$e:=.category}}
             <li>
-                <a target="_blank" href="/{{substr $e.Title 0 20}}/">{{substr $e.Title 0 20}}</a>
+                <a href="/{{substr $e.Title 0 20}}/">{{substr $e.Title 0 20}}</a>
                 {{if $e.Son}}
                 <dl class="sub-nav">
                     <dt>
                         {{range $j,$ee:=$e.Son}}
                         <li>
-                        <a target="_blank" href="/{{$ee.Title}}/" data-id="#jl_{{$ee.Id}}" class="tab-nav">{{$ee.Title}}</a>
+                        <a  href="/{{$ee.Title}}/" data-id="#jl_{{$ee.Id}}" class="tab-nav">{{$ee.Title}}</a>
                         </li>
                         {{end}}
                     </dt>
@@ -68,13 +68,13 @@
 
             {{range $i,$e:=.photo}}
             <li>
-                <a target="_blank" href="/{{substr $e.Title 0 20}}/">{{substr $e.Title 0 20}}</a>
+                <a  href="/{{substr $e.Title 0 20}}/">{{substr $e.Title 0 20}}</a>
                 {{if $e.Son}}
                 <dl class="sub-nav">
                     <dt>
                         {{range $j,$ee:=$e.Son}}
                         <li>
-                        <a target="_blank" href="/{{$ee.Title}}/" data-id="#jl_{{$ee.Id}}" class="tab-nav">{{$ee.Title}}</a>
+                        <a  href="/{{$ee.Title}}/" data-id="#jl_{{$ee.Id}}" class="tab-nav">{{$ee.Title}}</a>
                         </li>
                         {{end}}
                     </dt>
@@ -93,13 +93,13 @@
         <!-- 内页菜单 -->
         {{if .son}}
         <div class="in-menu" id="inMenu">
-            <a target="_blank" href="javascript:void(0);" class="btn-menu"></a>
+            <a  href="javascript:void(0);" class="btn-menu"></a>
 
             <div class="menu-wrap">
                 <h3>{{$.thiscategory.Title}}</h3>
                 <ul class="menu-items">
                     {{range $i,$e:=.son}}
-                    <li><a target="_blank" href="/{{substr $e.Title 0 20}}" class="tab-nav current">{{substr $e.Title 0 20}}</a></li>
+                    <li><a  href="/{{substr $e.Title 0 20}}" class="tab-nav current">{{substr $e.Title 0 20}}</a></li>
                     {{end}}
                 </ul>
             </div>
@@ -110,11 +110,11 @@
 
         <div class="hd">
             <p class="history fr">
-                <a href="/" target="_blank" class="CurrChnlCls" style="font-size: 15px">首页</a>
+                <a href="/"  class="CurrChnlCls" style="font-size: 15px">首页</a>
                 {{if .father}}
-                <a href="/{{.father.Title}}" target="_blank" class="CurrChnlCls" style="font-size: 15px">-- {{.father.Title}}</a>
+                <a href="/{{.father.Title}}"  class="CurrChnlCls" style="font-size: 15px">-- {{.father.Title}}</a>
                 {{end}}
-                <a href="/{{.thiscategory.Title}}" target="_blank" class="CurrChnlCls" style="font-size: 15px;color:darkred">-- {{.thiscategory.Title}}</a>
+                <a href="/{{.thiscategory.Title}}"  class="CurrChnlCls" style="font-size: 15px;color:darkred">-- {{.thiscategory.Title}}</a>
             </p>
 
             <h2>{{.thiscategory.Title}}<span class="en"></h2>
@@ -133,22 +133,6 @@
                         <div id="editor" style="width: 980px">
                         {{str2html .thiscategory.Content}}
                         </div>
-                        <!-- 多说评论框 start -->
-                        <div class="ds-thread" data-thread-key="/{{.thiscategory.Title}}" data-title="{{.thiscategory.Title}}" data-url="http://www.beautyart.top/{{.thiscategory.Title}}"></div>
-                    <!-- 多说评论框 end -->
-                    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-                    <script type="text/javascript">
-                    var duoshuoQuery = {short_name:"{{.config.Code1}}"};
-                        (function() {
-                            var ds = document.createElement('script');
-                            ds.type = 'text/javascript';ds.async = true;
-                            ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-                            ds.charset = 'UTF-8';
-                            (document.getElementsByTagName('head')[0]
-                             || document.getElementsByTagName('body')[0]).appendChild(ds);
-                        })();
-                        </script>
-<!-- 多说公共JS代码 end -->
                     </div>
                 </div>
             </div>
@@ -160,8 +144,8 @@
         {{range $i,$e:=.papers}}
                 <div class="box" style="float: left">
             <div class="bd">
-                <div style="text-align:center;padding: 5px;font-size: 1.2em;color:gray"><a target="blank" href="{{$e.Cid}}/{{$e.Id}}">{{substr $e.Title 0 20}}</a></div>
-                <a target="blank" href="/{{$.thiscategory.Title}}/{{$e.Id}}"><img style="width:348px;height:348px"  src="{{$e.Photo}}" alt="{{substr $e.Title 0 20}}"/></a>
+                <div style="text-align:center;padding: 5px;font-size: 1.2em;color:gray"><a  href="/{{$.thiscategory.Title}}/{{$e.Id}}">{{substr $e.Title 0 20}}</a></div>
+                <a  href="/{{$.thiscategory.Title}}/{{$e.Id}}"><img style="width:348px;height:348px"  src="{{$e.Photo}}" alt="{{substr $e.Title 0 20}}"/></a>
             </div>
         </div>
         {{end}}
@@ -192,7 +176,7 @@
                 {{if .son}}
                     {{range $i,$e:=.son}}
                     <p class="col">
-                        <a target="_blank" href="/{{substr $e.Title 0 20}}">-- {{substr $e.Title 0 20}}</a>
+                        <a  href="/{{substr $e.Title 0 20}}">-- {{substr $e.Title 0 20}}</a>
                     </p>
                     {{end}}
                 {{end}}
@@ -202,26 +186,27 @@
 </div>
 
 
-<!-- 内容区2 -->
-<div class="wrap container">
-    <!--网站介绍 -->
-    <div class="box">
-        <div class="hd">
-            <h2>联系画室</h2>
-        </div>
-
-        <div class="bd" id="jinhan">
-            {{str2html .config.Address}}
-        </div>
-    </div>
-    <!--网站介绍结束 -->
-</div>
-<!--内容区2结束 -->
 
 
 <!--脚部 -->
 <div class="footer">
     <div class="wrap">
+	                        <!-- 多说评论框 start -->
+                        <div class="ds-thread" data-thread-key="/{{.thiscategory.Title}}" data-title="{{.thiscategory.Title}}" data-url="http://www.beautyart.top/{{.thiscategory.Title}}"></div>
+                    <!-- 多说评论框 end -->
+                    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+                    <script type="text/javascript">
+                    var duoshuoQuery = {short_name:"{{.config.Code1}}"};
+                        (function() {
+                            var ds = document.createElement('script');
+                            ds.type = 'text/javascript';ds.async = true;
+                            ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                            ds.charset = 'UTF-8';
+                            (document.getElementsByTagName('head')[0]
+                             || document.getElementsByTagName('body')[0]).appendChild(ds);
+                        })();
+                        </script>
+<!-- 多说公共JS代码 end -->
         <!--
         <div class="box">
 				<div class="hd">
@@ -231,7 +216,7 @@
 					<div class="tab-content">
 						<div class="tab-plane" id="syyx">
 							<div class="news-list">
-								<ul><li><a target="blank" href="/xy/jxjg/zghyys/" class="tit">中国画与书法艺术学院</a></li></ul>
+								<ul><li><a  href="/xy/jxjg/zghyys/" class="tit">中国画与书法艺术学院</a></li></ul>
 							</div>
 						</div>
 					</div>
@@ -247,7 +232,7 @@
         	<a class="btn-to-top" title="返回顶部" target="_self" href="#">回顶部</a>
     	</p>
  <!-- JiaThis Button BEGIN -->
-<script type="text/javascript" src="http://v3.jiathis.com/code_mini/jiathis_r.js" charset="utf-8"></script>
+<!--<script type="text/javascript" src="http://v3.jiathis.com/code_mini/jiathis_r.js" charset="utf-8"></script>-->
             <!--统计-->
 {{str2html .config.Code2}}
 </body>

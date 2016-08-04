@@ -205,7 +205,7 @@ html {
 body {
   font-family: "Microsoft Yahei", "STHeiti", "å¾®è½¯é›…é»‘", "é»‘ä½“", Arial, Helvetica, sans-serif;
   font-size: 12px;
-  line-height: 120%;
+  /*line-height: 120%;*/
 }
 a {
   color: #555555;
@@ -1140,18 +1140,18 @@ p {
 }
 .in-content {
   padding: 34px;
-  line-height: 26px;
+  /*line-height: 26px;*/
   font-size: 13px;
   *zoom: 1;
 }
 .in-content p {
-  line-height: 26px;
+ /* line-height: 26px;*/
   font-size: 13px;
-  color: #999;
+ /* color: #999;*/
   margin-bottom: 6px;
 }
 .in-content p strong {
-  color: #666;
+  /*color: #666;*/
 }
 .in-content h3,
 .in-content h4 {
