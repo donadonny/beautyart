@@ -1,4 +1,5 @@
 # 项目名：广州缀美画室网站
+http://beauty.lenggirl.com
 >开发语言:Go!!!!
 
 >```
@@ -30,7 +31,8 @@
 ## 参考
 1. 基于角色的访问控制（Role-Based Access Control）作为传统访问控制
 2. 使用beego框架和大量javascript脚本ajax调用
-3. Amaze UI v2.7.0和jQuery EasyUI 1.4.2、Bootstrap混合
+3.　Amaze UI v2.7.0和jQuery EasyUI 1.4.2、Bootstrap混合（xx)
+4. 图片延迟加载
 
 ## 运行步骤
 
@@ -46,7 +48,7 @@
 
 >平台使用说明参见doc文件夹
 ><p>可自由修改源代码，但必须保留友好链接
-><p>[http://wwww.beautyart.top](广州缀美画室)
+><p>[http://beauty.lenggirl.com](广州缀美画室)
 
 ## 联系方式
 >https://www.github.com/hunterhug 
@@ -141,3 +143,7 @@ beautyart
 5. 前端准备仿照http://www.caa.edu.cn/index.html
 6. 首页改造完成，修复后台bug，差其余前端 2016/7/31
 7. 前端开发完毕  2016/8/2
+8. 内容填充完毕　2016/8/5
+
+##待做
+1. 图片浓缩图提高速度
