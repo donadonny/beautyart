@@ -16,7 +16,7 @@ http://beauty.lenggirl.com
 >```
 
 <img src='https://raw.githubusercontent.com/hunterhug/beautyart/master/seeme.jpg' />
-
+<img src='https://raw.githubusercontent.com/hunterhug/beautyart/master/seemok.png' />
 
 ## 项目规划
 >环境要求：golang=1.6,mysql=5.6
