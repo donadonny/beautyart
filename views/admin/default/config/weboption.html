@@ -39,7 +39,7 @@
 
                 <div class="form-group">
                     <div>
-                        <label for="address">联系地址</label>
+                        <label for="address">网站头部</label>
                         <textarea class="form-control" rows="10" name="address" id="address">{{.config.Address}}</textarea>
                     </div>
                 </div>
@@ -126,10 +126,10 @@
             allowFileManager: true
         };
         var editor = K.create('textarea[name="content"]', option);
-        var editor1 = K.create('textarea[name="address"]', option);
+       /* var editor1 = K.create('textarea[name="address"]', option);*/
          var editor2 = K.create('textarea[name="code3"]', option);
         editor.sync();
-        editor1.sync();
+      /*  editor1.sync();*/
         editor2.sync();
         $.formValidator.initConfig({
             formID: "user_form", submitOnce: true,
