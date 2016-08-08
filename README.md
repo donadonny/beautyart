@@ -30,7 +30,8 @@ http://beauty.lenggirl.com
 
 ## 项目托管
 >阿里云服务器： Ubuntu
-><p>域名：http://www.beautyart.top
+><p>软件:ngnix
+><p>域名：http://www.beautyart.top ,http://beauty.lenggirl.com
 
 ## 参考
 1. 基于角色的访问控制（Role-Based Access Control）作为传统访问控制
@@ -52,7 +53,7 @@ http://beauty.lenggirl.com
 
 >平台使用说明参见doc文件夹
 ><p>可自由修改源代码，但必须保留友好链接
-><p>[http://beauty.lenggirl.com](广州缀美画室)
+><p>[http://beauty.lenggirl.com](广州缀美美术学校官网|缀美画室)
 
 ## 联系方式
 >https://www.github.com/hunterhug 
