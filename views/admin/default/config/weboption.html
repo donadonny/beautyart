@@ -39,7 +39,7 @@
 
                 <div class="form-group">
                     <div>
-                        <label for="address">联系地址</label>
+                        <label for="address">网站头部</label>
                         <textarea class="form-control" rows="10" name="address" id="address">{{.config.Address}}</textarea>
                     </div>
                 </div>
@@ -50,7 +50,6 @@
                         <input type="text" class="form-control" name="phone" id="phone"
                                placeholder="请输入手机或电话"  value="{{.config.Phone}}">
                     </div>
-                    <div id="phoneTip"></div>
                 </div>
                 <div class="form-group">
                     <div>
@@ -127,10 +126,10 @@
             allowFileManager: true
         };
         var editor = K.create('textarea[name="content"]', option);
-        var editor1 = K.create('textarea[name="address"]', option);
+       /* var editor1 = K.create('textarea[name="address"]', option);*/
          var editor2 = K.create('textarea[name="code3"]', option);
         editor.sync();
-        editor1.sync();
+      /*  editor1.sync();*/
         editor2.sync();
         $.formValidator.initConfig({
             formID: "user_form", submitOnce: true,
@@ -155,8 +154,8 @@
 
 
 
-        $("#phone").formValidator({onFocus: "如0768-8888888或11位手机号码", onCorrect: "谢谢你的合作"})
-                .regexValidator({regExp: ["tel", "mobile"], dataType: "enum", onError: "你输入的手机或电话格式不正确"});
+     /*   $("#phone").formValidator({onFocus: "如0768-8888888或11位手机号码", onCorrect: "谢谢你的合作"})
+                .regexValidator({regExp: ["tel", "mobile"], dataType: "enum", onError: "你输入的手机或电话格式不正确"});*/
 
     });
 
