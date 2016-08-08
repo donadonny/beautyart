@@ -3,8 +3,9 @@ http://beauty.lenggirl.com
 >开发语言:Go!!!!
 
 -----
-# 使用源代码请保留 缀美画室 链接:
->`<a href='http://beauty.lenggirl.com>广州缀美美术学校官网|缀美画室</a>'`
+# 使用源代码请保留 `广州缀美美术学校官网|缀美画室` 链接:
+>`<a href='http://beauty.lenggirl.com'>广州缀美美术学校官网|缀美画室</a>`
+
 
 >```
 >// ░░░░░░░░▌▒█░░░░░░░░░░░▄▀▒▌
