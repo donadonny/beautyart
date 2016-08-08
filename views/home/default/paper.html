@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>{{.config.Title}}|{{.thiscategory.Title}}</title>
+	{{str2html .config.Address}}
     <meta name="renderer" content="webkit">
     <meta name="viewport" content="width=1200, user-scalable=yes, target-densitydpi=device-dpi">
     <link rel="stylesheet" href="/static/caa/art.styles.css">
@@ -20,7 +21,7 @@
    <script>
         $(function(){
           $("img").lazyload({ 
-       /*   placeholder : "images/loading.gif",*/
+         placeholder : "/static/caa/img/loading.gif",
                  effect: "fadeIn"
            });  
 
