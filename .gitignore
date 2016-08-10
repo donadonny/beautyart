@@ -38,3 +38,5 @@ log/
 file/*
 /.gitignore
 *.xml
+main
+beautyart
