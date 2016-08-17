@@ -33,12 +33,7 @@ test/*
 .idea/beautyart.iml
 *.iml
 log/
-#views/admin/amazi/
-#views/home/
-<<<<<<< HEAD
-#file/*
-=======
 file/*
->>>>>>> afd3d0991419218cb81a70b23d850e18d282efe8
-/.gitignore
 *.xml
+main
+beautyart
