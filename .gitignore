@@ -33,7 +33,8 @@ test/*
 .idea/beautyart.iml
 *.iml
 log/
-file/*
+#file/*
 *.xml
 main
 beautyart
+*.out
