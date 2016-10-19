@@ -150,6 +150,28 @@ beautyart
 ><p>可自由修改源代码，但必须保留友好链接
 ><p>[http://beauty.lenggirl.com](广州缀美美术学校官网|缀美画室)
 
+## 使用
+导数据库
+
+nginx配置：
+
+```
+server{
+        listen 80;
+        server_name beauty.lenggirl.com www.beautyart.top;
+        charset utf-8;
+        access_log /data/logs/nginx/beauty.lenggirl.com.log;
+        #error_log /data/logs/nginx/www.lenggirl.com.err;
+        location / {
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $http_host;
+        proxy_redirect off;
+        proxy_pass http://localhost:8080;
+        }
+        
+}
+
+```
 ## 联系方式
 >https://www.github.com/hunterhug 
 ><p>QQ：569929309
