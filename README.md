@@ -31,13 +31,6 @@
 >// ▀▒▀▐▄█▄█▌▄░▀▒▒░░░░░░░░░░▒▒▒
 >```
 
-
-## 项目规划
->环境要求：golang=1.6,mysql=5.6
-><p>框架：	beego
-><p>起始时间：2016.6.10
-><p>结束时间：2016.8.8
-
 域名：[http://www.beautyart.top](http://www.beautyart.top),[http://beauty.lenggirl.com](http://beauty.lenggirl.com)
 
 ## 文件目录
@@ -84,8 +77,7 @@ beautyart
 	git clone https://www.github.com/hunterhug/beautyart
 ```
 
-
-3.初始化数据库
+3.初始化数据库beauty.sql
 
 ```
 beauty.sql导入数据库
@@ -105,7 +97,7 @@ go run main.go
 bee run
 ```
 
-5.nginx配置
+5.nginx配置 nginx.conf
 
 ```
 server{
@@ -267,11 +259,6 @@ db_prefix = tb_
 3. APP应用，前端判断设备进行前端页面切换（一周时间）
 4. 域名备案（愁啊。。。。无限延期）
 
-## 特别说明
->平台使用说明参见doc文件夹
-><p>可自由修改源代码，但必须保留友好链接
-><p>[http://beauty.lenggirl.com](广州缀美美术学校官网|缀美画室)
-
 
 ## 联系方式
 >https://www.github.com/hunterhug 
@@ -285,5 +272,10 @@ db_prefix = tb_
 >4. 图片延迟加载
 
 ## 前端展示
-<img src='https://raw.githubusercontent.com/hunterhug/beautyart/master/seeme.jpg' />
-<img src='https://raw.githubusercontent.com/hunterhug/beautyart/master/seemok.png' />
+<img src='https://raw.githubusercontent.com/hunterhug/beautyart/master/doc/seeme.jpg' />
+<img src='https://raw.githubusercontent.com/hunterhug/beautyart/master/doc/seemok.png' />
+<img src='https://raw.githubusercontent.com/hunterhug/beautyart/master/doc/seeme3.png' />
+
+https://github.com/hunterhug/go_tool
+
+The MIT License (MIT)
