@@ -1,12 +1,18 @@
 # 项目名：广州缀美美术学校|缀美画室官网
 
+```
+目标：wordpress的多模板切换，能行的，加油！
+官网域名待启用,暂时用二级域名~~
+一个支持多用户权限控制，拥有基本博客功能，可扩展的网站应用
+暂时有用户管理，文章管理，相册管理，评论，可扩展式内容管理系统
+```
+
 >开发语言:Go!!!!
-><p>想听故事吗？摸过大部分语言,go最小巧，而且我喜欢c语言，简单！可是c语言很难写网站~~~
-><p>用php和java重构过同一种网站,Python写过爬虫，现在大部分还是用python~~
+><p>想听故事吗？摸过大部分语言,go最小巧，而且我喜欢c语言，简单！可是c语言很难写网站
+><p>用php和java重构过同一种网站,Python写过爬虫，现在大部分还是用python
 ><p>百哥，看过来！！~~~~
 
------
-## 使用源代码请保留 `广州缀美美术学校官网|缀美画室` 链接:
+使用源代码请保留以下链接:
 
 ```
 <a href='http://beauty.lenggirl.com'>广州缀美美术学校官网|缀美画室</a>
@@ -16,12 +22,12 @@
 >// ░░░░░░░░▌▒█░░░░░░░░░░░▄▀▒▌
 >// ░░░░░░░░▌▒▒█░░░░░░░░▄▀▒▒▒▐
 >// ░░░░░░░▐▄▀▒▒▀▀▀▀▄▄▄▀▒▒▒▒▒▐
->// ░░░░░▄▄▀▒░▒▒▒▒▒▒▒▒▒█▒▒▄█▒▐ wordpress的多模板切换，能行的，加油！
+>// ░░░░░▄▄▀▒░▒▒▒▒▒▒▒▒▒█▒▒▄█▒▐ 
 >// ░░░▄▀▒▒▒░░░▒▒▒░░░▒▒▒▀██▀▒▌
 >// ░░▐▒▒▒▄▄▒▒▒▒░░░▒▒▒▒▒▒▒▀▄▒▒
->// ░░▌░░▌█▀▒▒▒▒▒▄▀█▄▒▒▒▒▒▒▒█▒▐官网域名待启用,暂时用二级域名~~
->// ░▐░░░▒▒▒▒▒▒▒▒▌██▀▒▒░░░▒▒▒▀▄一个支持多用户权限控制，拥有基本博客功能，可扩展的网站应用
->// ░▌░▒▄██▄▒▒▒▒▒▒▒▒▒░░░░░░▒▒▒▒暂时有用户管理，文章管理，相册管理，评论，可扩展式内容管理系统
+>// ░░▌░░▌█▀▒▒▒▒▒▄▀█▄▒▒▒▒▒▒▒█▒▐
+>// ░▐░░░▒▒▒▒▒▒▒▒▌██▀▒▒░░░▒▒▒▀▄
+>// ░▌░▒▄██▄▒▒▒▒▒▒▒▒▒░░░░░░▒▒▒▒
 >// ▀▒▀▐▄█▄█▌▄░▀▒▒░░░░░░░░░░▒▒▒
 >```
 
@@ -32,10 +38,7 @@
 ><p>起始时间：2016.6.10
 ><p>结束时间：2016.8.8
 
-## 项目托管
->阿里云服务器： Ubuntu
-><p>软件:ngnix
-><p>域名：http://www.beautyart.top ,http://beauty.lenggirl.com
+域名：[http://www.beautyart.top](http://www.beautyart.top),[http://beauty.lenggirl.com](http://beauty.lenggirl.com)
 
 ## 文件目录
 ```
@@ -72,15 +75,134 @@ beautyart
 ```
 
 ## 运行步骤
-1. 运行init.sh进行包初始化或者根据提示go install
-2. 接着
+1.运行init.sh进行包初始化或者根据提示go install
+2.接着获取代码
 
 ```
+    go get -u -v github.com/hunterhug/beautyart
+    或者
 	git clone https://www.github.com/hunterhug/beautyart
-	cd beautyart
-	go build main.go
-	./main -s
-	./main
+```
+
+
+3.初始化数据库
+
+```
+beauty.sql导入数据库
+或者
+go build main.go 
+./main -s
+```
+
+4.运行
+
+```
+go build main.go
+./main
+或者
+go run main.go
+或者
+bee run
+```
+
+5.nginx配置
+
+```
+server{
+        listen 80;
+        server_name beauty.lenggirl.com www.beautyart.top;
+        charset utf-8;
+        access_log /data/logs/nginx/beauty.lenggirl.com.log;
+        #error_log /data/logs/nginx/www.lenggirl.com.err;
+        location / {
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $http_host;
+        proxy_redirect off;
+        proxy_pass http://localhost:8080;
+        }
+        
+}
+```
+
+server_name和proxy_pass需要改
+
+6.填写配置文件conf/app.conf
+
+```
+appname = beauty
+version = 1.0.0
+
+# 生产环境改为prod
+runmode = dev
+
+###################
+
+# 可以直接通过静态访问的文件夹，位于根目录下面
+StaticDir = static:static file:file
+
+# 国际化语言
+lang_types = en-US|zh-CN
+
+# 路由区分大小写
+RouterCaseSensitive = false
+
+# 中国时间请设为8，不然数据库时间会混乱
+timezone = 8
+
+# 调试数据库 close/open
+dblog = close
+
+###################
+
+# 前台模板，可以改,wordpress功能
+home_template = home/default
+admin_template = admin/default
+
+# 文件上传保存地址，后面不可以是/，必须是根目录下的文件夹，为了速度更快，文件直接到前端，可改写
+filebasepath = file
+
+###################
+
+# 权限控制，建议不要乱改
+sessionon = true
+sessionname = beautysessionid
+sessionhashkey = mostbeautyart
+rbac_role_table = role
+rbac_node_table = node
+rbac_group_table = group
+rbac_user_table = user
+rbac_admin_user = admin
+not_auth_package = public,static,home,file
+
+###################
+
+# 0不验证，1验证，2实时验证,建议不要改
+user_auth_type = 2
+rbac_auth_gateway = /public/login
+
+# cookie一周内登录开关，1表示开，建议设为0
+cookie7 = 0
+
+[dev]
+httpport = 8080
+db_host = 127.0.0.1
+db_port = 3306
+db_user = root
+db_pass = 6833066
+db_name = beauty
+db_type = mysql
+db_prefix = tb_
+
+[prod]
+EnableGzip = true
+httpport = 80
+db_host = 127.0.0.1
+db_port = 3306
+db_user = root
+db_pass = root
+db_name = beauty
+db_type = mysql
+db_prefix = tb_
 ```
 
 ## 项目约定
@@ -150,28 +272,7 @@ beautyart
 ><p>可自由修改源代码，但必须保留友好链接
 ><p>[http://beauty.lenggirl.com](广州缀美美术学校官网|缀美画室)
 
-## 使用
-导数据库
 
-nginx配置：
-
-```
-server{
-        listen 80;
-        server_name beauty.lenggirl.com www.beautyart.top;
-        charset utf-8;
-        access_log /data/logs/nginx/beauty.lenggirl.com.log;
-        #error_log /data/logs/nginx/www.lenggirl.com.err;
-        location / {
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header Host $http_host;
-        proxy_redirect off;
-        proxy_pass http://localhost:8080;
-        }
-        
-}
-
-```
 ## 联系方式
 >https://www.github.com/hunterhug 
 ><p>QQ：569929309
