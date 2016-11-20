@@ -43,6 +43,7 @@ func AccessRegister() {
 				}
 				if uinfo == nil {
 					ctx.Redirect(302, rbac_auth_gateway)
+					return
 				}else{
 					//增加sessioN
 					ctx.Output.Session("userinfo",uinfo)
