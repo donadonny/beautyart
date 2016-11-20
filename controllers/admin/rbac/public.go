@@ -42,11 +42,13 @@ func (this *MainController) Index() {
 		} else {
 			//没有
 			this.Ctx.Redirect(302, beego.AppConfig.String("rbac_auth_gateway"))
+			return
 		}
 	}
 
 	if userinfo == nil {
 		this.Ctx.Redirect(302, beego.AppConfig.String("rbac_auth_gateway"))
+		return
 	}
 
 	// 权限最重要的部分，入口在此
@@ -55,7 +57,7 @@ func (this *MainController) Index() {
 	// 第一/二层节点关闭,则菜单没有
 	tree := this.GetTree()
 
-	userinfo = this.GetSession("userinfo")
+	//userinfo = this.GetSession("userinfo")
 	groups := admin.GroupList()
 	this.Data["tree"] = tree
 	this.Data["user"] = userinfo.(admin.User)
@@ -90,9 +92,11 @@ func (this *MainController) Login() {
 			accesslist, _ := GetAccessList(userinfo.Id)
 			this.SetSession("accesslist", accesslist)
 			this.Ctx.Redirect(302, "/public/index")
+			return
 		}
 	} else if userinfo != nil {
 		this.Ctx.Redirect(302, "/public/index")
+		return
 	} else {
 
 	}
@@ -127,6 +131,7 @@ func (this *MainController) Login() {
 				this.SetSession("accesslist", accesslist)
 
 				this.Ctx.Redirect(302, "/public/index")
+				return
 
 			} else {
 				this.Data["errmsg"] = err.Error()
