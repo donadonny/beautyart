@@ -65,20 +65,32 @@ func InsertGroup() {
 	g.Name = "画室官网"
 	g.Title = "后台管理"
 	g.Sort = 1
+	g.Id = 1
 	g.Status = 1
-	g.Insert()
+	e := g.Insert()
+	if e != nil{
+		fmt.Println(e.Error())
+	}
 	g1 := new(Group)
 	g1.Name = "画室官网"
 	g1.Title = "文章管理"
 	g1.Sort = 2
+	g1.Id = 2
 	g1.Status = 1
-	g1.Insert()
+	e = g1.Insert()
+	if e != nil{
+		fmt.Println(e.Error())
+	}
 	g2 := new(Group)
 	g2.Name = "画室官网"
 	g2.Title = "图片管理"
 	g2.Sort = 3
+	g2.Id = 3
 	g2.Status = 1
-	g2.Insert()
+	e = g2.Insert()
+	if e != nil{
+		fmt.Println(e.Error())
+	}
 	fmt.Println("insert group end")
 }
 
@@ -213,12 +225,12 @@ func InsertNodes() {
 		{Id: 60, Name: "roll/index", Title: "首页轮转", Remark: "", Level: 2, Pid: 25, Status: 1, Group: g},
 		{Id: 61, Name: "Index", Title: "轮转列表", Remark: "", Level: 3, Pid: 60, Status: 1, Group: g},
 		{Id: 62, Name: "AddRoll", Title: "增加轮转", Remark: "", Level: 3, Pid: 60, Status: 1, Group: g},
-		{Id: 61, Name: "UpdateRoll", Title: "更新轮转", Remark: "", Level: 3, Pid: 60, Status: 1, Group: g},
-		{Id: 62, Name: "DeleteRoll", Title: "删除轮转", Remark: "", Level: 3, Pid: 60, Status: 1, Group: g},
+		{Id: 63, Name: "UpdateRoll", Title: "更新轮转", Remark: "", Level: 3, Pid: 60, Status: 1, Group: g},
+		{Id: 64, Name: "DeleteRoll", Title: "删除轮转", Remark: "", Level: 3, Pid: 60, Status: 1, Group: g},
 	}
 	for _, v := range nodes {
 		n := new(Node)
-		n.Id = v.Id //这句是无效的
+		n.Id = v.Id //这句是无效的,bug 被beego官方改好了
 		n.Name = v.Name
 		n.Title = v.Title
 		n.Remark = v.Remark
@@ -226,7 +238,10 @@ func InsertNodes() {
 		n.Pid = v.Pid
 		n.Status = v.Status
 		n.Group = v.Group
-		n.Insert()
+		e := n.Insert()
+		if e != nil{
+			fmt.Println(e.Error())
+		}
 	}
 	fmt.Println("insert node end")
 }
