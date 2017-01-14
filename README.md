@@ -104,7 +104,7 @@ server{
         proxy_set_header Host $http_host;
         proxy_redirect off;
         proxy_pass http://localhost:8080;
-	proxy_set_header X-real-ip $remote_addr;
+	proxy_set_header X-Real-Ip $remote_addr;
         }
         
 }
@@ -112,14 +112,14 @@ server{
 
 server_name和proxy_pass需要改
 
-nginx反向代理所以proxy_set_header X-real-ip $remote_addr;
+nginx反向代理所以proxy_set_header X-Real-Ip $remote_addr;
 
 ```
 //获取用户IP地址
 func GetClientIp(this *context.Context) string {
 	s := strings.Split(this.Request.RemoteAddr, ":")
 	if s[0] == "127.0.0.1" {
-		if v, ok := this.Request.Header["X-real-ip"]; ok {
+		if v, ok := this.Request.Header["X-Real-Ip"]; ok {
 			if len(v) > 0 {
 				return v[0]
 			}
