@@ -1,13 +1,9 @@
 # 项目名：画室官网
 
 ```
-目标：wordpress的多模板切换，能行的，加油！
-官网域名待启用,暂时用二级域名~~
 一个支持多用户权限控制，拥有基本博客功能，可扩展的网站应用
 暂时有用户管理，文章管理，相册管理，评论，可扩展式内容管理系统
 开发语言:Go!!!!
-想听故事吗？摸过大部分语言,go最小巧，而且我喜欢c语言，简单！可是c语言很难写网站
-用php和java重构过同一种网站,Python写过爬虫，现在大部分还是用python
 
 // ░░░░░░░░▌▒█░░░░░░░░░░░▄▀▒▌
 // ░░░░░░░░▌▒▒█░░░░░░░░▄▀▒▒▒▐
@@ -108,12 +104,30 @@ server{
         proxy_set_header Host $http_host;
         proxy_redirect off;
         proxy_pass http://localhost:8080;
+	proxy_set_header X-real-ip $remote_addr;
         }
         
 }
 ```
 
 server_name和proxy_pass需要改
+
+nginx反向代理所以proxy_set_header X-real-ip $remote_addr;
+
+```
+//获取用户IP地址
+func GetClientIp(this *context.Context) string {
+	s := strings.Split(this.Request.RemoteAddr, ":")
+	if s[0] == "127.0.0.1" {
+		if v, ok := this.Request.Header["X-real-ip"]; ok {
+			if len(v) > 0 {
+				return v[0]
+			}
+		}
+	}
+	return s[0]
+}
+```
 
 6.填写配置文件conf/app.conf
 
